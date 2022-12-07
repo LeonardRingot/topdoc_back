@@ -2,10 +2,21 @@ import { localisationTypes } from "../types/localisation";
 
 export const localisations: localisationTypes[] = [
     {
+        address: "cse",
+        zipCode: 62200,
+        city: "Boulogne"
+    },
+    {
         address: "test",
-        zipCode: 62240,
-        city: "desvres"
+        zipCode: 62200,
+        city: "Boulogne  sur mer"
     }, 
+    {
+        address: "test",
+        zipCode: 62200,
+        city: "Boulo"
+    }
+
     
    
 ];

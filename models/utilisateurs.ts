@@ -4,13 +4,13 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
     const concatRequiredMessage = (data: string) => {
         return `${data} is required`
     }
-    return sequelize.define('utilisateur', {
+    return sequelize.define('User', {
         id:{
             type: dataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        email: {
+        td_email: {
             type: dataTypes.STRING,
             allowNull: false,
             unique: true,
@@ -20,7 +20,7 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
                 notEmpty: { msg: concatRequiredMessage('Email') }
             }
         },
-        password: {
+        td_password: {
             type: dataTypes.STRING,
             allowNull: false,
             validate: {
@@ -28,7 +28,7 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
                 notEmpty: { msg: concatRequiredMessage('Password') }
             }
         },
-        phone: {
+        td_phone: {
             type: dataTypes.INTEGER,
             allowNull: false,
             unique: true,
@@ -36,7 +36,7 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
                 isAlphanumeric: true
             }
         },
-        isActif: {
+        td_isActif: {
             type: dataTypes.BOOLEAN,
             allowNull: false
         }

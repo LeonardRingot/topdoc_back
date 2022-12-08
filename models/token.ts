@@ -1,3 +1,4 @@
+
 import { DataTypes, Sequelize } from "sequelize"
 
 module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
@@ -5,28 +6,21 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
         return `${data} is required`
     }
 
-    return sequelize.define('Localisation', {
+    return sequelize.define('Token', {
 
         id: {
             type: dataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        td_address: {
+        refreshToken: {
             type: dataTypes.STRING,
             allowNull: false,
             validate: {
-                notNull: { msg: concatRequiredMessage('address') },
-                notEmpty: { msg: concatRequiredMessage('address') }
+                notNull: { msg: concatRequiredMessage('Token') },
+                notEmpty: { msg: concatRequiredMessage('Token') }
             }
-        },
-        td_zipCode: {
-            type: dataTypes.INTEGER,
-            allowNull: false
-        },
-        td_city: {
-            type: dataTypes.STRING,
-            allowNull: false
         }
+        
     })
 }

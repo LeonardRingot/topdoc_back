@@ -6,7 +6,7 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
     }
 
     return sequelize.define('Praticien', {
-        activite: {
+        td_activite: {
             type: dataTypes.STRING,
             allowNull: false,
             validate: {

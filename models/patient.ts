@@ -6,7 +6,7 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
     }
 
     return sequelize.define('Patient', {
-        firstname: {
+        td_firstname: {
             type: dataTypes.STRING,
             allowNull: false,
             validate: {
@@ -14,7 +14,7 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
                 notEmpty: { msg: concatRequiredMessage('firstname') }
             }
         },
-        lastname: {
+        td_lastname: {
             type: dataTypes.STRING,
             allowNull: false,
             validate: {
@@ -22,7 +22,7 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
                 notEmpty: { msg: concatRequiredMessage('lastname') }
             }
         },
-        birthday: {
+        td_birthday: {
             type: dataTypes.DATE,
             allowNull: false,
             validate: {

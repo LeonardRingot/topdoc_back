@@ -2,19 +2,19 @@ import { localisationTypes } from "../types/localisation";
 
 export const localisations: localisationTypes[] = [
     {
-        address: "cse",
-        zipCode: 62200,
-        city: "Boulogne"
+        td_address: "cse",
+        td_zipCode: 62200,
+        td_city: "Boulogne"
     },
     {
-        address: "test",
-        zipCode: 62200,
-        city: "Boulogne  sur mer"
+        td_address: "test",
+        td_zipCode: 62200,
+        td_city: "Boulogne  sur mer"
     }, 
     {
-        address: "test",
-        zipCode: 62200,
-        city: "Boulo"
+        td_address: "test",
+        td_zipCode: 62200,
+        td_city: "Boulo"
     }
 
     

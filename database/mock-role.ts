@@ -2,12 +2,12 @@ import { roleTypes } from "../types/role";
 
 export const roles: roleTypes[] = [
     {
-        role: "ADMIN",
+        td_role_nom: "ADMIN",
     },
     {
-        role: "PATIENT",
+        td_role_nom: "PATIENT",
     },
     {
-        role: "PRATICIEN",
+        td_role_nom: "PRATICIEN",
     },
 ];

@@ -1,8 +1,8 @@
 export interface patientTypes {
     UserId: number;
-    firstname: string;
-    lastname: string;
-    birthday: Date;
+    td_firstname: string;
+    td_lastname: string;
+    td_birthday: Date;
   }
   
   export interface patientId extends patientTypes {

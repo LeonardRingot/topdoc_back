@@ -7,7 +7,7 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
     }
 
     return sequelize.define('Role', {
-        role: {
+        td_role_nom: {
             type: dataTypes.STRING,
             allowNull: false,
             validate: {

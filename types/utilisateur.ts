@@ -1,8 +1,8 @@
 export interface userTypes {
-    email: string;
-    phone: number;
-    isActif: boolean;
-    password: string;
+  td_email: string;
+  td_phone: number;
+  td_isActif: boolean;
+  td_password: string;
     LocalisationId: number;
   }
   
@@ -15,8 +15,8 @@ export interface userTypes {
   
   
   export interface User {
-    username: string;
-    password: string;
+    td_username: string;
+    td_password: string;
   }
   
   declare global {

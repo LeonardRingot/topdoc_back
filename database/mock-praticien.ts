@@ -2,7 +2,7 @@ import { praticienTypes } from "../types/praticien";
 
 export const praticien: praticienTypes[] = [
   {
-    activite: "Podologue",
+    td_activite: "Podologue",
     UserId: 3
   }
 ];

@@ -1,5 +1,5 @@
 export interface roleTypes {
-    role: string;
+  td_role_nom: string;
   }
   
   export interface roleId extends roleTypes {

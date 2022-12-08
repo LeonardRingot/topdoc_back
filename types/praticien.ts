@@ -1,6 +1,6 @@
 export interface praticienTypes {
     UserId: number;
-    activite: string;
+    td_activite: string;
   }
   
   export interface praticienId extends praticienTypes {

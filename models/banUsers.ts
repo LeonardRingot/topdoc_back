@@ -2,6 +2,6 @@
 import { Sequelize } from "sequelize"
 
 module.exports = (sequelize: Sequelize) => {
-    return sequelize.define('RdvUser', {
+    return sequelize.define('BanUser', {
     })
 }

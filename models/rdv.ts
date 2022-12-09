@@ -6,7 +6,7 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
     }
 
     return sequelize.define('rdv', {
-        td_heure: {
+        td_date_rendez_vous: {
             type: dataTypes.DATE,
             allowNull: false,
             validate: {

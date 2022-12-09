@@ -6,6 +6,11 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
     }
 
     return sequelize.define('Praticien', {
+        id: {
+            type: dataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+        },
         td_activite: {
             type: dataTypes.STRING,
             allowNull: false,

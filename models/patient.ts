@@ -6,6 +6,11 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
     }
 
     return sequelize.define('Patient', {
+        id: {
+            type: dataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+        },
         td_firstname: {
             type: dataTypes.STRING,
             allowNull: false,

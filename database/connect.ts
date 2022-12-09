@@ -7,6 +7,10 @@ import { praticienTypes } from "../types/praticien"
 import { roleTypes } from "../types/role"
 import { rdvTypes } from "../types/rdv"
 import { tokenTypes } from "../types/token"
+import { bansTypes } from "../types/ban"
+import { congeTypes } from "../types/conge"
+import { plageHoraireTypes } from "../types/plage_horaire"
+import { planningTypes } from "../types/planning"
 
 import { users } from './mock-user'
 import { localisations } from './mock-localisation'
@@ -15,6 +19,10 @@ import { patient } from './mock-patient'
 import { roles } from './mock-role'
 import { rdvs } from './mock-rdv'
 import { tokens } from './mock-token'
+import { bans } from './mock-ban'
+import { conge } from './mock-conge'
+import { plage_horaire } from './mock-plage_horaire'
+import { planning } from './mock-planning'
 
 const UserModel = require('../models/utilisateurs')
 const LocalisationModel = require('../models/localisation')
@@ -22,9 +30,13 @@ const PatientModel = require('../models/patient')
 const PraticienModel = require('../models/praticien')
 const RoleModel = require('../models/role')
 const RdvModel = require('../models/rdv')
-const RdvUserModel = require('../models/rdvUsers')
 const RoleUserModel = require('../models/roleUsers')
 const TokenModel = require('../models/token')
+const BanModel = require('../models/ban')
+const BanUserModel = require('../models/BanUsers')
+const CongeModel = require('../models/conge')
+const Plage_HoraireModel = require('../models/plage_horaire')
+const PlanningModel = require('../models/planning')
 
 const sequelize = new Sequelize(
         `${process.env.NAME_DATABASE}`,
@@ -50,34 +62,44 @@ sequelize.authenticate()
     export const Localisation = LocalisationModel(sequelize, DataTypes)
     export const Patient = PatientModel(sequelize, DataTypes)
     export const Praticien = PraticienModel(sequelize, DataTypes)
-    
-
     export const Role = RoleModel(sequelize, DataTypes)
     export const Rdv = RdvModel(sequelize, DataTypes)
-    export const RdvUser = RdvUserModel(sequelize, DataTypes)
     export const RoleUser = RoleUserModel(sequelize, DataTypes)
+    export const BanUser = BanUserModel(sequelize, DataTypes)
     export const Token = TokenModel(sequelize, DataTypes)
+    export const Ban = BanModel(sequelize, DataTypes)
+    export const Conge = CongeModel(sequelize, DataTypes)
+    export const Plage_Horaire = Plage_HoraireModel(sequelize, DataTypes)
+    export const Planning = PlanningModel(sequelize, DataTypes)
 
-    User.hasOne(Token, { onDelete: 'cascade', hooks: true })
+User.hasOne(Token, { onDelete: 'cascade', hooks: true })
 Token.belongsTo(User, { onDelete: 'cascade', hooks: true })
+
 
 Localisation.hasOne(User, { onDelete: 'cascade', hooks: true })
 User.belongsTo(Localisation, { onDelete: 'cascade', hooks: true })
 
+User.hasOne(Conge, { onDelete: 'cascade', hooks: true })
+Conge.belongsTo(User, { onDelete: 'cascade', hooks: true })
 
+Patient.hasOne(Rdv, { onDelete: 'cascade', hooks: true })
+Rdv.belongsTo(Patient, { onDelete: 'cascade', hooks: true })
 
-Rdv.belongsToMany(User, { through: RdvUser })
-User.belongsToMany(Rdv, { through: RdvUser })
-
+// Praticien.hasOne(Rdv, { onDelete: 'cascade', hooks: true })
+// Rdv.belongsTo(Praticien, { onDelete: 'cascade', hooks: true })
 
 User.hasOne(Patient, { foreignKey: 'UserId', onDelete: 'cascade', hooks: true })
-Patient.belongsTo(User, { foreignKey: 'UserId', onDelete: 'cascade', hooks: true })
+Patient.belongsTo(User, {  onDelete: 'cascade', hooks: true })
 
-User.hasOne(Praticien, { foreignKey: 'UserId', onDelete: 'cascade', hooks: true })
-Praticien.belongsTo(User, { foreignKey: 'UserId', onDelete: 'cascade', hooks: true })
+User.hasOne(Praticien, {  onDelete: 'cascade', hooks: true })
+Praticien.belongsTo(User, {  onDelete: 'cascade', hooks: true })
 
 Role.belongsToMany(User, { through: RoleUser })
 User.belongsToMany(Role, { through: RoleUser })
+
+Planning.hasOne(Plage_Horaire, {  onDelete: 'cascade', hooks: true })
+Plage_Horaire.belongsTo(Planning, {  onDelete: 'cascade', hooks: true })
+
 
     export const initDb = () => {
         return sequelize.sync({ force: true }).then(() =>
@@ -103,11 +125,10 @@ User.belongsToMany(Role, { through: RoleUser })
                     td_password: user.td_password,
                     LocalisationId: user.LocalisationId,
                 }).then (async (req:any)=>{
-                    const rdvRow = await Rdv.findByPk(index + 1);
-                await req.addRdv(rdvRow, { through: RdvUser })
-
                 const roleRow = await Role.findByPk(index + 1);
                 await req.addRole(roleRow, { through: RoleUser })
+
+                
                 })
             })
             
@@ -121,16 +142,18 @@ User.belongsToMany(Role, { through: RoleUser })
             })
             praticien.map((praticien: praticienTypes) => {
                 Praticien.create({
-                    td_activite: praticien.td_activite,
                     UserId: 3,
+                    td_activite: praticien.td_activite,
+                    
                 }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
             })
             rdvs.map((rdv: rdvTypes) => {
                 Rdv.create({
-                    td_heure: rdv.td_heure,
+                    td_date_rendez_vous: rdv.td_date_rendez_vous,
                     td_motif:rdv.td_motif,
-                    td_duree_rdv:rdv.td_duree_rdv
-                   
+                    td_duree_rdv:rdv.td_duree_rdv,
+                     PatientId: rdv.PatientId,
+                    // PraticienId: rdv.PraticienId,
                 }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
             })
             tokens.map((token: tokenTypes) => {
@@ -139,7 +162,36 @@ User.belongsToMany(Role, { through: RoleUser })
                     UserId: token.UserId
                 }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
             })
-            
+            bans.map((bans: bansTypes) => {
+                Ban.create({
+                    td_ban_raison: bans.td_ban_raison,
+                   
+                }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
+            })
+            conge.map((conge:  congeTypes,  index: number) => {
+                Conge.create({
+                    td_debut_conge: conge.td_debut_conge,
+                    td_fin_conge: conge.td_fin_conge,
+                    UserId: conge.UserId
+                }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
+            })
+            plage_horaire.map((plage_horaire:  plageHoraireTypes,  index: number) => {
+                Plage_Horaire.create({
+                    td_jour: plage_horaire.td_jour,
+                    td_debut_jour:plage_horaire.td_debut_jour,
+                    td_fin_jour:plage_horaire.td_fin_jour,
+                    td_duree_horaire:plage_horaire.td_duree_horaire,
+                    id_planning:plage_horaire.id_planning
+                }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
+            })
+            planning.map((planning:  planningTypes) => {
+                Planning.create({
+                    td_dure_validite:planning.td_dure_validite,
+                    td_date_debut:planning.td_date_debut,
+                    td_date_fin:planning.td_date_fin,
+
+                }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
+            })
     
             console.log('Database created')
         })

@@ -85,8 +85,8 @@ Conge.belongsTo(User, { onDelete: 'cascade', hooks: true })
 Patient.hasOne(Rdv, { onDelete: 'cascade', hooks: true })
 Rdv.belongsTo(Patient, { onDelete: 'cascade', hooks: true })
 
-// Praticien.hasOne(Rdv, { onDelete: 'cascade', hooks: true })
-// Rdv.belongsTo(Praticien, { onDelete: 'cascade', hooks: true })
+Praticien.hasOne(Rdv, { onDelete: 'cascade', hooks: true })
+Rdv.belongsTo(Praticien, { onDelete: 'cascade', hooks: true })
 
 User.hasOne(Patient, { foreignKey: 'UserId', onDelete: 'cascade', hooks: true })
 Patient.belongsTo(User, {  onDelete: 'cascade', hooks: true })
@@ -147,15 +147,15 @@ Plage_Horaire.belongsTo(Planning, {  onDelete: 'cascade', hooks: true })
                     
                 }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
             })
-            rdvs.map((rdv: rdvTypes) => {
+            /*rdvs.map((rdv: rdvTypes) => {
                 Rdv.create({
                     td_date_rendez_vous: rdv.td_date_rendez_vous,
                     td_motif:rdv.td_motif,
                     td_duree_rdv:rdv.td_duree_rdv,
                      PatientId: rdv.PatientId,
-                    // PraticienId: rdv.PraticienId,
+                    PraticienId: rdv.PraticienId,
                 }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
-            })
+            })*/
             tokens.map((token: tokenTypes) => {
                 Token.create({
                     refreshToken: token.refreshToken,

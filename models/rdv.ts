@@ -5,7 +5,7 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
         return `${data} is required`
     }
 
-    return sequelize.define('rdv', {
+    return sequelize.define('Rdv', {
         td_date_rendez_vous: {
             type: dataTypes.DATE,
             allowNull: false,
@@ -29,5 +29,7 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
            
         }
         
-    })
+        
+    });
+    
 }

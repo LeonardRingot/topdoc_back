@@ -8,7 +8,7 @@ export const rdvs: rdvTypes[] = [
         td_motif: "mal a la tete",
         td_duree_rdv: 20,
         PatientId: 1,
-        PraticienId:3
+        PraticienId:1
     },
     {
         
@@ -16,7 +16,7 @@ export const rdvs: rdvTypes[] = [
         td_motif: "mal au dos",
         td_duree_rdv: 20,
         PatientId: 2,
-        PraticienId:3
+        PraticienId:2
     }
     
     

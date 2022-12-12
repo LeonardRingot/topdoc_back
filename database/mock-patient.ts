@@ -1,4 +1,5 @@
 import { patientTypes } from "../types/patient";
+import { Praticien } from "./connect";
 
 export const patient: patientTypes[] = [
   {
@@ -6,7 +7,7 @@ export const patient: patientTypes[] = [
     td_firstname: "Patient1",
     td_lastname: "Patient1",
     td_birthday: new Date("2000-06-20")
-    
+   
   },
   {
     UserId: 2,

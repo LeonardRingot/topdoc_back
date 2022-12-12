@@ -15,6 +15,11 @@ export const localisations: localisationTypes[] = [
         td_address: "test",
         td_zipCode: 62200,
         td_city: "Boulo"
+    },
+    {
+        td_address: "docteur",
+        td_zipCode: 62200,
+        td_city: "Doc"
     }
 
     

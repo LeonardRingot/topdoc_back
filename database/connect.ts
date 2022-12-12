@@ -95,13 +95,11 @@ Praticien.hasOne(Rdv, { onDelete: 'cascade', hooks: true })
 Rdv.belongsTo(Praticien, { onDelete: 'cascade', hooks: true })
 
 
-
+Role.belongsToMany(User, { through: RoleUser })
+User.belongsToMany(Role, { through: RoleUser })
 
 Planning.hasOne(Plage_Horaire, {  onDelete: 'cascade', hooks: true })
 Plage_Horaire.belongsTo(Planning, {  onDelete: 'cascade', hooks: true })
-
-Role.belongsToMany(User, { through: RoleUser })
-User.belongsToMany(Role, { through: RoleUser })
 
     export const initDb = () => {
         return sequelize.sync({ force: true }).then(() =>
@@ -155,19 +153,16 @@ User.belongsToMany(Role, { through: RoleUser })
                 Praticien.create({
                     td_activite: praticien.td_activite,
                     UserId:praticien.UserId
-                }).then((response: { toJSON: () => string }) => {console.log(response.toJSON())
-                    rdvs.map((rdv: rdvTypes, index:number) => {
-                        Rdv.create({
-                            PraticienId: rdv.PraticienId,
-                            td_date_rendez_vous: rdv.td_date_rendez_vous,
-                            td_motif:rdv.td_motif,
-                            td_duree_rdv:rdv.td_duree_rdv,
-                             PatientId: rdv.PatientId,
-                             
-                              
-                        }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
-                    })
-                })
+                }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
+            })
+            rdvs.map((rdv: rdvTypes, index:number) => {
+                Rdv.create({
+                    PraticienUserId: rdv.PraticienUserId,
+                    td_date_rendez_vous: rdv.td_date_rendez_vous,
+                    td_motif:rdv.td_motif,
+                    td_duree_rdv:rdv.td_duree_rdv,
+                    PatientUserId: rdv.PatientUserId
+                }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
             })
             bans.map((bans: bansTypes) => {
                 Ban.create({
@@ -186,28 +181,17 @@ User.belongsToMany(Role, { through: RoleUser })
                     td_dure_validite:planning.td_dure_validite,
                     td_date_debut:planning.td_date_debut,
                     td_date_fin:planning.td_date_fin,
-                    
-
-                }).then((response: { toJSON: () => string }) => { console.log(response.toJSON())
-                
-                    plage_horaire.map((plage_horaire:  plageHoraireTypes,  index: number) => {
-                        Plage_Horaire.create({
-                            td_jour: plage_horaire.td_jour,
-                            td_debut_jour:plage_horaire.td_debut_jour,
-                            td_fin_jour:plage_horaire.td_fin_jour,
-                            td_duree_horaire:plage_horaire.td_duree_horaire,
-                            id_planning:plage_horaire.id_planning
-                        }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
-                    })
-                })
+                }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
             })
-           
-          
-            
-           
-           
-          
-    
+            plage_horaire.map((plage_horaire:  plageHoraireTypes,  index: number) => {
+                Plage_Horaire.create({
+                    td_jour: plage_horaire.td_jour,
+                    td_debut_jour:plage_horaire.td_debut_jour,
+                    td_fin_jour:plage_horaire.td_fin_jour,
+                    td_duree_horaire:plage_horaire.td_duree_horaire,
+                    PlanningId:plage_horaire.PlanningId
+                }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
+            })
             console.log('Database created')
         })
     }

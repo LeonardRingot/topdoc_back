@@ -4,7 +4,7 @@ export interface plageHoraireTypes {
     td_debut_jour: Date;
     td_fin_jour: Date;
     td_duree_horaire:number,
-    id_planning: number;
+    PlanningId: number;
   }
   
   export interface plageHoraire extends plageHoraireTypes {

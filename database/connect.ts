@@ -81,7 +81,7 @@ User.belongsTo(Localisation, { onDelete: 'cascade', hooks: true })
 User.hasOne(Conge, { onDelete: 'cascade', hooks: true })
 Conge.belongsTo(User, { onDelete: 'cascade', hooks: true })
 
-User.hasOne(Patient, {  foreignKey:'UserId', onDelete: 'cascade', hooks: true })
+User.hasOne(Patient, {   onDelete: 'cascade', hooks: true })
 Patient.belongsTo(User, {  onDelete: 'cascade', hooks: true })
 
 User.hasOne(Praticien, { foreignKey:'UserId', onDelete: 'cascade', hooks: true })
@@ -89,10 +89,10 @@ Praticien.belongsTo(User, {  onDelete: 'cascade', hooks: true })
 
 
 Patient.hasOne(Rdv, {  onDelete: 'cascade', hooks: true })
-Rdv.belongsTo(Patient, { onDelete: 'cascade', hooks: true })
+Rdv.belongsTo(Patient, { foreignKey:"UserId", onDelete: 'cascade', hooks: true })
 
 Praticien.hasOne(Rdv, { onDelete: 'cascade', hooks: true })
-Rdv.belongsTo(Praticien, { onDelete: 'cascade', hooks: true })
+Rdv.belongsTo(Praticien, { foreignKey:"UserId", onDelete: 'cascade', hooks: true })
 
 
 Role.belongsToMany(User, { through: RoleUser })
@@ -141,18 +141,18 @@ Plage_Horaire.belongsTo(Planning, {  onDelete: 'cascade', hooks: true })
                 }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
             })
             
-            patient.map((patient: patientTypes, index: number) => {
+            patient.map((patient: patientTypes, inUserIddex: number) => {
                 Patient.create({
+                   // UserId: patient.UserId,
                     td_firstname: patient.td_firstname,
                     td_lastname: patient.td_lastname,
-                    td_birthday: patient.td_birthday,
-                    UserId: index + 1
+                    td_birthday: patient.td_birthday
                 }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
             })
             praticien.map((praticien: praticienTypes) => {
                 Praticien.create({
                     td_activite: praticien.td_activite,
-                    UserId:praticien.UserId
+                    //UserId:praticien.UserId
                 }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
             })
             rdvs.map((rdv: rdvTypes, index:number) => {

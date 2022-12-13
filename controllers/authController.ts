@@ -36,16 +36,15 @@ const authController = Router();
 authController.post('/login', async (req, res) => {
     User.findAll()
         .then(async (users: any) => {
-            const user = users.find((user: userTypes) => user.email == req.body.email)
+            const user = users.find((user: userTypes) => user.td_email == req.body.td_email)
             let message: string = ''
 
             if (user == null) {
                 message = 'Utilisateur non trouvé.'
                 return res.status(400).json({ userFound: false, message: message })
             }
-            if (await bcrypt.compare(req.body.password, user.password)) {
+            if (await bcrypt.compare(req.body.td_password, user.td_password)) {
                 message = "Good"
-                const accessToken = jwt.sign({ name: user.id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' })
                 const refreshToken = jwt.sign({ name: user.id }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1Y' })
                 Token.findAll().then((tokens: any) => {
                     const token = tokens.find((token: tokenTypes) => token.UserId == user.id)
@@ -53,7 +52,6 @@ authController.post('/login', async (req, res) => {
                     if (token == null) {
                         Token.create({
                             refreshToken: refreshToken,
-                            tokenPush: refreshToken,
                             UserId: user.id
                         })
                     } else {
@@ -62,7 +60,7 @@ authController.post('/login', async (req, res) => {
                         }, { where: { UserId: user.id } })
                     }
                 })
-                return res.status(200).json({ successfullLogin: true, userId: user.id, accessToken: accessToken, refreshToken: refreshToken })
+                return res.status(200).json({ successfullLogin: true, userId: user.id,  refreshToken: refreshToken })
             } else {
                 message = "Erreur du mot de passe."
 

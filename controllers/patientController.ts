@@ -11,7 +11,7 @@ const patientController = Router();
  * @swagger
  * tags:
  *      name: Patient
- *      description: Manage Ratio
+ *      description: Manage Patient
  */
 
 /**
@@ -203,7 +203,7 @@ patientController.get('/:id', async (req, res) => {
   *         in: body
   *         required: true
   *         type: object
-  *         default: {    "firstname": "a", "lastname": "a", "birthday": "1999-01-25"}
+  *         default: {    "td_firstname": "a", "td_lastname": "a", "td_birthday": "1999-01-25"}
   *      responses:
   *        200:
   *          description: Update the Patient of given id.

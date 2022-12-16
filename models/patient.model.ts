@@ -1,18 +1,23 @@
-import { DataTypes, Sequelize } from "sequelize"
+import { DataTypes, Model } from "sequelize";
+import { sequelize } from "../database/sequelize";
+import { concatRequiredMessage } from "../core/method"
 
-module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
-    const concatRequiredMessage = (data: string) => {
-        return `${data} is required`
-    }
+export class Patient extends Model {
+    UserId!: number
+    td_firstname!:string
+    td_lastname!:string
+    td_birthday!:Date
 
-    return sequelize.define('Patient', {
+}
+
+     Patient.init({
         UserId: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
         td_firstname: {
-            type: dataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notNull: { msg: concatRequiredMessage('firstname') },
@@ -20,7 +25,7 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
             }
         },
         td_lastname: {
-            type: dataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notNull: { msg: concatRequiredMessage('lastname') },
@@ -28,13 +33,18 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
             }
         },
         td_birthday: {
-            type: dataTypes.DATE,
+            type: DataTypes.DATE,
             allowNull: false,
             validate: {
                 notNull: { msg: concatRequiredMessage('birthday date') },
                 notEmpty: { msg: concatRequiredMessage('birthday date') }
             }
-        },
-        
-    })
-}
+        }
+    },
+        {
+            sequelize,
+            freezeTableName: true,
+            tableName: "Patients",
+            underscored: true
+        }
+    );

@@ -1,17 +1,24 @@
-import { DataTypes, Sequelize } from "sequelize"
+import { DataTypes, Model } from "sequelize"
+import { sequelize } from "../database/sequelize";
+import { concatRequiredMessage } from "../core/method"
 
-module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
-    const concatRequiredMessage = (data: string) => {
-        return `${data} is required`
-    }
-    return sequelize.define('User', {
+export class User extends Model{
+    id!:number
+    td_email!:string
+    td_password!:string
+    td_phone!:number
+    td_isActif!:boolean
+    LocalisationId!:number
+}
+
+    User.init({
         id:{
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
         td_email: {
-            type: dataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             unique: true,
             validate: {
@@ -21,7 +28,7 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
             }
         },
         td_password: {
-            type: dataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notNull: { msg: concatRequiredMessage('Password') },
@@ -29,7 +36,7 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
             }
         },
         td_phone: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             unique: true,
             validate: {
@@ -37,9 +44,22 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
             }
         },
         td_isActif: {
-            type: dataTypes.BOOLEAN,
+            type: DataTypes.BOOLEAN,
             allowNull: false
-        }
-
-    })
+        },
+        LocalisationId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            unique: true,
+            validate: {
+                isAlphanumeric: true
+            }
+        },
+    },
+{
+    sequelize,
+    freezeTableName: true,
+    tableName: "User",
+    underscored: true
 }
+);

@@ -3,7 +3,7 @@ import { rdvDTO } from "../dto/rdv.dto";
 import { Rdv } from "../models/rdv.model";
 import { RdvMapper } from "../mapper/rdv.mapper";
 
-export class AppointementRepository implements IRepository<rdvDTO> {
+export class RdvRepository implements IRepository<rdvDTO> {
 
     async findById(id: number): Promise<rdvDTO | null> {
         return Rdv.findByPk(id).then(rdv => RdvMapper.mapToDto(rdv))

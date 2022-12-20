@@ -1,19 +1,27 @@
 
-import { DataTypes, Sequelize } from "sequelize"
+import { DataTypes, Model } from "sequelize"
+import { sequelize } from "../database/sequelize";
+import { concatRequiredMessage } from "../core/method"
 
-module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
-    const concatRequiredMessage = (data: string) => {
-        return `${data} is required`
-    }
+export class Role extends Model{
+    td_role_nom!:string
+}
 
-    return sequelize.define('Role', {
+   Role.init({
         td_role_nom: {
-            type: dataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notNull: { msg: concatRequiredMessage('role name') },
                 notEmpty: { msg: concatRequiredMessage('role name') }
             }
-        },
-    })
+        }
+   },
+   {
+    sequelize,
+    freezeTableName: true,
+    tableName: "Role",
+    underscored: true
 }
+);
+        

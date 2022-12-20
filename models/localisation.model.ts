@@ -37,7 +37,7 @@ export class Localisation extends Model {
     {
         sequelize,
         freezeTableName: true,
-        tableName: "addresses",
+        tableName: "Localisation",
         underscored: true
     }
 );

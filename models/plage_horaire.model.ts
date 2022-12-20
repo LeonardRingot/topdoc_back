@@ -1,15 +1,20 @@
-import { DataTypes, Sequelize } from "sequelize"
+import { DataTypes, Model } from "sequelize"
+import { sequelize } from "../database/sequelize";
+import { concatRequiredMessage } from "../core/method"
 
-module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
-    const concatRequiredMessage = (data: string) => {
-        return `${data} is required`
-    }
+export class Plage_Horaire extends Model{
+    td_jour!:string
+    td_debut_jour!:Date
+    td_fin_jour!:Date
+    td_duree_horaire!:number
+    PlanningId!:number
+}
 
-    return sequelize.define('Plage_Horaire', {
+    Plage_Horaire.init({
        
 
         td_jour: {
-            type: dataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notNull: { msg: concatRequiredMessage('jour') },
@@ -17,7 +22,7 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
             }
         },
         td_debut_jour: {
-            type: dataTypes.DATE,
+            type: DataTypes.DATE,
             allowNull: false,
             validate: {
                 notNull: { msg: concatRequiredMessage('td_debut_jour date') },
@@ -25,7 +30,7 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
             }
         },
         td_fin_jour: {
-            type: dataTypes.DATE,
+            type: DataTypes.DATE,
             allowNull: false,
             validate: {
                 notNull: { msg: concatRequiredMessage('td_fin_jour date') },
@@ -33,9 +38,29 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
             }
         },
         td_duree_horaire: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
+            validate: {
+                notNull: { msg: concatRequiredMessage('td_duree_horaire') },
+                notEmpty: { msg: concatRequiredMessage('td_duree_horaire') }
+            }
         },
-        
-    })
-}
+        PlanningId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                notNull: { msg: concatRequiredMessage('PlanningId') },
+                notEmpty: { msg: concatRequiredMessage('PlanningId') }
+            }
+        }
+    },
+
+    {
+        sequelize,
+        freezeTableName: true,
+        tableName: "Plage_Horaire",
+        underscored: true
+    }
+);
+
+

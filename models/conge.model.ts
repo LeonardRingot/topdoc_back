@@ -1,18 +1,21 @@
-import { DataTypes, Sequelize } from "sequelize"
+import { DataTypes, Model } from "sequelize"
+import { sequelize } from "../database/sequelize";
+import { concatRequiredMessage } from "../core/method"
 
-module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
-    const concatRequiredMessage = (data: string) => {
-        return `${data} is required`
-    }
+export class Conge extends Model {
+    id!: number
+    td_debut_conge!: Date
+    td_fin_conge!: Date
+}
 
-    return sequelize.define('Conge', {
+Conge.init( {
         id: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
         td_debut_conge: {
-            type: dataTypes.DATE,
+            type: DataTypes.DATE,
             allowNull: false,
             validate: {
                 notNull: { msg: concatRequiredMessage('debut conge') },
@@ -21,13 +24,18 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
             
         },
         td_fin_conge: {
-            type: dataTypes.DATE,
+            type: DataTypes.DATE,
             allowNull: false,
             validate: {
                 notNull: { msg: concatRequiredMessage('fin conge') },
                 notEmpty: { msg: concatRequiredMessage('fin conge') }
             }
-            }
-        
-    })
-}
+        }
+    },
+        {
+            sequelize,
+            freezeTableName: true,
+            tableName: "Conge",
+            underscored: true
+        }
+    );

@@ -1,20 +1,25 @@
-import { DataTypes, Sequelize } from "sequelize"
+import { DataTypes, Model } from "sequelize"
+import { sequelize } from "../database/sequelize";
+import { concatRequiredMessage } from "../core/method"
 
-module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
-    const concatRequiredMessage = (data: string) => {
-        return `${data} is required`
-    }
+export class Ban extends Model{
+    td_ban_raison!: string
+}
+    Ban.init({
 
-    return sequelize.define('Ban', {
-
-        
         td_ban_raison: {
-            type: dataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notNull: { msg: concatRequiredMessage('raison ban') },
                 notEmpty: { msg: concatRequiredMessage('raison ban') }
             }
-        },
-    })
-}
+        }
+    },
+    {
+        sequelize,
+        freezeTableName: true,
+        tableName: "Bans",
+        underscored: true
+    }
+);

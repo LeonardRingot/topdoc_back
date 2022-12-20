@@ -1,19 +1,29 @@
-import { DataTypes, Sequelize } from "sequelize"
+import { DataTypes, Model } from "sequelize";
+import { sequelize } from "../database/sequelize";
+import { concatRequiredMessage } from "../core/method"
 
-module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
-    const concatRequiredMessage = (data: string) => {
-        return `${data} is required`
-    }
-
-    return sequelize.define('Planning', {
-
+export class Planning extends Model {
+    id_planning!:number;
+    td_dure_validite!: number
+    td_date_debut!: Date
+    td_date_fin!: Date
+    
+}
+ Planning.init(
+    
+{
+    id_planning: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+    },
         td_dure_validite: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
            
         },
         td_date_debut: {
-            type: dataTypes.DATE,
+            type: DataTypes.DATE,
             allowNull: false,
             validate: {
                 notNull: { msg: concatRequiredMessage(' date debut') },
@@ -22,14 +32,18 @@ module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
             
         },
         td_date_fin: {
-            type: dataTypes.DATE,
+            type: DataTypes.DATE,
             allowNull: false,
             validate: {
                 notNull: { msg: concatRequiredMessage('date fin') },
                 notEmpty: { msg: concatRequiredMessage('date fin') }
             }
-        },
-       
-        
-    })
-}
+        }
+    },
+        {
+            sequelize,
+            freezeTableName: true,
+            tableName: "Plannings",
+            underscored: true
+        }
+    );

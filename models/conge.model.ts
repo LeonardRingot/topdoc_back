@@ -1,13 +1,15 @@
 import { DataTypes, Model } from "sequelize"
 import { sequelize } from "../database/sequelize";
-import { concatRequiredMessage } from "../core/method"
+
 
 export class Conge extends Model {
     id!: number
     td_debut_conge!: Date
     td_fin_conge!: Date
 }
-
+const concatRequiredMessage = (data: string) => {
+    return `Le champ ${data} est requis`
+}
 Conge.init( {
         id: {
             type: DataTypes.INTEGER,

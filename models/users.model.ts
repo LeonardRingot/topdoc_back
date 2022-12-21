@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize"
 import { sequelize } from "../database/sequelize";
-import { concatRequiredMessage } from "../core/method"
+
 
 export class User extends Model{
     id!:number
@@ -9,6 +9,9 @@ export class User extends Model{
     td_phone!:number
     td_isActif!:boolean
     LocalisationId!:number
+}
+const concatRequiredMessage = (data: string) => {
+    return `Le champ ${data} est requis`
 }
 
     User.init({

@@ -1,10 +1,13 @@
 
 import { DataTypes, Model } from "sequelize"
 import { sequelize } from "../database/sequelize";
-import { concatRequiredMessage } from "../core/method"
+
 
 export class Role extends Model{
     td_role_nom!:string
+}
+const concatRequiredMessage = (data: string) => {
+    return `Le champ ${data} est requis`
 }
 
    Role.init({

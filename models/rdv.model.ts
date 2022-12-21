@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/sequelize";
-import { concatRequiredMessage } from "../core/method"
+
 
 export class Rdv extends Model {
     td_date_rendez_vous!: Date
@@ -8,6 +8,9 @@ export class Rdv extends Model {
     td_motif!: string
     PatientUserId: number
      PraticienUserId: number
+}
+const concatRequiredMessage = (data: string) => {
+    return `Le champ ${data} est requis`
 }
 
 Rdv.init({

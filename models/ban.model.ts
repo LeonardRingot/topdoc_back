@@ -1,9 +1,12 @@
 import { DataTypes, Model } from "sequelize"
 import { sequelize } from "../database/sequelize";
-import { concatRequiredMessage } from "../core/method"
+
 
 export class Ban extends Model{
     td_ban_raison!: string
+}
+const concatRequiredMessage = (data: string) => {
+    return `Le champ ${data} est requis`
 }
     Ban.init({
 

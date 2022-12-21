@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize"
 import { sequelize } from "../database/sequelize";
-import { concatRequiredMessage } from "../core/method"
+
 
 export class Plage_Horaire extends Model{
     td_jour!:string
@@ -9,7 +9,9 @@ export class Plage_Horaire extends Model{
     td_duree_horaire!:number
     PlanningId!:number
 }
-
+const concatRequiredMessage = (data: string) => {
+    return `Le champ ${data} est requis`
+}
     Plage_Horaire.init({
        
 

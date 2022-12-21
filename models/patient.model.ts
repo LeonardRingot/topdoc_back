@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/sequelize";
-import { concatRequiredMessage } from "../core/method"
+
 
 export class Patient extends Model {
     UserId!: number
@@ -9,7 +9,9 @@ export class Patient extends Model {
     td_birthday!:Date
 
 }
-
+const concatRequiredMessage = (data: string) => {
+    return `Le champ ${data} est requis`
+}
      Patient.init({
         UserId: {
             type: DataTypes.INTEGER,

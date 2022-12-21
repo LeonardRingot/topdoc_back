@@ -1,10 +1,13 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/sequelize";
-import { concatRequiredMessage } from "../core/method"
+
 
 export class Praticien extends Model {
     UserId!: number
     td_activite!: string
+}
+const concatRequiredMessage = (data: string) => {
+    return `Le champ ${data} est requis`
 }
      Praticien.init({
         UserId: {

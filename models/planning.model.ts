@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/sequelize";
-import { concatRequiredMessage } from "../core/method"
+
 
 export class Planning extends Model {
     id_planning!:number;
@@ -8,6 +8,9 @@ export class Planning extends Model {
     td_date_debut!: Date
     td_date_fin!: Date
     
+}
+const concatRequiredMessage = (data: string) => {
+    return `Le champ ${data} est requis`
 }
  Planning.init(
     

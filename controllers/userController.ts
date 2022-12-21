@@ -5,7 +5,7 @@ import { userTypes, userId } from "../types/utilisateur";
 import { Op, ValidationError } from "sequelize";
 import bcrypt from "bcrypt"
 import { adminController } from "./adminController";
-
+import { Heritage } from "~~/server";
 
 const usersController = Router();
 
@@ -27,6 +27,7 @@ const usersController = Router();
  *          description: Get the list of all users.
  */
 usersController.get("/", async (req, res) => {
+    Heritage()
     User.findAll({
         attributes: {exclude: ['td_password']},
         include: [

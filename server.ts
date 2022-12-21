@@ -7,7 +7,8 @@ import { ApiException } from './types/exception'
 import {Response, Request, NextFunction} from 'express'
 import { userTypes } from "./types/utilisateur";
 import { apiController } from './controllers/apiController';
-import { initDb } from './database/connect';
+import { initDb,Praticien } from './database/connect';
+import {sequelize} from'./database/connect'
 const app = express()
 initDb()
 app.use(cors())
@@ -21,6 +22,34 @@ app.get("/", (req: Request, res: Response) => {
     res.send("SWAGGER : /api/docs")
 })
 app.use('/api', apiController)
+
+export const Heritage = async ()=>{
+    const t = await sequelize.transaction();
+    try{
+        const newUser = await User.create({
+            td_email: 'a@gmail.com',
+            td_phone: '01',
+            td_isActif: true ,
+            td_password: 'a' ,
+            LocalisationId: 1
+        })
+        console.log('USER IIIID' + newUser.id)
+       await Praticien.create({
+
+            UserId: newUser.id,
+            td_activite:'podologue'
+        })
+        await t.commit()
+    console.log(' NOUVEAU UTILISATEUR '+newUser)
+    }catch(error){
+        console.log('MON ERREUR ' + error)
+       await t.rollback()
+    }
+
+
+
+
+}
 
 const { User } = require('./database/connect')
 const jwt = require('jsonwebtoken')

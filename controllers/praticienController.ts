@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { ValidationError } from "sequelize";
-import { Praticien, Localisation, Role, RoleUser, User } from "../database/connect";
+import { Praticien, Localisation, Role, User } from "../database/connect";
 import { praticienId, praticienTypes } from "../types/praticien";
 import { ApiException } from "../types/exception";
 import bcrypt from 'bcrypt'
@@ -56,8 +56,8 @@ praticienController.post('/', async (req, res) => {
 
       
 
-      const roleRow = await Role.findByPk(3)
-      user.addRole(roleRow, { through: RoleUser })
+      // const roleRow = await Role.findByPk(3)
+      // user.addRole(roleRow, { through: RoleUser })
 
     }).then((praticien: praticienTypes) => {
       const message: string = `employeur créé avec succes.`;

@@ -1,16 +1,16 @@
 import { DataTypes, Sequelize } from "sequelize"
 
-import { userTypes } from "../types/utilisateur"
-import { localisationTypes } from "../types/localisation"
-import { patientTypes } from "../types/patient"
-import { praticienTypes } from "../types/praticien"
-import { roleTypes } from "../types/role"
-import { rdvTypes } from "../types/rdv"
-import { tokenTypes } from "../types/token"
-import { bansTypes } from "../types/ban"
-import { congeTypes } from "../types/conge"
-import { plageHoraireTypes } from "../types/plage_horaire"
-import { planningTypes } from "../types/planning"
+// import { userTypes } from "../types/utilisateur"
+// import { localisationTypes } from "../types/localisation"
+// import { patientTypes } from "../types/patient"
+// import { praticienTypes } from "../types/praticien"
+// import { roleTypes } from "../types/role"
+// import { rdvTypes } from "../types/rdv"
+// import { tokenTypes } from "../types/token"
+// import { bansTypes } from "../types/ban"
+// import { congeTypes } from "../types/conge"
+// import { plageHoraireTypes } from "../types/plage_horaire"
+// import { planningTypes } from "../types/planning"
 
 import { users } from './mock-user'
 import { localisations } from './mock-localisation'
@@ -24,19 +24,32 @@ import { conge } from './mock-conge'
 import { plage_horaire } from './mock-plage_horaire'
 import { planning } from './mock-planning'
 
-const UserModel = require('../models/utilisateurs')
-const LocalisationModel = require('../models/localisation')
-const PatientModel = require('../models/patient')
-const PraticienModel = require('../models/praticien')
-const RoleModel = require('../models/role')
-const RdvModel = require('../models/rdv')
-const RoleUserModel = require('../models/roleUsers')
-const TokenModel = require('../models/token')
-const BanModel = require('../models/ban')
-const BanUserModel = require('../models/BanUsers')
-const CongeModel = require('../models/conge')
-const Plage_HoraireModel = require('../models/plage_horaire')
-const PlanningModel = require('../models/planning')
+// const UserModel = require('../models/utilisateurs')
+// const LocalisationModel = require('../models/localisation')
+// const PatientModel = require('../models/patient')
+// const PraticienModel = require('../models/praticien')
+// const RoleModel = require('../models/role')
+// const RdvModel = require('../models/rdv')
+// const RoleUserModel = require('../models/roleUsers')
+// const TokenModel = require('../models/token')
+// const BanModel = require('../models/ban')
+// const BanUserModel = require('../models/BanUsers')
+// const CongeModel = require('../models/conge')
+// const Plage_HoraireModel = require('../models/plage_horaire')
+// const PlanningModel = require('../models/planning')
+
+import { User } from "../models/users.model"
+import { Localisation } from "../models/localisation.model"
+import { Patient } from "../models/patient.model"
+import { Praticien } from "../models/praticien.model"
+import { Role } from "../models/role.model"
+import { Rdv } from "../models/rdv.model"
+//import { RoleUser } from "../models/roleUsers.model"
+import { Token } from "../models/token.model"
+import { Ban } from "../models/ban.model"
+import { Conge } from "../models/conge.model"
+import { Planning } from "../models/planning.model"
+import { Plage_Horaire } from "../models/plage_horaire.model"
 
 const sequelize = new Sequelize(
         `${process.env.NAME_DATABASE}`,
@@ -58,19 +71,19 @@ sequelize.authenticate()
     .then(() => console.log('Link established'))
     .catch((error: Error) => console.error(`Error: ${error}`)
     )
-    export const User = UserModel(sequelize, DataTypes)
-    export const Localisation = LocalisationModel(sequelize, DataTypes)
-    export const Patient = PatientModel(sequelize, DataTypes)
-    export const Praticien = PraticienModel(sequelize, DataTypes)
-    export const Role = RoleModel(sequelize, DataTypes)
-    export const Rdv = RdvModel(sequelize, DataTypes)
-    export const RoleUser = RoleUserModel(sequelize, DataTypes)
-    export const BanUser = BanUserModel(sequelize, DataTypes)
-    export const Token = TokenModel(sequelize, DataTypes)
-    export const Ban = BanModel(sequelize, DataTypes)
-    export const Conge = CongeModel(sequelize, DataTypes)
-    export const Plage_Horaire = Plage_HoraireModel(sequelize, DataTypes)
-    export const Planning = PlanningModel(sequelize, DataTypes)
+    // export const User = UserModel(sequelize, DataTypes)
+    // export const Localisation = LocalisationModel(sequelize, DataTypes)
+    // export const Patient = PatientModel(sequelize, DataTypes)
+    // export const Praticien = PraticienModel(sequelize, DataTypes)
+    // export const Role = RoleModel(sequelize, DataTypes)
+    // export const Rdv = RdvModel(sequelize, DataTypes)
+    // export const RoleUser = RoleUserModel(sequelize, DataTypes)
+    // export const BanUser = BanUserModel(sequelize, DataTypes)
+    // export const Token = TokenModel(sequelize, DataTypes)
+    // export const Ban = BanModel(sequelize, DataTypes)
+    // export const Conge = CongeModel(sequelize, DataTypes)
+    // export const Plage_Horaire = Plage_HoraireModel(sequelize, DataTypes)
+    // export const Planning = PlanningModel(sequelize, DataTypes)
 
 User.hasOne(Token, { onDelete: 'cascade', hooks: true })
 Token.belongsTo(User, { onDelete: 'cascade', hooks: true })

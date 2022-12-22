@@ -2,8 +2,8 @@ import { roleDTO } from "../dto/role.dto"
 import { Role } from "../models/role.model";
 
 export class RoleMapper {
-    static mapToDto(role: Role | null): roleDTO | null {
-        if (role === null) return null;
+    static mapToDto(role: Role | null): roleDTO  {
+        if (role === null) return null as any;
         return {
            td_role_nom:role.td_role_nom,
     }

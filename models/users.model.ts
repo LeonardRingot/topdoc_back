@@ -1,21 +1,21 @@
-import { DataTypes, Model } from "sequelize"
+import { DataTypes, Model} from "sequelize"
 import { sequelize } from "../database/sequelize";
 
 
 export class User extends Model{
-    id!:number
-    td_email!:string
-    td_password!:string
-    td_phone!:number
-    td_isActif!:boolean
-    LocalisationId!:number
+    UserId?:number
+    td_email:string
+    td_password:string
+    td_phone:number
+    td_isActif:boolean
+    LocalisationId:number
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
 }
 
     User.init({
-        id:{
+        UserId:{
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
@@ -61,8 +61,10 @@ const concatRequiredMessage = (data: string) => {
     },
 {
     sequelize,
-    freezeTableName: true,
-    tableName: "User",
-    underscored: true
+    modelName: 'user',
+    timestamps: false,
+    freezeTableName: true
+   
+    
 }
 );

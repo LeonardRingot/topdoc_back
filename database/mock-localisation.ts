@@ -1,6 +1,5 @@
-import { localisationTypes } from "../types/localisation";
 
-export const localisations: localisationTypes[] = [
+export const localisations = [
     {
         td_address: "cse",
         td_zipCode: 62200,

@@ -16,6 +16,6 @@ async function getRole(req: Request, res: Response) {
 
 }
 
-const handler = {getRole}
+const handlerRole = {getRole}
 
-export default handler;
+export default handlerRole;

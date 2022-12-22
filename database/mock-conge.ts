@@ -1,6 +1,6 @@
-import { congeTypes } from "../types/conge";
 
-export const conge: congeTypes[] = [
+
+export const conge= [
   {
    
     td_debut_conge: new Date("2026-12-01"),

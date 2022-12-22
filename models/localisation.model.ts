@@ -41,6 +41,6 @@ const concatRequiredMessage = (data: string) => {
         sequelize,
         freezeTableName: true,
         tableName: "Localisation",
-        underscored: true
+       
     }
 );

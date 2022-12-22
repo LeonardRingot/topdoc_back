@@ -28,6 +28,6 @@ const concatRequiredMessage = (data: string) => {
             sequelize,
             freezeTableName: true,
             tableName: "Praticiens",
-            underscored: true
+            
         }
     );

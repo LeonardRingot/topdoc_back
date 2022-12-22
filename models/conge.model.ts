@@ -38,6 +38,6 @@ Conge.init( {
             sequelize,
             freezeTableName: true,
             tableName: "Conge",
-            underscored: true
+            
         }
     );

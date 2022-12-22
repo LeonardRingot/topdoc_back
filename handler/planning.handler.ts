@@ -16,6 +16,6 @@ async function getPlanning(req: Request, res: Response) {
 
 }
 
-const handler = {getPlanning}
+const handlerPlanning = {getPlanning}
 
-export default handler;
+export default handlerPlanning;

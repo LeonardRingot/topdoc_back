@@ -16,6 +16,6 @@ async function getToken(req: Request, res: Response) {
 
 }
 
-const handler = {getToken}
+const handlerToken = {getToken}
 
-export default handler;
+export default handlerToken;

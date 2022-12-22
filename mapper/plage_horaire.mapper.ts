@@ -2,8 +2,8 @@ import { plageHoraireDTO } from "../dto/plage_horaire.dto"
 import { Plage_Horaire } from "../models/plage_horaire.model";
 
 export class PlageHoraireMapper {
-    static mapToDto(plage_horaire: Plage_Horaire | null): plageHoraireDTO | null {
-        if (plage_horaire === null) return null;
+    static mapToDto(plage_horaire: Plage_Horaire | null): plageHoraireDTO  {
+        if (plage_horaire === null) return null as any;
         return {
             PlanningId:plage_horaire.PlanningId,
             td_jour:plage_horaire.td_jour,

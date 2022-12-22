@@ -1,7 +1,7 @@
-import { rdvTypes } from "../types/rdv";
 
 
-export const rdvs: rdvTypes[] = [
+
+export const rdvs = [
     {
         
         td_date_rendez_vous: new Date("2022-12-09 16:00:00+01"),

@@ -1,6 +1,6 @@
-import { roleTypes } from "../types/role";
 
-export const roles: roleTypes[] = [
+
+export const roles = [
     {
         td_role_nom: "ADMIN",
     },

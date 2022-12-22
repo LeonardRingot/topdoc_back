@@ -1,6 +1,6 @@
-import { plageHoraireTypes } from "../types/plage_horaire";
 
-export const plage_horaire: plageHoraireTypes[] = [
+
+export const plage_horaire= [
   {
     
     td_jour: 7,

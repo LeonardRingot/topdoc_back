@@ -16,6 +16,6 @@ async function getPraticien(req: Request, res: Response) {
 
 }
 
-const handler = {getPraticien}
+const handlerPraticien = {getPraticien}
 
-export default handler;
+export default handlerPraticien;

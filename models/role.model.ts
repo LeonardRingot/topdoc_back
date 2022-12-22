@@ -24,7 +24,7 @@ const concatRequiredMessage = (data: string) => {
     sequelize,
     freezeTableName: true,
     tableName: "Role",
-    underscored: true
+    
 }
 );
         

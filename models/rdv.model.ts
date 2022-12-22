@@ -43,7 +43,7 @@ Rdv.init({
         sequelize,
         freezeTableName: true,
         tableName: "Rdvs",
-        underscored: true
+        
     }
 );
         

@@ -6,15 +6,23 @@ import { UserMapper } from "../mapper/user.mapper";
 export class UserRepository implements IRepository<userDTO> {
 
     async findById(id: number): Promise<userDTO | null> {
-        return User.findByPk(id).then(user => UserMapper.mapToDto(user))
+        return User.findByPk(id).then((data:User | null) =>{
+            return UserMapper.mapToDto(data)
+        })
     }
 
-    async findAll(): Promise<userDTO[]> {
-        throw new Error("Method not implemented.");
+    async findAll(): Promise<Array<userDTO>> {
+        return User.findAll().then((data:Array<User>) =>{
+            return data.map((user:User)=>{
+                return UserMapper.mapToDto(user)
+            })
+        })
     }
 
-    create(t: userDTO): Promise<userDTO> {
-        throw new Error("Method not implemented.");
+  async  create(body: Partial<User>): Promise<userDTO> {
+       return User.create(body).then((data:User)=>{
+            return UserMapper.mapToDto(data)
+       })
     }
 
     delete(id: number): Promise<boolean> {

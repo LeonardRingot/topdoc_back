@@ -3,7 +3,7 @@ import { sequelize } from "../database/sequelize";
 
 
 export class Patient extends Model {
-    UserId!: number
+    PatientId!: number
     td_firstname!:string
     td_lastname!:string
     td_birthday!:Date
@@ -13,7 +13,7 @@ const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
 }
      Patient.init({
-        UserId: {
+        PatientId: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
@@ -46,7 +46,7 @@ const concatRequiredMessage = (data: string) => {
         {
             sequelize,
             freezeTableName: true,
-            tableName: "Patients",
-            underscored: true
+            tableName: "Patient",
+            
         }
     );

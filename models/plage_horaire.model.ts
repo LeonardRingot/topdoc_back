@@ -61,7 +61,7 @@ const concatRequiredMessage = (data: string) => {
         sequelize,
         freezeTableName: true,
         tableName: "Plage_Horaire",
-        underscored: true
+       
     }
 );
 

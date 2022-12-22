@@ -16,6 +16,6 @@ async function getLocalisation(req: Request, res: Response) {
 
 }
 
-const handler = {getLocalisation}
+const handlerLocalisation = {getLocalisation}
 
-export default handler;
+export default handlerLocalisation;

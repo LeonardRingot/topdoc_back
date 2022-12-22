@@ -16,6 +16,6 @@ async function getBans(req: Request, res: Response) {
 
 }
 
-const handler = {getBans}
+const handlerBans = {getBans}
 
-export default handler;
+export default handlerBans;

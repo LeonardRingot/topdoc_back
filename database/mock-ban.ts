@@ -1,6 +1,6 @@
-import { bansTypes } from "../types/ban";
 
-export const bans: bansTypes[] = [
+
+export const bans= [
     {
         td_ban_raison: "INSULTES",
     },

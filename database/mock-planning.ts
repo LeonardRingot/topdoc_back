@@ -1,6 +1,6 @@
-import { planningTypes } from "../types/planning";
 
-export const planning: planningTypes[] = [
+
+export const planning= [
   {
     
     td_dure_validite: 7,

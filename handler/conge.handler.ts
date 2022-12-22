@@ -16,6 +16,6 @@ async function getConges(req: Request, res: Response) {
 
 }
 
-const handler = {getConges}
+const handlerConge = {getConges}
 
-export default handler;
+export default handlerConge;

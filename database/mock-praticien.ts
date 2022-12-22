@@ -1,6 +1,6 @@
-import { praticienTypes } from "../types/praticien";
 
-export const praticien: praticienTypes[] = [
+
+export const praticien = [
   {
     UserId: 1,
     td_activite: "Docteur1"

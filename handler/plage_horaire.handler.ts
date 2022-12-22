@@ -16,6 +16,6 @@ async function getPlageHoraire(req: Request, res: Response) {
 
 }
 
-const handler = {getPlageHoraire}
+const handlerPlageHoraire = {getPlageHoraire}
 
-export default handler;
+export default handlerPlageHoraire;

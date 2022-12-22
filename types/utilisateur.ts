@@ -15,17 +15,17 @@ export interface userTypes {
   }
   
   
-  export interface User {
-    td_username: string;
-    td_password: string;
-  }
+  // export interface User {
+  //   td_username: string;
+  //   td_password: string;
+  // }
   
-  declare global {
-    namespace Express {
-      interface Request {
-        headers?: Headers;
-        body?: Body;
-        user?: User;
-      }
-    }
-  }
+  // declare global {
+  //   namespace Express {
+  //     interface Request {
+  //       headers?: Headers;
+  //       body?: Body;
+  //       user?: User;
+  //     }
+  //   }
+  // }

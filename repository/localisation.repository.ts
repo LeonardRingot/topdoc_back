@@ -6,16 +6,24 @@ import { LocalisationMapper } from "../mapper/localisation.mapper";
 export class LocalisationRepository implements IRepository<LocalisationDTO> {
 
     async findById(id: number): Promise<LocalisationDTO | null> {
-        return Localisation.findByPk(id).then(localisation => LocalisationMapper.mapToDto(localisation))
+        return Localisation.findByPk(id).then((data:Localisation | null) =>{
+            return LocalisationMapper.mapToDto(data)
+        })
     }
 
-    async findAll(): Promise<LocalisationDTO[]> {
-        throw new Error("Method not implemented.");
+    async findAll(): Promise<Array<LocalisationDTO>> {
+        return Localisation.findAll().then((data:Array<Localisation>) =>{
+            return data.map((user:Localisation)=>{
+                return LocalisationMapper.mapToDto(user)
+            })
+        })
     }
 
-    create(t: LocalisationDTO): Promise<LocalisationDTO> {
-        throw new Error("Method not implemented.");
-    }
+    async  create(body: Partial<Localisation>): Promise<LocalisationDTO> {
+        return Localisation.create(body).then((data:Localisation)=>{
+             return LocalisationMapper.mapToDto(data)
+        })
+     }
 
     delete(id: number): Promise<boolean> {
         throw new Error("Method not implemented.");

@@ -16,6 +16,6 @@ async function getRdv(req: Request, res: Response) {
 
 }
 
-const handler = {getRdv}
+const handlerRdv = {getRdv}
 
-export default handler;
+export default handlerRdv;

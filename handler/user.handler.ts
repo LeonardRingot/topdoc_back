@@ -16,6 +16,6 @@ async function getUser(req: Request, res: Response) {
 
 }
 
-const handler = {getUser}
+const handlerUser = {getUser}
 
-export default handler;
+export default handlerUser;

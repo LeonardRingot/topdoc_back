@@ -6,15 +6,23 @@ import { PraticienMapper } from "../mapper/praticien.mapper";
 export class PraticienRepository implements IRepository<praticienDTO> {
 
     async findById(id: number): Promise<praticienDTO | null> {
-        return Praticien.findByPk(id).then(praticien => PraticienMapper.mapToDto(praticien))
+        return Praticien.findByPk(id).then((data:Praticien | null) =>{
+            return PraticienMapper.mapToDto(data)
+        })
     }
 
-    async findAll(): Promise<praticienDTO[]> {
-        throw new Error("Method not implemented.");
+    async findAll(): Promise<Array<praticienDTO>> {
+        return Praticien.findAll().then((data:Array<Praticien>) =>{
+            return data.map((user:Praticien)=>{
+                return PraticienMapper.mapToDto(user)
+            })
+        })
     }
 
-    create(t: praticienDTO): Promise<praticienDTO> {
-        throw new Error("Method not implemented.");
+  async  create(body: Partial<Praticien>): Promise<praticienDTO> {
+       return Praticien.create(body).then((data:Praticien)=>{
+            return PraticienMapper.mapToDto(data)
+       })
     }
 
     delete(id: number): Promise<boolean> {

@@ -5,7 +5,7 @@ export class PraticienMapper {
     static mapToDto(praticien: Praticien | null): praticienDTO {
         if (praticien === null) return null as any;
         return {
-            UserId:praticien.UserId,
+           // UserId:praticien.UserId,
             td_activite: praticien.td_activite,
         }
     }
@@ -13,7 +13,7 @@ export class PraticienMapper {
     static mapAllToDto(Praticiens: Praticien[]): praticienDTO[] {
         return Praticiens.map(praticien => {
             return  {
-                UserId:praticien.UserId,
+               // UserId:praticien.UserId,
                 td_activite: praticien.td_activite,
             }
         })

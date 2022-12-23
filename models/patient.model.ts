@@ -3,17 +3,21 @@ import { sequelize } from "../database/sequelize";
 
 
 export class Patient extends Model {
-    PatientId!: number
+    static rollback() {
+        throw new Error("Method not implemented.");
+    }
+    UserId!: number
     td_firstname!:string
     td_lastname!:string
     td_birthday!:Date
+    commit: any;
 
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
 }
      Patient.init({
-        PatientId: {
+        UserId: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,

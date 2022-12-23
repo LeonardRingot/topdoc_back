@@ -3,7 +3,7 @@ import { sequelize } from "../database/sequelize";
 
 
 export class Planning extends Model {
-    id_planning!:number;
+    id!:number;
     td_dure_validite!: number
     td_date_debut!: Date
     td_date_fin!: Date
@@ -15,7 +15,7 @@ const concatRequiredMessage = (data: string) => {
  Planning.init(
     
 {
-    id_planning: {
+    id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,

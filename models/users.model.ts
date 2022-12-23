@@ -3,19 +3,20 @@ import { sequelize } from "../database/sequelize";
 
 
 export class User extends Model{
-    UserId?:number
+    id?:number
     td_email:string
     td_password:string
     td_phone:number
     td_isActif:boolean
-    LocalisationId:number
+    commit: any;
+   
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
 }
 
     User.init({
-        UserId:{
+        id:{
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
@@ -50,19 +51,11 @@ const concatRequiredMessage = (data: string) => {
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
-        LocalisationId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            unique: true,
-            validate: {
-                isAlphanumeric: true
-            }
-        },
+        
     },
 {
     sequelize,
-    modelName: 'user',
-    timestamps: false,
+    tableName: 'User',
     freezeTableName: true
    
     

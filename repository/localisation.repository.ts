@@ -13,8 +13,8 @@ export class LocalisationRepository implements IRepository<LocalisationDTO> {
 
     async findAll(): Promise<Array<LocalisationDTO>> {
         return Localisation.findAll().then((data:Array<Localisation>) =>{
-            return data.map((user:Localisation)=>{
-                return LocalisationMapper.mapToDto(user)
+            return data.map((data:Localisation)=>{
+                return LocalisationMapper.mapToDto(data)
             })
         })
     }

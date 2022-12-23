@@ -6,8 +6,8 @@ export class Rdv extends Model {
     td_date_rendez_vous!: Date
     td_duree_rdv:number
     td_motif!: string
-    PatientUserId: number
-     PraticienUserId: number
+    // PatientUserId: number
+    //  PraticienUserId: number
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`

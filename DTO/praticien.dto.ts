@@ -1,4 +1,4 @@
 export interface praticienDTO {
-    UserId: number;
+   // UserId: number;
     td_activite: string;
   }

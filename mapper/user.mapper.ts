@@ -9,8 +9,8 @@ export class UserMapper {
             td_email:user.td_email ,
             td_phone: user.td_phone,
             td_isActif:user.td_isActif ,
-            td_password: user.td_password,
-              LocalisationId: user.LocalisationId,
+            td_password: user.td_password
+              
         }
     }
 
@@ -21,8 +21,8 @@ export class UserMapper {
                 td_email:user.td_email ,
                 td_phone: user.td_phone,
                 td_isActif:user.td_isActif ,
-                td_password: user.td_password,
-                  LocalisationId: user.LocalisationId,
+                td_password: user.td_password
+                  
             }
         })
     }

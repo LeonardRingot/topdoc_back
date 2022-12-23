@@ -1,23 +1,23 @@
-import { patientDTO } from "../dto/patient.dto";
+import { PatientDTO } from "../dto/patient.dto";
 import { IRepository } from "../core/repository.interface";
 import { Patient } from "../models/patient.model";
 export class PatientService {
 
-    private patientRepository: IRepository<patientDTO>;
+    private patientRepository: IRepository<PatientDTO>;
 
-    constructor(_patientRepository : IRepository<patientDTO>) {
+    constructor(_patientRepository : IRepository<PatientDTO>) {
         this.patientRepository = _patientRepository;
     }
-    async findAll(): Promise<patientDTO[]> {
+    async findAll(): Promise<PatientDTO[]> {
         return this.patientRepository.findAll()
     }
-    async findById(id: number): Promise<patientDTO | null>{
-        return this.patientRepository.findById(id).then(patientDTO => {
-            if (patientDTO === null) return null;
-            return patientDTO;
+    async findById(id: number): Promise<PatientDTO | null>{
+        return this.patientRepository.findById(id).then(PatientDTO => {
+            if (PatientDTO === null) return null;
+            return PatientDTO;
         });
     }
-    async PatientCreate(patient:Patient):Promise<patientDTO | null>{
+    async create(patient:Patient):Promise<PatientDTO | null>{
         return this.patientRepository.create(patient).then((data) =>{
             return data
         })

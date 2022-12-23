@@ -8,7 +8,7 @@ export class PlanningMapper {
             td_dure_validite: planning.td_dure_validite,
             td_date_debut: planning.td_date_debut,
             td_date_fin: planning.td_date_fin,
-            id_planning:planning.id_planning,
+           
         }
     }
 
@@ -18,7 +18,7 @@ export class PlanningMapper {
                 td_dure_validite: planning.td_dure_validite,
             td_date_debut: planning.td_date_debut,
             td_date_fin: planning.td_date_fin,
-            id_planning:planning.id_planning,
+            
             }
         })
     }

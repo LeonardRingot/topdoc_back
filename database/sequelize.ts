@@ -15,4 +15,4 @@ export const sequelize = new Sequelize(
             },
             timezone: '+02:00'
         }
-)
+);

@@ -7,7 +7,7 @@ export class LocalisationMapper {
         return {
             td_address: localisation.td_address,
             td_zipCode: localisation.td_zipCode,
-            td_city: localisation.td_city,
+            td_city: localisation.td_city
         }
     }
 
@@ -16,7 +16,7 @@ export class LocalisationMapper {
             return  {
                 td_address: localisation.td_address,
                 td_zipCode: localisation.td_zipCode,
-                td_city: localisation.td_city,
+                td_city: localisation.td_city
             }
         })
     }

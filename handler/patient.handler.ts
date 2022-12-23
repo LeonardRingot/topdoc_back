@@ -15,7 +15,18 @@ async function getPatients(req: Request, res: Response) {
     }
 
 }
+async function createPatient(req: Request, res: Response) {
+    try {
+        const result = await patientService.create;
+        if (result === null) return res.status(404).send()
+        res.status(200).json(result)
 
-const handlerPatient = {getPatients}
+    } catch(err) {
+        res.status(500).json(err)
+    }
 
-export default handlerPatient;
+}
+
+ const handler = {getPatients, createPatient}
+
+export default handler;

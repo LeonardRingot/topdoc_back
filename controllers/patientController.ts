@@ -24,7 +24,7 @@ patientController.get('/',handlerPatient.getPatients)
  * /api/patients:
  *   post:
  *      tags: [Patients]
- *      description: Create a candidate
+ *      description: Create a Patient
   *      consumes:
   *       - application/json
   *      parameters:
@@ -32,7 +32,7 @@ patientController.get('/',handlerPatient.getPatients)
   *         in: body
   *         required: true
   *         type: object
-  *         default:  {"td_firstname": "elo","td_lastname": "a","td_birthday": "1999-01-01"}
+  *         default:  {"patients": {"td_patient": "a", "td_lastname": "a", "td_firstname": "a","td_birthday": "2000-06-31","td_email":"a@a.com", "td_password":"a","td_phone": 11, "td_isActif": true}, "users":{"td_lastname": "a", "td_firstname": "a","td_birthday": "2000-06-31","td_email":"a@a.com", "td_password":"a","td_phone": 11, "td_isActif": true }} 
   *      responses:
   *        200:
   *          description: Create a new patient.

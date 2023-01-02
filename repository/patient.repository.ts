@@ -17,29 +17,38 @@ export class PatientRepository implements IRepository<PatientDTO> {
         return Patient.findAll().then(patient => PatientMapper.mapAllToDto(patient))
     }
 
-    async create(body: Partial<Patient>): Promise<PatientDTO> {
+    async create( body: Partial<PatientDTO>): Promise<PatientDTO> {
 
         const t = await sequelize.transaction();
+    
         try {
 
-            const user = await User.create(body, {
+            const user = await User.create(body ,{
                 transaction: t
             })
             const patient = await Patient.create({
-
-                UserId: user.id,
-                td_email: user.td_email,
-                td_password: user.td_password,
-                td_phone: user.td_phone,
-                td_isActif:user.td_isActif
-            }, { transaction: t })
-
+                UserId:11,
+                td_patient:'a',
+                td_lastname:'a',
+                td_firstname:'a',
+                td_birthday:new Date("2000-06-31"),
+                td_email: 'a@a.com',
+                td_password: 'a',
+                td_phone: '1',
+                td_isActif:true
+            }, { transaction: t });
             await t.commit()
             const dto :PatientDTO = {
-                td_firstname: patient.td_firstname,
-                td_lastname:patient.td_lastname,
-                td_birthday:patient.td_birthday
-            }
+                td_patient:'a',
+                td_lastname:'a',
+                td_firstname:'a',
+                td_birthday: new Date("2000-06-31"),
+                td_email: 'a@a.com',
+                td_password: 'a',
+                td_phone: 11,
+                td_isActif:true
+            } 
+            console.log(patient.td_patient)
             return PatientMapper.mapToDto(patient)
             
             } 

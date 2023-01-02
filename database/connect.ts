@@ -93,6 +93,9 @@ export const initDb = () => {
         users.map(user => {
             User.create({
                 //UserId:user.UserId,
+                td_lastname:user.td_lastname,
+                td_firstname:user.td_firstname,
+                td_birthday:user.td_birthday,
                 td_email: user.td_email,
                 td_phone: user.td_phone,
                 td_isActif: user.td_isActif,
@@ -110,9 +113,14 @@ export const initDb = () => {
         
         patients.map(patient =>{
             Patient.create({
-                td_firstname: patient.td_firstname,
-                td_lastname: patient.td_lastname,
-                td_birthday: patient.td_birthday
+                 td_patient: patient.td_patient,
+                 td_lastname:patient.td_lastname,
+                 td_firstname:patient.td_firstname,
+                 td_birthday:patient.td_birthday,
+                 td_email: patient.td_email,
+                 td_phone: patient.td_phone,
+                 td_isActif: patient.td_isActif,
+                 td_password: patient.td_password,
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         praticien.map(praticien=> {

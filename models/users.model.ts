@@ -3,12 +3,16 @@ import { sequelize } from "../database/sequelize";
 
 
 export class User extends Model{
+  
     id?:number
+    td_lastname:string
+    td_firstname:string
+    td_birthday: Date
     td_email:string
     td_password:string
     td_phone:number
     td_isActif:boolean
-    commit: any;
+  
    
 }
 const concatRequiredMessage = (data: string) => {
@@ -20,6 +24,30 @@ const concatRequiredMessage = (data: string) => {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
+        },
+        td_lastname: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notNull: { msg: concatRequiredMessage('Lastname') },
+                notEmpty: { msg: concatRequiredMessage('Lastname') }
+            }
+        },
+        td_firstname: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notNull: { msg: concatRequiredMessage('Firstname') },
+                notEmpty: { msg: concatRequiredMessage('Firstname') }
+            }
+        },
+        td_birthday: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            validate: {
+                notNull: { msg: concatRequiredMessage('birthday date') },
+                notEmpty: { msg: concatRequiredMessage('birthday date') }
+            }
         },
         td_email: {
             type: DataTypes.STRING,

@@ -14,6 +14,7 @@ export class UserRepository implements IRepository<userDTO> {
     async findAll(): Promise<Array<userDTO>> {
         return User.findAll().then((data:Array<User>) =>{
             return data.map((user:User)=>{
+                
                 return UserMapper.mapToDto(user)
             })
         })

@@ -5,7 +5,9 @@ export class UserMapper {
     static mapToDto(user: User | null): userDTO  {
         if (user === null) return null as any;
         return {
-           
+            td_lastname:user.td_lastname,
+           td_firstname:user.td_firstname,
+           td_birthday:user.td_birthday,
             td_email:user.td_email ,
             td_phone: user.td_phone,
             td_isActif:user.td_isActif ,
@@ -17,7 +19,9 @@ export class UserMapper {
     static mapAllToDto(users: User[]): userDTO[] {
         return users.map(user => {
             return  {
-               
+                td_lastname:user.td_lastname,
+                td_firstname:user.td_firstname,
+                td_birthday:user.td_birthday,
                 td_email:user.td_email ,
                 td_phone: user.td_phone,
                 td_isActif:user.td_isActif ,

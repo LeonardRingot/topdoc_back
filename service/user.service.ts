@@ -1,6 +1,6 @@
 import { userDTO } from "../dto/user.dto";
 import { IRepository } from "../core/repository.interface";
-
+import { User } from "~~/models/users.model";
 export class UserService {
 
     private userRepository: IRepository<userDTO>;
@@ -16,6 +16,11 @@ export class UserService {
             if (userDTO === null) return null;
             return userDTO;
         });
+    }
+    async create(user:User):Promise<userDTO | null>{
+        return this.userRepository.create(user).then((data) =>{
+            return data
+        })
     }
 
 }

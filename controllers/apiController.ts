@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { usersController } from './userController'
+import { userController } from './userController'
 import {patientController} from './patientController'
 
 
@@ -27,6 +27,6 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions)
 
 apiController.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
-apiController.use('/users', usersController)
+apiController.use('/users', userController)
 apiController.use('/patients', patientController)
 export { apiController }

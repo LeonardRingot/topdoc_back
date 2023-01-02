@@ -1,7 +1,6 @@
 import { Router } from "express";
 import handlerUser from "~~/handler/user.handler";
-export const usersController = Router();
-
+export const userController = Router();
 /**
  * @swagger
  * tags:
@@ -12,6 +11,25 @@ export const usersController = Router();
 /**
  * @openapi
  * /api/users:
+ *   post:
+ *      tags: [Users]
+ *      description: Create a User
+ *      consumes:
+ *       - application/json
+  *      parameters:
+  *       - name: JSON
+  *         in: body
+  *         required: true
+  *         type: object
+  *         default: {"users":{"td_email":"test@mail.com", "td_password":"string","td_phone":90, "td_isActif": true }}
+  *      responses:
+  *        200:
+  *          description: Create a new User.
+ */
+userController.post('/',handlerUser.createUser)
+/**
+ * @openapi
+ * /api/users:
  *   get:
  *      tags: [Users]
  *      description: Welcome to swagger-jsdoc!
@@ -19,37 +37,4 @@ export const usersController = Router();
  *        200:
  *          description: Get the list of all users.
  */
-usersController.get('/',handlerUser.getUsers)
-/**
- * @openapi
- * /api/users/{id}:
- *  get:
- *      tags: [Users]
- *      description: Get an template by id
- *      parameters:
- *       - name: id
- *         in: path
- *         required: true
- *         type: integer
- *         default: 1
- *      responses:
- *        200:
- *          description: Get the user of given id.
- */
-usersController.get('/:id',handlerUser.getUserById)
-/**
- * @openapi
- * /api/users/:
- *  post:
- *      tags: [Users]
- *      description: Get an template by id
- *      parameters:
- *       - name: id
- *         in: path
- *         required: true
- *         type: integer
- *         default: 1
- *      responses:
- *        200:
- *          description: Get the user of given id.
- */
+userController.get('/',handlerUser.getUsers)

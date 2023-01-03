@@ -4,8 +4,6 @@ import { Patient } from "../models/patient.model";
 import { PatientMapper } from "../mapper/patient.mapper";
 import { sequelize } from "~~/database/sequelize";
 import { User } from "~~/models/users.model";
-import { Transaction } from "sequelize";
-import { patientController } from "~~/controllers/patientController";
 
 
 export class PatientRepository implements IRepository<PatientDTO> {

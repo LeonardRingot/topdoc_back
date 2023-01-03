@@ -1,5 +1,6 @@
 import { planningDTO } from "../dto/planning.dto";
 import { IRepository } from "../core/repository.interface";
+import { Planning } from "~~/models/planning.model";
 
 export class PlanningService {
 
@@ -16,6 +17,17 @@ export class PlanningService {
             if (planningDTO === null) return null;
             return planningDTO;
         });
+    }
+    async create(localisation:Planning):Promise<planningDTO | null>{
+        return this.planningRepository.create(localisation).then((data) =>{
+            return data
+        })
+    }
+    async delete(id:number):Promise<boolean | number> {
+        return this.planningRepository.delete(id)
+    }
+    async update(planning :Planning, id:number ):  Promise<boolean | number>{
+        return this.planningRepository.update(planning, id)
     }
 
 }

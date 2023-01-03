@@ -26,8 +26,24 @@ export class PlageHoraireRepository implements IRepository<plageHoraireDTO> {
         })
      }
 
-    delete(id: number): Promise<boolean> {
-        throw new Error("Method not implemented.");
-    }
+     async delete(PlanningId: number): Promise<boolean | number>
+     {
+        return Plage_Horaire.destroy({
+         where:{
+            PlanningId:PlanningId
+         }
+     }).then((data:boolean | number)=>{
+         return data
+     })
+     }
+     async update(body: Plage_Horaire, PlanningId: number): Promise<boolean | number> {
+      return Plage_Horaire.update(body, 
+          { where:
+               { PlanningId: PlanningId } 
+             
+           }).then((data: Array<(boolean | number)>) => {
+          return data[0]
+      })
+  }
 
 }

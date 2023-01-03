@@ -1,5 +1,6 @@
 import { congeDTO } from "../dto/conge.dto";
 import { IRepository } from "../core/repository.interface";
+import { Conge } from "~~/models/conge.model";
 
 export class CongeService {
 
@@ -16,6 +17,17 @@ export class CongeService {
             if (congeDTO === null) return null;
             return congeDTO;
         });
+    }
+    async create(conge:Conge):Promise<congeDTO | null>{
+        return this.congeRepository.create(conge).then((data) =>{
+            return data
+        })
+    }
+    async delete(id:number):Promise<boolean | number> {
+        return this.congeRepository.delete(id)
+    }
+    async update(conge :Conge, id:number ):  Promise<boolean | number>{
+        return this.congeRepository.update(conge, id)
     }
 
 }

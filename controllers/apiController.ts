@@ -1,8 +1,13 @@
 import { Router } from "express";
 import { userController } from './userController'
 import {patientController} from './patientController'
-
-
+import { praticienController } from "./praticienController";
+import { localisationController } from "./localisationController";
+import { plagehoraireController } from "./plagehoraireController";
+import { planningController } from "./planningController";
+import { rdvController } from "./rdvController";
+import { banController } from "./banController";
+import { congeController } from "./congeController";
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
 const apiController = Router();
@@ -29,4 +34,14 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions)
 apiController.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 apiController.use('/users', userController)
 apiController.use('/patients', patientController)
+apiController.use('/praticiens', praticienController)
+apiController.use('/localisations', localisationController)
+apiController.use('/plagehoraires', plagehoraireController)
+apiController.use('/planning', planningController)
+apiController.use('/rdv', rdvController)
+apiController.use('/ban', banController)
+///////////////// A FAIRE //////////////////
+ apiController.use('/conge', congeController)
+  apiController.use('/role', roleController)
+ apiController.use('/token', tokenController)
 export { apiController }

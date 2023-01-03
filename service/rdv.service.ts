@@ -1,5 +1,6 @@
 import { rdvDTO } from "../dto/rdv.dto";
 import { IRepository } from "../core/repository.interface";
+import { Rdv } from "~~/models/rdv.model";
 
 export class RdvService {
 
@@ -16,6 +17,17 @@ export class RdvService {
             if (rdvDTO === null) return null;
             return rdvDTO;
         });
+    }
+    async create(rdv:Rdv):Promise<rdvDTO | null>{
+        return this.rdvRepository.create(rdv).then((data) =>{
+            return data
+        })
+    }
+    async delete(id:number):Promise<boolean | number> {
+        return this.rdvRepository.delete(id)
+    }
+    async update(rdv :Rdv, id:number ):  Promise<boolean | number>{
+        return this.rdvRepository.update(rdv, id)
     }
 
 }

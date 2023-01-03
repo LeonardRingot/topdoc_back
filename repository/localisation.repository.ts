@@ -18,15 +18,30 @@ export class LocalisationRepository implements IRepository<LocalisationDTO> {
             })
         })
     }
-
     async  create(body: Partial<Localisation>): Promise<LocalisationDTO> {
         return Localisation.create(body).then((data:Localisation)=>{
              return LocalisationMapper.mapToDto(data)
         })
      }
 
-    delete(id: number): Promise<boolean> {
-        throw new Error("Method not implemented.");
+    async delete(id: number): Promise<boolean | number>
+       {
+          return Localisation.destroy({
+           where:{
+            id:id
+           }
+       }).then((data:boolean | number)=>{
+           return data
+       })
+       }
+       async update(body: Localisation, id: number): Promise<boolean | number> {
+        return Localisation.update(body, 
+            { where:
+                 { id: id } 
+               
+             }).then((data: Array<(boolean | number)>) => {
+            return data[0]
+        })
     }
 
 }

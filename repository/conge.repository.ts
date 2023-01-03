@@ -25,8 +25,24 @@ export class CongeRepository implements IRepository<congeDTO> {
         })
      }
 
-    delete(id: number): Promise<boolean> {
-        throw new Error("Method not implemented.");
-    }
+     async delete(id: number): Promise<boolean | number>
+     {
+        return Conge.destroy({
+         where:{
+          id:id
+         }
+     }).then((data:boolean | number)=>{
+         return data
+     })
+     }
+     async update(body: Conge, id: number): Promise<boolean | number> {
+      return Conge.update(body, 
+          { where:
+               { id: id } 
+             
+           }).then((data: Array<(boolean | number)>) => {
+          return data[0]
+      })
+  }
 
 }

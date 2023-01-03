@@ -24,8 +24,24 @@ export class PlanningRepository implements IRepository<planningDTO> {
         })
      }
 
-    delete(id: number): Promise<boolean> {
-        throw new Error("Method not implemented.");
-    }
+     async delete(id: number): Promise<boolean | number>
+     {
+        return Planning.destroy({
+         where:{
+          id:id
+         }
+     }).then((data:boolean | number)=>{
+         return data
+     })
+     }
+     async update(body: Planning, id: number): Promise<boolean | number> {
+      return Planning.update(body, 
+          { where:
+               { id: id } 
+             
+           }).then((data: Array<(boolean | number)>) => {
+          return data[0]
+      })
+  }
 
 }

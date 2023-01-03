@@ -25,8 +25,24 @@ export class RdvRepository implements IRepository<rdvDTO> {
        })
     }
 
-    delete(id: number): Promise<boolean> {
-        throw new Error("Method not implemented.");
+    async delete(id: number): Promise<boolean | number>
+       {
+          return Rdv.destroy({
+           where:{
+            id:id
+           }
+       }).then((data:boolean | number)=>{
+           return data
+       })
+       }
+       async update(body: Rdv, id: number): Promise<boolean | number> {
+        return Rdv.update(body, 
+            { where:
+                 { id: id } 
+               
+             }).then((data: Array<(boolean | number)>) => {
+            return data[0]
+        })
     }
 
 }

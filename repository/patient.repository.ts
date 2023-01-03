@@ -4,64 +4,83 @@ import { Patient } from "../models/patient.model";
 import { PatientMapper } from "../mapper/patient.mapper";
 import { sequelize } from "~~/database/sequelize";
 import { User } from "~~/models/users.model";
+import { Transaction } from "sequelize";
+import { patientController } from "~~/controllers/patientController";
 
 
 export class PatientRepository implements IRepository<PatientDTO> {
 
-    async findById(PatientId: number): Promise<PatientDTO | null> {
-        return Patient.findByPk(PatientId).then(patient => PatientMapper.mapToDto(patient))
+    async findById(id: number): Promise<PatientDTO | null> {
+        return Patient.findByPk(id).then((data:Patient | null) =>{
+            return PatientMapper.mapToDto(data)
+        })
     }
 
-    async findAll(): Promise<PatientDTO[]> {
-        //throw new Error("Method not implemented.");
-        return Patient.findAll().then(patient => PatientMapper.mapAllToDto(patient))
+    async findAll(): Promise<Array<PatientDTO>> {
+        return Patient.findAll().then((data:Array<Patient>) =>{
+            return data.map((patient:Patient)=>{
+                
+                return PatientMapper.mapToDto(patient)
+            })
+        })
     }
 
-    async create( body: Partial<PatientDTO>): Promise<PatientDTO> {
-
+    async create(body: Partial<Patient>): Promise<PatientDTO> {
+        
         const t = await sequelize.transaction();
     
         try {
-
-            const user = await User.create(body ,{
-                transaction: t
+            
+            const user = await User.create({
+               UserId:'11',
+                td_lastname:'test',
+                td_firstname:'a',
+                td_birthday:'2022-05-20',
+                td_email: 'a@gmail.com',
+                td_password:'e',
+                td_phone: '1111',
+                td_isActif:'true'
+            }, { transaction: t , body});
+            const patientUser = await Patient.create({
+                td_patient:'test'
             })
-            const patient = await Patient.create({
-                UserId:11,
-                td_patient:'a',
-                td_lastname:'a',
-                td_firstname:'a',
-                td_birthday:new Date("2000-06-31"),
-                td_email: 'a@a.com',
-                td_password: 'a',
-                td_phone: '1',
-                td_isActif:true
+           const dto:PatientDTO = await Patient.create({
+                td_patient:patientUser.td_patient,
+                UserId:user.id
             }, { transaction: t });
+            
+            console.log('success');
             await t.commit()
-            const dto :PatientDTO = {
-                td_patient:'a',
-                td_lastname:'a',
-                td_firstname:'a',
-                td_birthday: new Date("2000-06-31"),
-                td_email: 'a@a.com',
-                td_password: 'a',
-                td_phone: 11,
-                td_isActif:true
-            } 
-            console.log(patient.td_patient)
-            return PatientMapper.mapToDto(patient)
+            return PatientMapper.mapToDto(patientUser)
             
             } 
         catch(error){
-            console.log('MON ERREUR ' + error)
-           await t.rollback()
-           throw error 
+            
+                console.log('MON ERREUR ' + error)
+                await t.rollback();
+                throw(error)
+            
         }
        }
+       
 
-
-
-    async delete(id: number): Promise<boolean> {
-        throw new Error("Method not implemented.");
+       async delete(UserId: number): Promise<boolean | number>
+       {
+          return Patient.destroy({
+           where:{
+            UserId:UserId
+           }
+       }).then((data:boolean | number)=>{
+           return data
+       })
+       }
+       async update(body: Patient, UserId: number): Promise<boolean | number> {
+        return Patient.update(body, 
+            { where:
+                 { UserId: UserId } 
+               
+             }).then((data: Array<(boolean | number)>) => {
+            return data[0]
+        })
     }
 }

@@ -9,7 +9,7 @@ export interface patientTypes {
  td_password: string;
    LocalisationId: number;
     td_patient: string;
-    
+    UserId: number;
   }
   
   export interface patientId extends patientTypes {

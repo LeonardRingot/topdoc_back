@@ -18,7 +18,7 @@ async function getUsers(req: Request, res: Response) {
 }
 async function getUserById(req: Request, res: Response) {
     try {
-        const result = await userservice.findById(1);
+        const result = await userservice.findById(parseInt(req.params.id));
         if (result === null) return res.status(404).send()
         res.status(200).json(result)
 
@@ -41,7 +41,24 @@ async function createUser(req: Request, res: Response) {
 
 }
 
+async function deleteUser(req:Request, res:Response) {
+    const id = req.params.id as unknown as number;
+    try{
+        await userservice.delete(id);
+      res.status(200).send()
+       //console.log(result)
 
-const handlerUser = {getUsers, getUserById, createUser}
+    } catch(err) {
+        res.status(500).json(err)
+    }
+}
+async function updateUser(req:Request, res:Response) {
+    try{
+        const result = await userservice.update(req.body, parseInt(req.params.id))
+    }catch(err) {
+        res.status(500).json(err)
+    }
+}
+const handlerUser = {getUsers, getUserById, createUser, deleteUser, updateUser}
 
 export default handlerUser;

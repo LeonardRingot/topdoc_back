@@ -13,8 +13,8 @@ export class PraticienRepository implements IRepository<praticienDTO> {
 
     async findAll(): Promise<Array<praticienDTO>> {
         return Praticien.findAll().then((data:Array<Praticien>) =>{
-            return data.map((user:Praticien)=>{
-                return PraticienMapper.mapToDto(user)
+            return data.map((praticien:Praticien)=>{
+                return PraticienMapper.mapToDto(praticien)
             })
         })
     }

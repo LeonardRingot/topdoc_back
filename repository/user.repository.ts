@@ -1,8 +1,7 @@
 import { IRepository } from "../core/repository.interface";
 import { userDTO } from "../dto/user.dto";
 import { User } from "../models/users.model";
-import { UserMapper } from "../mapper/user.mapper";
-
+import { UserMapper } from "../mapper/user.mapper"
 export class UserRepository implements IRepository<userDTO> {
 
     async findById(id: number): Promise<userDTO | null> {
@@ -20,14 +19,33 @@ export class UserRepository implements IRepository<userDTO> {
         })
     }
 
-  async  create(body: Partial<User>): Promise<userDTO> {
+  async  create(body: Partial<User>): Promise<userDTO> 
+  {
        return User.create(body).then((data:User)=>{
             return UserMapper.mapToDto(data)
        })
     }
 
-    delete(id: number): Promise<boolean> {
-        throw new Error("Method not implemented.");
+   async delete(id: number): Promise<boolean | number>
+    {
+       return User.destroy({
+        where:{
+            id:id
+        }
+    }).then((data:boolean | number)=>{
+        return data
+    })
     }
-
+    
+    async update(body: User, id: number): Promise<boolean | number> {
+        return User.update(body, 
+            { where:
+                 { id: id } 
+               
+             }).then((data: Array<(boolean | number)>) => {
+            return data[0]
+        })
+    }
 }
+
+

@@ -22,8 +22,11 @@ export class PatientService {
             return data
         })
     }
-   async delete(id:number):Promise<boolean>{
+    async delete(id:number):Promise<boolean | number> {
         return this.patientRepository.delete(id)
+    }
+    async update(patient :Patient, id:number ):  Promise<boolean | number>{
+        return this.patientRepository.update(patient, id)
     }
 
 }

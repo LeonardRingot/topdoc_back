@@ -8,6 +8,7 @@ export interface userTypes {
   td_isActif: boolean;
   td_password: string;
     LocalisationId: number;
+    
   }
   
   

@@ -18,15 +18,15 @@ export class TokenService {
             return TokenDTO;
         });
     }
-    async create(token:Token):Promise<TokenDTO | null>{
-        return this.tokenRepository.create(token).then((data) =>{
+    async create(refreshToken:Token):Promise<TokenDTO | null>{
+        return this.tokenRepository.create(refreshToken).then((data) =>{
             return data
         })
     }
     async delete(id:number):Promise<boolean | number> {
         return this.tokenRepository.delete(id)
     }
-    async update(token :Token, id:number ):  Promise<boolean | number>{
+    async update(token :Token, id:number ):  Promise<boolean | number | undefined>{
         return this.tokenRepository.update(token, id)
     }
 

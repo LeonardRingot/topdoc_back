@@ -26,7 +26,7 @@ export class PlageHoraireService {
     async delete(id:number):Promise<boolean | number> {
         return this.plagehoraireRepository.delete(id)
     }
-    async update(plage_horaire :Plage_Horaire, id:number ):  Promise<boolean | number>{
+    async update(plage_horaire :Plage_Horaire, id:number ):  Promise<boolean | number | undefined>{
         return this.plagehoraireRepository.update(plage_horaire, id)
     }
 

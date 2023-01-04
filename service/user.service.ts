@@ -25,7 +25,7 @@ export class UserService {
     async delete(id:number):Promise<boolean | number> {
         return this.userRepository.delete(id)
     }
-    async update(user :User, id:number ):  Promise<boolean | number>{
+    async update(user :User, id:number ):  Promise<boolean | number | undefined>{
         return this.userRepository.update(user, id)
     }
 

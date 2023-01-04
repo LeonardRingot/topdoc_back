@@ -26,7 +26,7 @@ export class LocalisationService {
     async delete(id:number):Promise<boolean | number> {
         return this.localisationRepository.delete(id)
     }
-    async update(localisation :Localisation, id:number ):  Promise<boolean | number>{
+    async update(localisation :Localisation, id:number ):  Promise<boolean | number | undefined>{
         return this.localisationRepository.update(localisation, id)
     }
 

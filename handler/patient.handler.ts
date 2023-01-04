@@ -8,7 +8,7 @@ const patientService = new PatientService(new PatientRepository);
 async function getPatients(req: Request, res: Response) {
     try {
         const result = await patientService.findAll();
-        if (result === null) return res.status(404).send()
+       if (result === null) return res.status(404).send()
         res.status(200).json(result)
         console.log(result)
     } catch(err) {

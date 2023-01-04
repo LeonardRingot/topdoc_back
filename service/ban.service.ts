@@ -25,7 +25,7 @@ export class BanService {
     async delete(id:number):Promise<boolean | number> {
         return this.banRepository.delete(id)
     }
-    async update(ban :Ban, id:number ):  Promise<boolean | number>{
+    async update(ban :Ban, id:number ):  Promise<boolean | number |undefined>{
         return this.banRepository.update(ban, id)
     }
 

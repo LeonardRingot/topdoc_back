@@ -5,77 +5,94 @@ import { PraticienMapper } from "../mapper/praticien.mapper";
 import { sequelize } from "~~/database/sequelize";
 import { User } from "~~/models/users.model";
 
+
 export class PraticienRepository implements IRepository<praticienDTO> {
+    delete(id: number): Promise<number | boolean> {
+        return Praticien.destroy({ where: { UserId: id } }).then(good => good)
+    }
 
     async findById(id: number): Promise<praticienDTO | null> {
-        return Praticien.findByPk(id).then((data:Praticien | null) =>{
-            return PraticienMapper.mapToDto(data)
-        })
+        return Praticien.findByPk(id, { include: [User] }).then(praticien => PraticienMapper.mapToDto(praticien))
     }
 
-    async findAll(): Promise<Array<praticienDTO>> {
-        return Praticien.findAll().then((data:Array<Praticien>) =>{
-            return data.map((praticien:Praticien)=>{
-                return PraticienMapper.mapToDto(praticien)
-            })
-        })
+    async findAll(): Promise<praticienDTO[]> {
+        return Praticien.findAll({ include: [User] }).then((praticien: Praticien[]) => praticien.map((praticien: Praticien) => PraticienMapper.mapToDto(praticien)))
     }
+    async update(data: praticienDTO & User, id: number): Promise<number | boolean> {
+        const userInfo = {
+            td_activite:data.td_activite,
+             td_lastname:data.td_lastname,
+             td_firstname:data.td_firstname,
+             td_birthday:data.td_birthday,
+             td_email:data.td_email,
+             td_password:data.td_password,
+             td_phone: data.td_phone,
+             td_isActif:data.td_isActif
+         }
+         const praticienUser = {
+             td_activite:data.td_activite
+         }
+         try {
+            return await sequelize.transaction(async (t) => {
 
-  async  create(body: Partial<Praticien>): Promise<praticienDTO> {
-      const t = await sequelize.transaction();
-    
-        try {
-            
-            const user = await User.create({
-               UserId:'11',
-                td_lastname:'test',
-                td_firstname:'a',
-                td_birthday:'2022-05-20',
-                td_email: 'a@gmail.com',
-                td_password:'e',
-                td_phone: '1111',
-                td_isActif:'true'
-            }, { transaction: t , body});
-            const patricienUser = await Praticien.create({
-                td_activite:'transaction à la con'
+                await User.update(
+                    userInfo,
+                    {
+                        where: { id: id },
+                        transaction: t
+                    }
+                )
+
+                const updatedPraticien = await Praticien.update(
+                    praticienUser,
+                    {
+                        where: { UserId: id },
+                        transaction: t
+                    }
+                )
+                return updatedPraticien[0]
             })
-           const dto:praticienDTO = await Praticien.create({
-                td_activite:patricienUser.td_activite,
-                UserId:user.id
-            }, { transaction: t });
-            
-            console.log('success');
-            await t.commit()
-            return PraticienMapper.mapToDto(patricienUser)
-            
-            } 
-        catch(error){
-            
-                console.log('MON ERREUR ' + error)
-                await t.rollback();
-                throw(error)
-            
+
+        } catch (error) {
+            throw error
         }
     }
-
-    async delete(UserId: number): Promise<boolean | number>
-       {
-          return Praticien.destroy({
-           where:{
-            UserId:UserId
-           }
-       }).then((data:boolean | number)=>{
-           return data
-       })
-    }
-    async update(body: Praticien, UserId: number): Promise<boolean | number> {
-        return Praticien.update(body, 
-            { where:
-                 { UserId: UserId } 
-               
-             }).then((data: Array<(boolean | number)>) => {
-            return data[0]
-        })
-    }
+    async create(data: praticienDTO): Promise<praticienDTO> {
+        
+       
+        const userInfo = {
+            td_activite:data.td_activite,
+          td_lastname:data.td_lastname,
+          td_firstname:data.td_firstname,
+          td_birthday:data.td_birthday,
+          td_email:data.td_email,
+          td_password:data.td_password,
+          td_phone: data.td_phone,
+          td_isActif:data.td_isActif
+      }
+      const praticienUser = {
+        td_activite:data.td_activite
+      }
+     
+         try {
+             
+             return  await sequelize.transaction(async (t) =>
+             {
+                 const newUser = await User.create(userInfo,  { transaction: t }
+             )
+                     
+             
+             return Praticien.create
+             (
+                 { ...praticienUser, UserId: newUser.UserId },
+                 { transaction: t }
+             )
+                 .then((praticien: Praticien) => PraticienMapper.mapToDtoCreate(praticien, newUser))
+             })
+         }catch (error: any) {
+             console.log(error)
+             return null as any
+         }
+     }
 
 }

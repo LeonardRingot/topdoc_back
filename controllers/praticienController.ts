@@ -48,7 +48,7 @@ praticienController.get('/:id',handlerPraticien.getPraticiensById)
   *         in: body
   *         required: true
   *         type: object
-  *         default:  {"praticiens": {"td_activite": "a"}, "users":{"td_lastname": "a", "td_firstname": "a","td_birthday": "2000-06-31","td_email":"a@a.com", "td_password":"a","td_phone": 11, "td_isActif": true }} 
+  *         default:  {"td_activite": "dentiste", "td_lastname": "a", "td_firstname": "a","td_birthday": "2000-06-31","td_email":"a@a.com", "td_password":"a","td_phone": 11, "td_isActif": true }
   *      responses:
   *        200:
   *          description: Create a new patient.
@@ -88,7 +88,7 @@ praticienController.delete('/:id',handlerPraticien.deletePraticien)
   *         in: body
   *         required: true
   *         type: object
-  *         default:  {"praticiens": {"td_activite": "OUIIIIIIIIIIIIIII"}, "users":{"td_lastname": "a", "td_firstname": "a","td_birthday": "2000-06-31","td_email":"a@a.com", "td_password":"a","td_phone": 11, "td_isActif": true }} 
+  *         default:  {"td_activite": "dentiste", "td_lastname": "a", "td_firstname": "a","td_birthday": "2000-06-31","td_email":"a@a.com", "td_password":"a","td_phone": 11, "td_isActif": true }
   *      responses:
   *        200:
   *          description: Update the user of given id.

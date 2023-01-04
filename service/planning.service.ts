@@ -26,7 +26,7 @@ export class PlanningService {
     async delete(id:number):Promise<boolean | number> {
         return this.planningRepository.delete(id)
     }
-    async update(planning :Planning, id:number ):  Promise<boolean | number>{
+    async update(planning :Planning, id:number ):  Promise<boolean | number | undefined>{
         return this.planningRepository.update(planning, id)
     }
 

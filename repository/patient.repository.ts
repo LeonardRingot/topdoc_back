@@ -7,78 +7,91 @@ import { User } from "~~/models/users.model";
 
 
 export class PatientRepository implements IRepository<PatientDTO> {
-
+    async findAll(): Promise<PatientDTO[]> {
+        return Patient.findAll({ include: [User] }).then((patients: Patient[]) => patients.map((patient: Patient) => PatientMapper.mapToDto(patient)))
+    }
+    
+    delete(id: number): Promise<number | boolean> {
+        return Patient.destroy({ where: { UserId: id } }).then(good => good)
+    }
     async findById(id: number): Promise<PatientDTO | null> {
-        return Patient.findByPk(id).then((data:Patient | null) =>{
-            return PatientMapper.mapToDto(data)
-        })
+        return Patient.findByPk(id, { include: [User] }).then(patient => PatientMapper.mapToDto(patient))
     }
+    async update(data: PatientDTO & User, id: number): Promise<number | boolean> {
+        const userInfo = {
+            td_numbervitalCode:data.td_numbervitalCode,
+             td_lastname:data.td_lastname,
+             td_firstname:data.td_firstname,
+             td_birthday:data.td_birthday,
+             td_email:data.td_email,
+             td_password:data.td_password,
+             td_phone: data.td_phone,
+             td_isActif:data.td_isActif
+         }
+         const patientUser = {
+             td_numbervitalCode:data.td_numbervitalCode
+         }
+         try {
+            return await sequelize.transaction(async (t) => {
 
-    async findAll(): Promise<Array<PatientDTO>> {
-        return Patient.findAll().then((data:Array<Patient>) =>{
-            return data.map((patient:Patient)=>{
-                
-                return PatientMapper.mapToDto(patient)
+                await User.update(
+                    userInfo,
+                    {
+                        where: { id: id },
+                        transaction: t
+                    }
+                )
+
+                const updatedPatient = await Patient.update(
+                    patientUser,
+                    {
+                        where: { UserId: id },
+                        transaction: t
+                    }
+                )
+                return updatedPatient[0]
             })
-        })
-    }
 
-    async create(body: Partial<Patient>): Promise<PatientDTO> {
+        } catch (error) {
+            throw error
+        }
+    }
+    async create(data: PatientDTO): Promise<PatientDTO> {
         
-        const t = await sequelize.transaction();
+       
+       const userInfo = {
+        td_numbervitalCode:data.td_numbervitalCode,
+         td_lastname:data.td_lastname,
+         td_firstname:data.td_firstname,
+         td_birthday:data.td_birthday,
+         td_email:data.td_email,
+         td_password:data.td_password,
+         td_phone: data.td_phone,
+         td_isActif:data.td_isActif
+     }
+     const patientUser = {
+         td_numbervitalCode:data.td_numbervitalCode
+     }
     
         try {
             
-            const user = await User.create({
-               UserId:'11',
-                td_lastname:'test',
-                td_firstname:'a',
-                td_birthday:'2022-05-20',
-                td_email: 'a@gmail.com',
-                td_password:'e',
-                td_phone: '1111',
-                td_isActif:'true'
-            }, { transaction: t , body});
-            const patientUser = await Patient.create({
-                td_numbervitalCode:'78948946546'
+            return  await sequelize.transaction(async (t) =>
+            {
+                const newUser = await User.create(userInfo,  { transaction: t }
+            )
+                    
+            
+            return Patient.create
+            (
+                { ...patientUser, UserId: newUser.UserId },
+                { transaction: t }
+            )
+                .then((patient: Patient) => PatientMapper.mapToDtoCreate(patient, newUser))
             })
-           const dto:PatientDTO = await Patient.create({
-            td_numbervitalCode:patientUser.td_numbervitalCode,
-                UserId:user.id
-            }, { transaction: t });
-            
-            console.log('success');
-            await t.commit()
-            return PatientMapper.mapToDto(patientUser)
-            
-            } 
-        catch(error){
-            
-                console.log('MON ERREUR ' + error)
-                await t.rollback();
-                throw(error)
-            
+        }catch (error: any) {
+            console.log(error)
+            return null as any
         }
-       }
-       
-
-       async delete(UserId: number): Promise<boolean | number>
-       {
-          return Patient.destroy({
-           where:{
-            UserId:UserId
-           }
-       }).then((data:boolean | number)=>{
-           return data
-       })
-       }
-       async update(body: Patient, UserId: number): Promise<boolean | number> {
-        return Patient.update(body, 
-            { where:
-                 { UserId: UserId } 
-               
-             }).then((data: Array<(boolean | number)>) => {
-            return data[0]
-        })
     }
+       
 }

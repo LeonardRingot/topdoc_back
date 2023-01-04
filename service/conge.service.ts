@@ -26,7 +26,7 @@ export class CongeService {
     async delete(id:number):Promise<boolean | number> {
         return this.congeRepository.delete(id)
     }
-    async update(conge :Conge, id:number ):  Promise<boolean | number>{
+    async update(conge :Conge, id:number ):  Promise<boolean | number | undefined>{
         return this.congeRepository.update(conge, id)
     }
 

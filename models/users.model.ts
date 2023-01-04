@@ -12,6 +12,7 @@ export class User extends Model{
     td_password:string
     td_phone:number
     td_isActif:boolean
+    UserId: any;
   
    
 }

@@ -113,14 +113,7 @@ export const initDb = () => {
         
         patients.map(patient =>{
             Patient.create({
-                 td_patient: patient.td_patient,
-                 td_lastname:patient.td_lastname,
-                 td_firstname:patient.td_firstname,
-                 td_birthday:patient.td_birthday,
-                 td_email: patient.td_email,
-                 td_phone: patient.td_phone,
-                 td_isActif: patient.td_isActif,
-                 td_password: patient.td_password,
+                td_numbervitalCode: patient.td_numbervitalCode
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         praticien.map(praticien=> {

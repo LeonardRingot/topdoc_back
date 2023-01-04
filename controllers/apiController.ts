@@ -8,6 +8,8 @@ import { planningController } from "./planningController";
 import { rdvController } from "./rdvController";
 import { banController } from "./banController";
 import { congeController } from "./congeController";
+import { roleController } from "./roleController";
+import {tokenController} from "./tokenController"
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
 const apiController = Router();
@@ -42,6 +44,6 @@ apiController.use('/rdv', rdvController)
 apiController.use('/ban', banController)
 ///////////////// A FAIRE //////////////////
  apiController.use('/conge', congeController)
-  apiController.use('/role', roleController)
- apiController.use('/token', tokenController)
+   apiController.use('/role', roleController)
+  apiController.use('/token', tokenController)
 export { apiController }

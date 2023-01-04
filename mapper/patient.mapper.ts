@@ -6,7 +6,7 @@ export class PatientMapper {
         if (patient === null) return null as any;
         return {
            // UserId:patient.UserId,
-           td_patient:patient.td_patient,
+           td_numbervitalCode:patient.td_numbervitalCode,
         //    td_lastname:patient.td_lastname,
         //    td_firstname:patient.td_firstname,
         //    td_birthday:patient.td_birthday,
@@ -21,7 +21,7 @@ export class PatientMapper {
         return patients.map(patient => {
             return  {
                // UserId:patient.UserId,
-                td_patient:patient.td_patient,
+               td_numbervitalCode:patient.td_numbervitalCode,
                 // td_lastname:patient.td_lastname,
                 // td_firstname:patient.td_firstname,
                 // td_birthday:patient.td_birthday,

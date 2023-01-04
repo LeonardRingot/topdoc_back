@@ -1,6 +1,6 @@
 export interface PatientDTO {
     //UserId: number;
-    td_patient: string;
+    td_numbervitalCode: string;
     // td_lastname:string;
     // td_firstname:string;
     // td_birthday:Date;

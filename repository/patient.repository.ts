@@ -40,10 +40,10 @@ export class PatientRepository implements IRepository<PatientDTO> {
                 td_isActif:'true'
             }, { transaction: t , body});
             const patientUser = await Patient.create({
-                td_patient:'test'
+                td_numbervitalCode:'78948946546'
             })
            const dto:PatientDTO = await Patient.create({
-                td_patient:patientUser.td_patient,
+            td_numbervitalCode:patientUser.td_numbervitalCode,
                 UserId:user.id
             }, { transaction: t });
             

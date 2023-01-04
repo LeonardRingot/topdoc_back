@@ -12,7 +12,7 @@ export class Patient extends Model {
     // td_password:string
     // td_phone:number
     // td_isActif:boolean
-    td_patient:string
+    td_numbervitalCode:string
 
 }
 const concatRequiredMessage = (data: string) => {
@@ -78,12 +78,12 @@ const concatRequiredMessage = (data: string) => {
         //     type: DataTypes.BOOLEAN,
         //     allowNull: false
         // },
-        td_patient:{
+        td_numbervitalCode:{
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                notNull: { msg: concatRequiredMessage('Patient') },
-                notEmpty: { msg: concatRequiredMessage('Patient') }
+                notNull: { msg: concatRequiredMessage('Carte vitale') },
+                notEmpty: { msg: concatRequiredMessage('Carte vitale') }
             }
         }
         

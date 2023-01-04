@@ -1,29 +1,29 @@
 import { Router } from "express";
-import handlerConge  from "~~/handler/conge.handler";
-export const congeController = Router();
+import handlerRole  from "~~/handler/role.handler";
+export const roleController = Router();
 /**
  * @swagger
  * tags:
- *      name: conge
- *      description: Manage conge
+ *      name: role
+ *      description: Manage role
  */
 
 /**
  * @openapi
- * /api/conge:
+ * /api/role:
  *   get:
- *      tags: [conge]
+ *      tags: [role]
  *      description: Welcome to swagger-jsdoc!
  *      responses:
  *        200:
  *          description: Get the list of all praticiens.
  */
-congeController.get('/',handlerConge.getConges)
+roleController.get('/',handlerRole.getRoles)
 /**
  * @openapi
- * /api/conge/{id}:
+ * /api/role/{id}:
  *   get:
- *      tags: [conge]
+ *      tags: [role]
  *      parameters:
  *       - name: id
  *         in: path
@@ -34,13 +34,13 @@ congeController.get('/',handlerConge.getConges)
  *        200:
  *          description: Get one specifique user.
  */
-congeController.get('/:id',handlerConge.getCongeById)
+roleController.get('/:id',handlerRole.getRoleById)
 /**
    * @openapi
-  * /api/conge:
+  * /api/role:
   *  post:
-  *      tags: [conge]
-  *      description: Create a conge
+  *      tags: [role]
+  *      description: Create a role
   *      consumes:
   *       - application/json
   *      parameters:
@@ -53,12 +53,12 @@ congeController.get('/:id',handlerConge.getCongeById)
   *        200:
   *          description: Create a new ban.
   */
-congeController.post('/',handlerConge.createConge)
+roleController.post('/',handlerRole.createRole)
 /**
  * @openapi
- * /api/conge/{id}:
+ * /api/role/{id}:
  *   delete:
- *      tags: [conge]
+ *      tags: [role]
  *      parameters:
  *       - name: id
  *         in: path
@@ -69,12 +69,12 @@ congeController.post('/',handlerConge.createConge)
  *          description: delete one specifique user.
  */
 
-congeController.delete('/:id',handlerConge.deleteConge)
+roleController.delete('/:id',handlerRole.deleteRole)
 /**
  * @openapi
- * /api/conge/{id}:
+ * /api/role/{id}:
  *  put:
-  *      tags: [conge]
+  *      tags: [role]
   *      description: Update a user
   *      consumes:
   *       - application/json
@@ -93,4 +93,4 @@ congeController.delete('/:id',handlerConge.deleteConge)
   *        200:
   *          description: Update the user of given id.
   */
-congeController.put('/:id', handlerConge.updateConge)
+roleController.put('/:id', handlerRole.updateRole)

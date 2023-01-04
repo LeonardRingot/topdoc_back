@@ -18,7 +18,7 @@ export const tokenController = Router();
  *        200:
  *          description: Get the list of all praticiens.
  */
-tokenController.get('/',handlerToken.getConges)
+tokenController.get('/',handlerToken.getTokens)
 /**
  * @openapi
  * /api/token/{id}:
@@ -34,7 +34,7 @@ tokenController.get('/',handlerToken.getConges)
  *        200:
  *          description: Get one specifique user.
  */
-congeController.get('/:id',handlerConge.getCongeById)
+tokenController.get('/:id',handlerToken.getTokenById)
 /**
    * @openapi
   * /api/token:
@@ -53,7 +53,7 @@ congeController.get('/:id',handlerConge.getCongeById)
   *        200:
   *          description: Create a new ban.
   */
-congeController.post('/',handlerConge.createConge)
+tokenController.post('/',handlerToken.createToken)
 /**
  * @openapi
  * /api/token/{id}:
@@ -69,7 +69,7 @@ congeController.post('/',handlerConge.createConge)
  *          description: delete one specifique user.
  */
 
-congeController.delete('/:id',handlerConge.deleteConge)
+tokenController.delete('/:id',handlerToken.deleteToken)
 /**
  * @openapi
  * /api/token/{id}:
@@ -93,4 +93,4 @@ congeController.delete('/:id',handlerConge.deleteConge)
   *        200:
   *          description: Update the user of given id.
   */
-congeController.put('/:id', handlerConge.updateConge)
+tokenController.put('/:id', handlerToken.updateToken)

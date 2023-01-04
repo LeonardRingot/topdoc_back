@@ -1,5 +1,6 @@
 import { TokenDTO } from "../dto/token.dto";
 import { IRepository } from "../core/repository.interface";
+import { Token } from "~~/models/token.model";
 
 export class TokenService {
 
@@ -16,6 +17,17 @@ export class TokenService {
             if (TokenDTO === null) return null;
             return TokenDTO;
         });
+    }
+    async create(token:Token):Promise<TokenDTO | null>{
+        return this.tokenRepository.create(token).then((data) =>{
+            return data
+        })
+    }
+    async delete(id:number):Promise<boolean | number> {
+        return this.tokenRepository.delete(id)
+    }
+    async update(token :Token, id:number ):  Promise<boolean | number>{
+        return this.tokenRepository.update(token, id)
     }
 
 }

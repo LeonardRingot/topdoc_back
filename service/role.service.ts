@@ -1,5 +1,6 @@
 import { roleDTO } from "../dto/role.dto";
 import { IRepository } from "../core/repository.interface";
+import { Role } from "~~/models/role.model";
 
 export class RoleService {
 
@@ -17,5 +18,17 @@ export class RoleService {
             return roleDTO;
         });
     }
+    async create(role:Role):Promise<roleDTO | null>{
+        return this.roleRepository.create(role).then((data) =>{
+            return data
+        })
+    }
+    async delete(id:number):Promise<boolean | number> {
+        return this.roleRepository.delete(id)
+    }
+    async update(role :Role, id:number ):  Promise<boolean | number>{
+        return this.roleRepository.update(role, id)
+    }
+
 
 }

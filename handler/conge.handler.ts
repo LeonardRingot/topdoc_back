@@ -13,7 +13,6 @@ async function getConges(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function getCongeById(req: Request, res: Response) {
     try {
@@ -24,7 +23,6 @@ async function getCongeById(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function createConge(req: Request, res: Response) {
     try {
@@ -35,7 +33,6 @@ async function createConge(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function deleteConge(req:Request, res:Response) {
     const id = req.params.id as unknown as number;
@@ -55,7 +52,6 @@ async function updateConge(req:Request, res:Response) {
         res.status(500).json(err)
     }
 }
-
 const handlerConge = {getConges, getCongeById, createConge, deleteConge, updateConge}
 
 export default handlerConge;

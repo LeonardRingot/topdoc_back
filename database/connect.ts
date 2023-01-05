@@ -1,7 +1,5 @@
 import { sequelize } from './sequelize'
 
-
-
 import { users } from './mock-user'
 import { localisations } from './mock-localisation'
 import { praticien } from './mock-praticien'
@@ -26,24 +24,6 @@ import { Rdv } from "~~/models/rdv.model"
 import { Role } from "~~/models/role.model"
 import { Token } from "~~/models/token.model"
 
-
-
-// const sequelize = new Sequelize(
-//     `${process.env.NAME_DATABASE}`,
-//     `${process.env.HOST_DATABASE}`,
-//     `${process.env.PASS_DATABASE}`,
-//     {
-//         host: 'localhost',
-//         dialect: 'postgres',
-//         port: 5432,
-//         dialectOptions: {
-//             useUTC: false,
-//             dateStrings: true,
-//             typeCast: true
-//         },
-//         timezone: '+02:00'
-//     }
-// )
 sequelize.authenticate()
     .then(() => console.log('Link established'))
     .catch((error: Error) => console.error(`Error: ${error}`)
@@ -55,6 +35,10 @@ Token.belongsTo(User, { onDelete: 'cascade', hooks: true })
 Localisation.hasOne(User, {  onDelete: 'cascade', hooks: true })
 User.belongsTo(Localisation, { onDelete: 'cascade', hooks: true})
 
+User.hasOne(Patient, {  onDelete: 'cascade', hooks: true, foreignKey:"UserId" })
+Patient.belongsTo(User, { onDelete: 'cascade', hooks: true, foreignKey:"UserId"})
+
+
 User.hasOne(Conge, { onDelete: 'cascade', hooks: true })
 Conge.belongsTo(User, { onDelete: 'cascade', hooks: true })
 
@@ -65,11 +49,11 @@ User.hasOne(Praticien, {  onDelete: 'cascade', hooks: true })
 Praticien.belongsTo(User, {  onDelete: 'cascade', hooks: true })
 
 
-Patient.hasOne(Rdv, {  onDelete: 'cascade', hooks: true })
-Rdv.belongsTo(Patient, {  onDelete: 'cascade', hooks: true })
+Patient.hasOne(Rdv, {  onDelete: 'cascade', hooks: true, foreignKey:"PatientUserId"})
+Rdv.belongsTo(Patient, {  onDelete: 'cascade', hooks: true , foreignKey:"PatientUserId"})
 
-Praticien.hasOne(Rdv, { onDelete: 'cascade', hooks: true })
-Rdv.belongsTo(Praticien, {  onDelete: 'cascade', hooks: true })
+Praticien.hasOne(Rdv, { onDelete: 'cascade', hooks: true,  foreignKey:"PraticienUserId" })
+Rdv.belongsTo(Praticien, {  onDelete: 'cascade', hooks: true, foreignKey:"PraticienUserId"})
 
 Planning.hasOne(Plage_Horaire, {  onDelete: 'cascade', hooks: true })
 Plage_Horaire.belongsTo(Planning, {  onDelete: 'cascade', hooks: true })
@@ -89,10 +73,9 @@ export const initDb = () => {
                 td_role_nom: role.td_role_nom
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
-
         users.map(user => {
             User.create({
-                //UserId:user.UserId,
+              //  UserId:user.UserId,
                 td_lastname:user.td_lastname,
                 td_firstname:user.td_firstname,
                 td_birthday:user.td_birthday,
@@ -103,32 +86,31 @@ export const initDb = () => {
                 LocalisationId: user.LocalisationId
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
-        
         tokens.map(token => {
             Token.create({
                 refreshToken: token.refreshToken,
                 UserId: token.UserId
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
-        
-        patients.map(patient =>{
+        patients.map((patient,index: number) =>{
             Patient.create({
-                td_numbervitalCode: patient.td_numbervitalCode
+                td_numbervitalCode: patient.td_numbervitalCode,
+                UserId:index+1
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         praticien.map(praticien=> {
             Praticien.create({
+                UserId:praticien.UserId,
                 td_activite: praticien.td_activite,
-                //UserId:praticien.UserId
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         rdvs.map(rdv=> {
             Rdv.create({
-                PraticienUserId: rdv.PraticienUserId,
+                PraticienUserId:rdv.PraticienUserId,
+                PatientUserId:rdv.PatientUserId,
                 td_date_rendez_vous: rdv.td_date_rendez_vous,
                 td_motif:rdv.td_motif,
-                td_duree_rdv:rdv.td_duree_rdv,
-                PatientUserId: rdv.PatientUserId
+                td_duree_rdv:rdv.td_duree_rdv
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         bans.map(bans=> {

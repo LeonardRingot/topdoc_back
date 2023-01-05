@@ -29,5 +29,4 @@ export class RdvService {
     async update(rdv :Rdv, id:number ):  Promise<boolean | number | undefined>{
         return this.rdvRepository.update(rdv, id)
     }
-
 }

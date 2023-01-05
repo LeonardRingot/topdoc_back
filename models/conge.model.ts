@@ -1,7 +1,6 @@
 import { DataTypes, Model } from "sequelize"
 import { sequelize } from "../database/sequelize";
 
-
 export class Conge extends Model {
     id!: number
     td_debut_conge!: Date
@@ -38,6 +37,5 @@ Conge.init( {
             sequelize,
             freezeTableName: true,
             tableName: "Conge",
-            
         }
-    );
+);

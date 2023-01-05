@@ -1,7 +1,6 @@
 import { DataTypes, Model, Sequelize } from "sequelize"
 import { sequelize } from "../database/sequelize";
 
-
 export class Localisation extends Model {
     id?: number
     td_address: string
@@ -11,7 +10,6 @@ export class Localisation extends Model {
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
 }
-
     Localisation.init({
         id: {
             type: DataTypes.INTEGER,
@@ -40,4 +38,4 @@ const concatRequiredMessage = (data: string) => {
         tableName:'Localisation',
         timestamps:false,
          freezeTableName: true
-        });
+});

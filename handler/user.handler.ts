@@ -14,7 +14,6 @@ async function getUsers(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function getUserById(req: Request, res: Response) {
     try {
@@ -25,9 +24,7 @@ async function getUserById(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
-
 async function createUser(req: Request, res: Response) {
     try {
         req.body.td_password = await bcrypt.hash(req.body.td_password, 10);

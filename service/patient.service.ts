@@ -51,7 +51,5 @@ export class PatientService {
         }
         const updatedPatient = await this.patientRepository.update(patientInfo, id)
         return updatedPatient
-        // return this.patientRepository.update(patient, id)
     }
-
 }

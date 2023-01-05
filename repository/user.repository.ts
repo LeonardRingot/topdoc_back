@@ -9,7 +9,6 @@ export class UserRepository implements IRepository<userDTO> {
             return UserMapper.mapToDto(data)
         })
     }
-
     async findAll(): Promise<Array<userDTO>> {
         return User.findAll().then((data:Array<User>) =>{
             return data.map((user:User)=>{
@@ -18,14 +17,11 @@ export class UserRepository implements IRepository<userDTO> {
             })
         })
     }
-
-  async  create(body: Partial<User>): Promise<userDTO> 
-  {
-       return User.create(body).then((data:User)=>{
-            return UserMapper.mapToDto(data)
-       })
-    }
-
+    async  create(body: Partial<User>): Promise<userDTO> {
+        return User.create(body).then((data:User)=>{
+                return UserMapper.mapToDto(data)
+        })
+        }
    async delete(id: number): Promise<boolean | number>
     {
        return User.destroy({
@@ -36,7 +32,6 @@ export class UserRepository implements IRepository<userDTO> {
         return data
     })
     }
-    
     async update(body: User, id: number): Promise<boolean | number> {
         return User.update(body, 
             { where:

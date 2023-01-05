@@ -1,12 +1,9 @@
-
 import { DataTypes, Model } from "sequelize"
 import { sequelize } from "../database/sequelize";
-
 
 export class Token extends Model{
     id!:number
     refreshToken!:string
-   
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
@@ -30,7 +27,6 @@ const concatRequiredMessage = (data: string) => {
     sequelize,
     freezeTableName: true,
     tableName: "Token",
-   
 }
 );
 

@@ -28,5 +28,4 @@ export class BanService {
     async update(ban :Ban, id:number ):  Promise<boolean | number |undefined>{
         return this.banRepository.update(ban, id)
     }
-
 }

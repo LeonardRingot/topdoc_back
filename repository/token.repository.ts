@@ -10,7 +10,6 @@ export class TokenRepository implements IRepository<TokenDTO> {
             return TokenMapper.mapToDto(data)
         })
     }
-
     async findAll(): Promise<Array<TokenDTO>> {
         return Token.findAll().then((data:Array<Token>) =>{
             return data.map((user:Token)=>{
@@ -19,12 +18,11 @@ export class TokenRepository implements IRepository<TokenDTO> {
         })
     }
 
-  async  create(body: Partial<Token>): Promise<TokenDTO> {
+    async  create(body: Partial<Token>): Promise<TokenDTO> {
        return Token.create(body).then((data:Token)=>{
             return TokenMapper.mapToDto(data)
        })
     }
-
     async delete(id: number): Promise<boolean | number>
        {
           return Token.destroy({
@@ -44,5 +42,4 @@ export class TokenRepository implements IRepository<TokenDTO> {
             return data[0]
         })
     }
-
 }

@@ -29,5 +29,4 @@ export class PlageHoraireService {
     async update(plage_horaire :Plage_Horaire, id:number ):  Promise<boolean | number | undefined>{
         return this.plagehoraireRepository.update(plage_horaire, id)
     }
-
 }

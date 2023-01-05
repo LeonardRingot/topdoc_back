@@ -1,5 +1,3 @@
-
-
 export const bans= [
     {
         td_ban_raison: "INSULTES",

@@ -1,7 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/sequelize";
 
-
 export class Planning extends Model {
     id!:number;
     td_dure_validite!: number
@@ -23,7 +22,6 @@ const concatRequiredMessage = (data: string) => {
         td_dure_validite: {
             type: DataTypes.INTEGER,
             allowNull: false,
-           
         },
         td_date_debut: {
             type: DataTypes.DATE,
@@ -47,6 +45,5 @@ const concatRequiredMessage = (data: string) => {
             sequelize,
             freezeTableName: true,
             tableName: "Plannings",
-            
         }
-    );
+);

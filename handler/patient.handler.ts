@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { PatientRepository } from "../repository/patient.repository";
 import { PatientService } from "../service/patient.service";
 
-
 const patientService = new PatientService(new PatientRepository);
 
 async function getPatients(req: Request, res: Response) {
@@ -14,7 +13,6 @@ async function getPatients(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function getPatientById(req: Request, res: Response) {
     try {
@@ -25,9 +23,7 @@ async function getPatientById(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
-
 async function createPatient(req: Request, res: Response) {
     try {
         const result = await patientService.create(req.body);
@@ -37,7 +33,6 @@ async function createPatient(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function deletePatient(req:Request, res:Response) {
     const UserId = req.params.id as unknown as number;
@@ -57,7 +52,6 @@ async function updatePatient(req:Request, res:Response) {
         res.status(500).json(err)
     }
 }
-
- const handler = {getPatients, getPatientById, createPatient, updatePatient, deletePatient}
+const handler = {getPatients, getPatientById, createPatient, updatePatient, deletePatient}
 
 export default handler;

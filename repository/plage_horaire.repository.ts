@@ -2,16 +2,13 @@ import { IRepository } from "../core/repository.interface";
 import { plageHoraireDTO } from "../dto/plage_horaire.dto";
 import { Plage_Horaire } from "../models/plage_horaire.model";
 import { PlageHoraireMapper } from "../mapper/plage_horaire.mapper";
-import { plageHoraire } from "~~/types/plage_horaire";
 
 export class PlageHoraireRepository implements IRepository<plageHoraireDTO> {
-
     async findById(id: number): Promise<plageHoraireDTO | null> {
         return Plage_Horaire.findByPk(id).then((data:Plage_Horaire | null) =>{
             return PlageHoraireMapper.mapToDto(data)
         })
     }
-
     async findAll(): Promise<Array<plageHoraireDTO>> {
         return Plage_Horaire.findAll().then((data:Array<Plage_Horaire>) =>{
             return data.map((user:Plage_Horaire)=>{
@@ -19,13 +16,11 @@ export class PlageHoraireRepository implements IRepository<plageHoraireDTO> {
             })
         })
     }
-
     async  create(body: Partial<Plage_Horaire>): Promise<plageHoraireDTO> {
         return Plage_Horaire.create(body).then((data:Plage_Horaire)=>{
              return PlageHoraireMapper.mapToDto(data)
         })
      }
-
      async delete(PlanningId: number): Promise<boolean | number>
      {
         return Plage_Horaire.destroy({
@@ -45,5 +40,4 @@ export class PlageHoraireRepository implements IRepository<plageHoraireDTO> {
           return data[0]
       })
   }
-
 }

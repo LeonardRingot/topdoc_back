@@ -48,7 +48,7 @@ rdvController.get('/:id',handlerRdv.getRdvById)
   *         in: body
   *         required: true
   *         type: object
-  *         default: { "td_address": "address", "td_zipCode": "zipcode", "td_city": "city" }
+  *         default: { "td_date_rendez_vous": "2022-12-09 16:00:00+01", "td_duree_rdv": 20, "td_motif": "aie", "PatientUserId":1, "PraticienUserId":"2" }
   *      responses:
   *        200:
   *          description: Create a new localisation.

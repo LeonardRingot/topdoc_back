@@ -9,7 +9,6 @@ export class PlanningRepository implements IRepository<planningDTO> {
             return PlanningMapper.mapToDto(data)
         })
     }
-
     async findAll(): Promise<Array<planningDTO>> {
         return Planning.findAll().then((data:Array<Planning>) =>{
             return data.map((user:Planning)=>{
@@ -17,13 +16,11 @@ export class PlanningRepository implements IRepository<planningDTO> {
             })
         })
     }
-
     async  create(body: Partial<Planning>): Promise<planningDTO> {
         return Planning.create(body).then((data:Planning)=>{
              return PlanningMapper.mapToDto(data)
         })
      }
-
      async delete(id: number): Promise<boolean | number>
      {
         return Planning.destroy({
@@ -43,5 +40,4 @@ export class PlanningRepository implements IRepository<planningDTO> {
           return data[0]
       })
   }
-
 }

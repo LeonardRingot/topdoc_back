@@ -2,7 +2,7 @@ import { userTypes } from "~~/types/utilisateur";
 
 export const users: userTypes[] = [
   {
-    UserId:1,
+    //UserId:1,
     td_lastname:'ringot',
     td_firstname:'leonard',
     td_birthday: new Date("2000-06-21"),
@@ -13,7 +13,7 @@ export const users: userTypes[] = [
     LocalisationId: 1
   },
   {
-    UserId:2,
+    //UserId:2,
     td_lastname:'ringot',
     td_firstname:'arthur',
     td_birthday: new Date("2000-06-22"),
@@ -24,7 +24,7 @@ export const users: userTypes[] = [
     LocalisationId: 2
   },
   {
-    UserId:3,
+    //UserId:3,
     td_lastname:'DOC&',
     td_firstname:'JESUISDOC1',
     td_birthday: new Date("2000-06-23"),
@@ -35,7 +35,7 @@ export const users: userTypes[] = [
     LocalisationId: 3
   },
   {
-    UserId:4,
+    //UserId:4,
     td_lastname:'DOC2',
     td_firstname:'JESUISDOC2',
     td_birthday: new Date("2000-06-24"),
@@ -45,7 +45,4 @@ export const users: userTypes[] = [
     td_password: "$2b$10$NUOQNvbDfEO8EnvvRmI8oOhBjNPyARSE3H2Bya73s7U7wd7vkZGYm",
     LocalisationId: 4
   }
-  
-  
- 
 ];

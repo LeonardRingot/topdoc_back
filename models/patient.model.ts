@@ -1,12 +1,9 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/sequelize";
 
-
 export class Patient extends Model {
-   
     UserId!: number
     td_numbervitalCode:string
-
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
@@ -25,7 +22,6 @@ const concatRequiredMessage = (data: string) => {
                 notEmpty: { msg: concatRequiredMessage('Carte vitale') }
             }
         }
-        
     },
         {
             sequelize,
@@ -33,4 +29,4 @@ const concatRequiredMessage = (data: string) => {
             tableName: "Patient",
             
         }
-    );
+);

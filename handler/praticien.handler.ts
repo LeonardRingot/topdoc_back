@@ -13,7 +13,6 @@ async function getPraticiens(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function getPraticiensById(req: Request, res: Response) {
     try {
@@ -24,7 +23,6 @@ async function getPraticiensById(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function createPraticien(req: Request, res: Response) {
     try {
@@ -35,7 +33,6 @@ async function createPraticien(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function deletePraticien(req:Request, res:Response) {
     const UserId = req.params.id as unknown as number;
@@ -55,7 +52,6 @@ async function updatePraticien(req:Request, res:Response) {
         res.status(500).json(err)
     }
 }
-
 const handlerPraticien = {getPraticiens, getPraticiensById,createPraticien, deletePraticien, updatePraticien }
 
 export default handlerPraticien;

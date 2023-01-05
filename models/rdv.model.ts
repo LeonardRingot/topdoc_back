@@ -1,13 +1,10 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/sequelize";
 
-
 export class Rdv extends Model {
     td_date_rendez_vous!: Date
     td_duree_rdv:number
     td_motif!: string
-    // PatientUserId: number
-    //  PraticienUserId: number
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
@@ -22,7 +19,6 @@ Rdv.init({
                 notNull: { msg: concatRequiredMessage('rdv date') },
                 notEmpty: { msg: concatRequiredMessage('rdv date') }
             }
-            
         },
         td_duree_rdv: {
             type: DataTypes.INTEGER,
@@ -43,7 +39,6 @@ Rdv.init({
         sequelize,
         freezeTableName: true,
         tableName: "Rdvs",
-        
     }
 );
         

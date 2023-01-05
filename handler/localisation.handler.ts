@@ -13,18 +13,15 @@ async function getLocalisations(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function getLocalisationsById(req: Request, res: Response) {
     try {
         const result = await localisationService.findById(parseInt(req.params.id));
         if (result === null) return res.status(404).send()
         res.status(200).json(result)
-
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function createLocalisation(req: Request, res: Response) {
     try {
@@ -35,14 +32,12 @@ async function createLocalisation(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function deleteLocalisation(req:Request, res:Response) {
     const id = req.params.id as unknown as number;
     try{
         await localisationService.delete(id);
       res.status(200).send()
-
     } catch(err) {
         res.status(500).json(err)
     }

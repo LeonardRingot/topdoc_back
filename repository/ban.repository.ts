@@ -10,7 +10,6 @@ export class BanRepository implements IRepository<bansDTO> {
             return BanMapper.mapToDto(data)
         })
     }
-
     async findAll(): Promise<Array<bansDTO>> {
         return Ban.findAll().then((data:Array<Ban>) =>{
             return data.map((data:Ban)=>{
@@ -23,7 +22,6 @@ export class BanRepository implements IRepository<bansDTO> {
              return BanMapper.mapToDto(data)
         })
      }
-
     async delete(id: number): Promise<boolean | number>
        {
           return Ban.destroy({
@@ -43,5 +41,4 @@ export class BanRepository implements IRepository<bansDTO> {
             return data[0]
         })
     }
-
 }

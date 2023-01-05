@@ -1,14 +1,10 @@
-
-
 export const praticien = [
   {
-    UserId: 1,
+    UserId: 3,
     td_activite: "Docteur1"
-    
   },
   {
-    UserId: 2,
+    UserId: 4,
     td_activite: "Docteur2"
-    
   }
 ];

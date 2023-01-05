@@ -49,9 +49,8 @@ export class PraticienService {
             td_phone: praticien.td_phone,
             td_isActif:praticien.td_isActif
         }
-        const updatedPatient = await this.praticienRepository.update(praticienInfo, id)
-        return updatedPatient
-        // return this.patientRepository.update(patient, id)
+        const updatedPraticien = await this.praticienRepository.update(praticienInfo, id)
+        return updatedPraticien
     }
 
 }

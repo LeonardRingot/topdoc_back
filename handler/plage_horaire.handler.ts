@@ -9,11 +9,9 @@ async function getPlageHoraires(req: Request, res: Response) {
         const result = await plagehoraireService.findAll();
         if (result === null) return res.status(404).send()
         res.status(200).json(result)
-
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function getPlageHoraireById(req: Request, res: Response) {
     try {
@@ -24,7 +22,6 @@ async function getPlageHoraireById(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function createPlageHoraire(req: Request, res: Response) {
     try {
@@ -35,7 +32,6 @@ async function createPlageHoraire(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function deletePlageHoraire(req:Request, res:Response) {
     const PlanningId = req.params.PlanningId as unknown as number;

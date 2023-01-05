@@ -1,7 +1,6 @@
 import { DataTypes, Model } from "sequelize"
 import { sequelize } from "../database/sequelize";
 
-
 export class Ban extends Model{
     td_ban_raison!: string
 }
@@ -23,6 +22,5 @@ const concatRequiredMessage = (data: string) => {
         sequelize,
         freezeTableName: true,
         tableName: "Bans",
-        
     }
 );

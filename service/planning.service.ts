@@ -29,5 +29,4 @@ export class PlanningService {
     async update(planning :Planning, id:number ):  Promise<boolean | number | undefined>{
         return this.planningRepository.update(planning, id)
     }
-
 }

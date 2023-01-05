@@ -28,5 +28,4 @@ export class UserService {
     async update(user :User, id:number ):  Promise<boolean | number | undefined>{
         return this.userRepository.update(user, id)
     }
-
 }

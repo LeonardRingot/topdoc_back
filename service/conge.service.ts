@@ -29,5 +29,4 @@ export class CongeService {
     async update(conge :Conge, id:number ):  Promise<boolean | number | undefined>{
         return this.congeRepository.update(conge, id)
     }
-
 }

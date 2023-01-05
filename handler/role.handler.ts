@@ -9,22 +9,18 @@ async function getRoles(req: Request, res: Response) {
         const result = await roleservice.findAll();
         if (result === null) return res.status(404).send()
         res.status(200).json(result)
-
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function getRoleById(req: Request, res: Response) {
     try {
         const result = await roleservice.findById(parseInt(req.params.id));
         if (result === null) return res.status(404).send()
         res.status(200).json(result)
-
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function createRole(req: Request, res: Response) {
     try {
@@ -35,7 +31,6 @@ async function createRole(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function deleteRole(req:Request, res:Response) {
     const id = req.params.id as unknown as number;

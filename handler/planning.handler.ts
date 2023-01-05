@@ -13,7 +13,6 @@ async function getPlannings(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function getPlanningById(req: Request, res: Response) {
     try {
@@ -24,7 +23,6 @@ async function getPlanningById(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function createPlanning(req: Request, res: Response) {
     try {
@@ -35,7 +33,6 @@ async function createPlanning(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function deletePlanning(req:Request, res:Response) {
     const id = req.params.id as unknown as number;
@@ -55,7 +52,6 @@ async function updatePlanning(req:Request, res:Response) {
         res.status(500).json(err)
     }
 }
-
 const handlerPlanning = {getPlannings, getPlanningById, createPlanning, deletePlanning, updatePlanning}
 
 export default handlerPlanning;

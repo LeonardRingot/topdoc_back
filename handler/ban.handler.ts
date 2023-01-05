@@ -13,7 +13,6 @@ async function getBans(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function getBanById(req: Request, res: Response) {
     try {
@@ -24,7 +23,6 @@ async function getBanById(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function createBan(req: Request, res: Response) {
     try {
@@ -35,7 +33,6 @@ async function createBan(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function deleteBan(req:Request, res:Response) {
     const id = req.params.id as unknown as number;

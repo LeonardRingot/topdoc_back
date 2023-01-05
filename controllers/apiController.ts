@@ -10,6 +10,8 @@ import { banController } from "./banController";
 import { congeController } from "./congeController";
 import { roleController } from "./roleController";
 import {tokenController} from "./tokenController"
+import {authentificationController} from "./authentification.controller"
+
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
 const apiController = Router();
@@ -42,8 +44,8 @@ apiController.use('/plagehoraires', plagehoraireController)
 apiController.use('/planning', planningController)
 apiController.use('/rdv', rdvController)
 apiController.use('/ban', banController)
-///////////////// A FAIRE //////////////////
- apiController.use('/conge', congeController)
-   apiController.use('/role', roleController)
-  apiController.use('/token', tokenController)
+apiController.use('/conge', congeController)
+apiController.use('/role', roleController)
+apiController.use('/token', tokenController)
+//apiController.use('auth', authentificationController)
 export { apiController }

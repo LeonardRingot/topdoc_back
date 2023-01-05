@@ -4,13 +4,11 @@ import { Conge } from "../models/conge.model";
 import { CongeMapper } from "../mapper/conge.mapper";
 
 export class CongeRepository implements IRepository<congeDTO> {
-
     async findById(id: number): Promise<congeDTO | null> {
         return Conge.findByPk(id).then((data:Conge | null) =>{
             return CongeMapper.mapToDto(data)
         })
     }
-
     async findAll(): Promise<Array<congeDTO>> {
         return Conge.findAll().then((data:Array<Conge>) =>{
             return data.map((conge:Conge)=>{
@@ -18,13 +16,11 @@ export class CongeRepository implements IRepository<congeDTO> {
             })
         })
     }
-
     async  create(body: Partial<Conge>): Promise<congeDTO> {
         return Conge.create(body).then((data:Conge)=>{
              return CongeMapper.mapToDto(data)
         })
      }
-
      async delete(id: number): Promise<boolean | number>
      {
         return Conge.destroy({
@@ -44,5 +40,4 @@ export class CongeRepository implements IRepository<congeDTO> {
           return data[0]
       })
   }
-
 }

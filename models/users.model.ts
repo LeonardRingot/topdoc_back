@@ -1,9 +1,7 @@
 import { DataTypes, Model} from "sequelize"
 import { sequelize } from "../database/sequelize";
 
-
 export class User extends Model{
-  
     id?:number
     td_lastname:string
     td_firstname:string
@@ -12,14 +10,11 @@ export class User extends Model{
     td_password:string
     td_phone:number
     td_isActif:boolean
-    UserId: any;
-  
-   
+    //UserId: any;
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
 }
-
     User.init({
         id:{
             type: DataTypes.INTEGER,
@@ -80,7 +75,6 @@ const concatRequiredMessage = (data: string) => {
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
-        
     },
 {
     sequelize,

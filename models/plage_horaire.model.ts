@@ -1,7 +1,6 @@
 import { DataTypes, Model } from "sequelize"
 import { sequelize } from "../database/sequelize";
 
-
 export class Plage_Horaire extends Model{
    PlanningId?:number
     td_jour!:string
@@ -13,7 +12,6 @@ const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
 }
     Plage_Horaire.init({
-       
         PlanningId:{
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -51,14 +49,12 @@ const concatRequiredMessage = (data: string) => {
                 notEmpty: { msg: concatRequiredMessage('td_duree_horaire') }
             }
         },
-       
     },
 
     {
         sequelize,
         freezeTableName: true,
         tableName: "Plage_Horaire",
-       
     }
 );
 

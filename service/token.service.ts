@@ -29,5 +29,4 @@ export class TokenService {
     async update(token :Token, id:number ):  Promise<boolean | number | undefined>{
         return this.tokenRepository.update(token, id)
     }
-
 }

@@ -13,7 +13,6 @@ async function getTokens(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function getTokenById(req: Request, res: Response) {
     try {
@@ -24,7 +23,6 @@ async function getTokenById(req: Request, res: Response) {
     } catch(err) {
         res.status(500).json(err)
     }
-
 }
 async function createToken(req: Request, res: Response) {
     try {

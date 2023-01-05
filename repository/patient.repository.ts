@@ -10,8 +10,7 @@ export class PatientRepository implements IRepository<PatientDTO> {
     async findAll(): Promise<PatientDTO[]> {
         return Patient.findAll({ include: [User] }).then((patients: Patient[]) => patients.map((patient: Patient) => PatientMapper.mapToDto(patient)))
     }
-    
-    delete(id: number): Promise<number | boolean> {
+    async delete(id: number): Promise<number | boolean> {
         return Patient.destroy({ where: { UserId: id } }).then(good => good)
     }
     async findById(id: number): Promise<PatientDTO | null> {
@@ -33,7 +32,6 @@ export class PatientRepository implements IRepository<PatientDTO> {
          }
          try {
             return await sequelize.transaction(async (t) => {
-
                 await User.update(
                     userInfo,
                     {
@@ -41,7 +39,6 @@ export class PatientRepository implements IRepository<PatientDTO> {
                         transaction: t
                     }
                 )
-
                 const updatedPatient = await Patient.update(
                     patientUser,
                     {
@@ -57,10 +54,8 @@ export class PatientRepository implements IRepository<PatientDTO> {
         }
     }
     async create(data: PatientDTO): Promise<PatientDTO> {
-        
-       
        const userInfo = {
-        td_numbervitalCode:data.td_numbervitalCode,
+         td_numbervitalCode:data.td_numbervitalCode,
          td_lastname:data.td_lastname,
          td_firstname:data.td_firstname,
          td_birthday:data.td_birthday,
@@ -72,18 +67,14 @@ export class PatientRepository implements IRepository<PatientDTO> {
      const patientUser = {
          td_numbervitalCode:data.td_numbervitalCode
      }
-    
         try {
-            
             return  await sequelize.transaction(async (t) =>
             {
                 const newUser = await User.create(userInfo,  { transaction: t }
             )
-                    
-            
             return Patient.create
             (
-                { ...patientUser, UserId: newUser.UserId },
+                { ...patientUser, UserId: newUser.id },
                 { transaction: t }
             )
                 .then((patient: Patient) => PatientMapper.mapToDtoCreate(patient, newUser))
@@ -93,5 +84,4 @@ export class PatientRepository implements IRepository<PatientDTO> {
             return null as any
         }
     }
-       
 }

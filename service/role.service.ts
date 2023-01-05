@@ -29,6 +29,4 @@ export class RoleService {
     async update(role :Role, id:number ):  Promise<boolean | number | undefined>{
         return this.roleRepository.update(role, id)
     }
-
-
 }

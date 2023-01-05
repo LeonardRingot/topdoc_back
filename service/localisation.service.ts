@@ -29,5 +29,4 @@ export class LocalisationService {
     async update(localisation :Localisation, id:number ):  Promise<boolean | number | undefined>{
         return this.localisationRepository.update(localisation, id)
     }
-
 }

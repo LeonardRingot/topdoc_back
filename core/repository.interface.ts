@@ -5,3 +5,6 @@ export interface IRepository<T> {
     delete(id: number): Promise<boolean | number>;
     update(t:T, id:number): Promise<boolean | number | undefined>;
 }
+export interface IRepositoryAuthentification<T> {
+    findAll(): Promise<T[]>;
+}

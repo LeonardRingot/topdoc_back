@@ -47,5 +47,5 @@ apiController.use('/ban', banController)
 apiController.use('/conge', congeController)
 apiController.use('/role', roleController)
 apiController.use('/token', tokenController)
-//apiController.use('auth', authentificationController)
+apiController.use('/auth', authentificationController)
 export { apiController }

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import handlerAuth from "~~/handler/authentification.handler"
+import handlerLogin from "~~/handler/authentification.handler"
 export const authentificationController = Router();
 
 /**
@@ -27,4 +27,4 @@ export const authentificationController = Router();
   *        200:
   *          description: Login. Returns tokens if successful login.
   */
- authentificationController.post('/', handlerAuth)
+ authentificationController.post('/login', handlerLogin.login)

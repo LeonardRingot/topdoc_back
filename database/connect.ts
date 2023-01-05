@@ -39,8 +39,8 @@ User.hasOne(Patient, {  onDelete: 'cascade', hooks: true, foreignKey:"UserId" })
 Patient.belongsTo(User, { onDelete: 'cascade', hooks: true, foreignKey:"UserId"})
 
 
-User.hasOne(Conge, { onDelete: 'cascade', hooks: true })
-Conge.belongsTo(User, { onDelete: 'cascade', hooks: true })
+// User.hasOne(Conge, { onDelete: 'cascade', hooks: true })
+// Conge.belongsTo(User, { onDelete: 'cascade', hooks: true })
 
 User.hasOne(Patient, {  onDelete: 'cascade', hooks: true})
 Patient.belongsTo(User, {onDelete: 'cascade', hooks: true})
@@ -48,6 +48,8 @@ Patient.belongsTo(User, {onDelete: 'cascade', hooks: true})
 User.hasOne(Praticien, {  onDelete: 'cascade', hooks: true })
 Praticien.belongsTo(User, {  onDelete: 'cascade', hooks: true })
 
+Praticien.hasOne(Conge, {  onDelete: 'cascade', hooks: true ,  foreignKey:"PraticienUserId"})
+Conge.belongsTo(Praticien, {  onDelete: 'cascade', hooks: true ,  foreignKey:"PraticienUserId"})
 
 Patient.hasOne(Rdv, {  onDelete: 'cascade', hooks: true, foreignKey:"PatientUserId"})
 Rdv.belongsTo(Patient, {  onDelete: 'cascade', hooks: true , foreignKey:"PatientUserId"})
@@ -118,11 +120,11 @@ export const initDb = () => {
                 td_ban_raison: bans.td_ban_raison,
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
-        conge.map(conge => {
+        conge.map((conge, index:number) => {
             Conge.create({
+                PraticienUserId:conge.PraticienUserId,
                 td_debut_conge: conge.td_debut_conge,
                 td_fin_conge: conge.td_fin_conge,
-                UserId: conge.UserId
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         planning.map(planning => {

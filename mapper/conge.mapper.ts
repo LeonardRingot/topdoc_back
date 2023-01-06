@@ -9,7 +9,6 @@ export class CongeMapper {
             td_fin_conge: conge.td_fin_conge,
         }
     }
-
     static mapAllToDto(conges: Conge[]): congeDTO[] {
         return conges.map(conge => {
             return  {
@@ -18,5 +17,4 @@ export class CongeMapper {
             }
         })
     }
-
 }

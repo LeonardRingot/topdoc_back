@@ -1,4 +1,4 @@
 export interface AuthentificationDTO {
-    td_mail: string,
-    td_password: string,
+  td_email:string,
+  td_password:string
 }

@@ -9,7 +9,6 @@ export class BanMapper {
             td_ban_raison: ban.td_ban_raison,
         }
     }
-
     static mapAllToDto(bans: Ban[]): bansDTO[] {
         return bans.map(ban => {
             return  {
@@ -17,5 +16,4 @@ export class BanMapper {
             }
         })
     }
-
 }

@@ -39,9 +39,6 @@ User.hasOne(Patient, {  onDelete: 'cascade', hooks: true, foreignKey:"UserId" })
 Patient.belongsTo(User, { onDelete: 'cascade', hooks: true, foreignKey:"UserId"})
 
 
-// User.hasOne(Conge, { onDelete: 'cascade', hooks: true })
-// Conge.belongsTo(User, { onDelete: 'cascade', hooks: true })
-
 User.hasOne(Patient, {  onDelete: 'cascade', hooks: true})
 Patient.belongsTo(User, {onDelete: 'cascade', hooks: true})
 

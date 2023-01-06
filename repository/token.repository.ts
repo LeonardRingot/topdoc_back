@@ -1,7 +1,7 @@
 import { IRepository } from "../core/repository.interface";
 import { TokenDTO } from "../dto/token.dto";
 import { Token } from "../models/token.model";
-import { TokenMapper } from "../mapper/token.mapper";
+import { TokenMapper } from "../mapper/auth.mapper";
 
 export class TokenRepository implements IRepository<TokenDTO> {
 

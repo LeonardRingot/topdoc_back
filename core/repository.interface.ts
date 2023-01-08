@@ -1,3 +1,5 @@
+import { TokenDTO } from "~~/dto/token.dto";
+import { userDTOPassword } from "~~/dto/user.dto";
 export interface IRepository<T> {
     findAll(): Promise<T[]>;
     findById(id: number): Promise<T | null>;
@@ -10,11 +12,11 @@ export interface IRepositoryAuthentification<T> {
     create(t: T): Promise<T |null> ;
     update(t:T, id:number): Promise<boolean | number>;
 }
-export interface IRepositoryToken<T>{
-    findAll(): Promise<T[]>;
-    create(t: T, UserId:number): Promise<Partial<T> |undefined> ;
+export interface IRepositoryToken{
+    findAll(): Promise<TokenDTO[]>;
+    create(t: TokenDTO, UserId:number): Promise<TokenDTO |undefined> ;
     delete(id: number): Promise<boolean | number>;
 }
-export interface IRepositoryUser<T>{
-    findByTD_email(td_email:string):Promise<T| null>;
+export interface IRepositoryUser{
+    findByTD_email(td_email:string):Promise<userDTOPassword| null>;
 }

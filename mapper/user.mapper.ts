@@ -1,8 +1,8 @@
-import { userDTO } from "../dto/user.dto"
+import { userDTO, userDTOPassword } from "../dto/user.dto"
 import { User } from "../models/users.model";
 
 export class UserMapper {
-    static mapToDto(user: User | null): userDTO  {
+    static mapToDto(user: User | null): userDTO | userDTOPassword {
         if (user === null) return null as any;
         return {
             td_lastname:user.td_lastname,

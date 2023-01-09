@@ -10,7 +10,7 @@ import { banController } from "./banController";
 import { congeController } from "./congeController";
 import { roleController } from "./roleController";
 import {tokenController} from "./tokenController"
-import {authentificationController} from "./authentification.controller"
+import {authController} from "./auth.controller"
 
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
@@ -47,5 +47,5 @@ apiController.use('/ban', banController)
 apiController.use('/conge', congeController)
 apiController.use('/role', roleController)
 apiController.use('/token', tokenController)
-apiController.use('/auth', authentificationController)
+apiController.use('/auth', authController)
 export { apiController }

@@ -2,7 +2,7 @@ import { DataTypes, Model} from "sequelize"
 import { sequelize } from "../database/sequelize";
 
 export class User extends Model{
-    id?:number
+    id!:number
     td_lastname:string
     td_firstname:string
     td_birthday: Date

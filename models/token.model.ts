@@ -22,6 +22,7 @@ const concatRequiredMessage = (data: string) => {
             notEmpty: { msg: concatRequiredMessage('Token') }
         }
     }
+    
 },
 {
     sequelize,

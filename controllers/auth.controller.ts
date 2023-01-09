@@ -1,6 +1,6 @@
 import { Router } from "express";
-import handlerLogin from "~~/handler/authentification.handler"
-export const authentificationController = Router();
+import {handlerLogin} from "~~/handler/auth.handler"
+export const authController = Router();
 
 /**
  * @swagger
@@ -27,4 +27,4 @@ export const authentificationController = Router();
   *        200:
   *          description: Login. Returns tokens if successful login.
   */
- authentificationController.post('/login', handlerLogin.login)
+ authController.post('/login', handlerLogin.token)

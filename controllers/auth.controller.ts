@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {handlerLogin} from "~~/handler/auth.handler"
+import { authHandler } from "~~/injection";
 export const authController = Router();
 
 /**
@@ -22,9 +22,28 @@ export const authController = Router();
   *         in: body
   *         required: true
   *         type: object
-  *         default: {"td_email": "cunmock@gmail.com", "td_password": "e"}
+  *         default: {"td_email": "cunmock@gmail.com", "password": "e"}
   *      responses:
   *        200:
   *          description: Login. Returns tokens if successful login.
   */
- authController.post('/login', handlerLogin.token)
+ authController.post('/login', authHandler.login)
+ /**
+  * @openapi
+  * /api/auth/token:
+  *  post:
+  *      tags: [Authentification]
+  *      description: Token
+  *      consumes:
+  *       - application/json
+  *      parameters:
+  *       - name: JSON
+  *         in: body
+  *         required: true
+  *         type: object
+  *         default: {"refreshToken": "string"}
+  *      responses:
+  *        200:
+  *          description: Token. Refresh tokens.
+  */
+authController.post('/token', authHandler.token)

@@ -9,7 +9,7 @@ export const users: userTypes[] = [
     td_email: "cunmock@gmail.com",
     td_phone: 782361188,
     td_isActif: true,
-    td_password: "e",
+    td_password: "$2b$10$NUOQNvbDfEO8EnvvRmI8oOhBjNPyARSE3H2Bya73s7U7wd7vkZGYm",
     LocalisationId: 1
   },
   {
@@ -33,16 +33,5 @@ export const users: userTypes[] = [
     td_isActif: true,
     td_password: "$2b$10$NUOQNvbDfEO8EnvvRmI8oOhBjNPyARSE3H2Bya73s7U7wd7vkZGYm",
     LocalisationId: 3
-  },
-  {
-    //UserId:4,
-    td_lastname:'DOC2',
-    td_firstname:'JESUISDOC2',
-    td_birthday: new Date("2000-06-24"),
-    td_email: "docteur2@gmail.com",
-    td_phone: 782361154,
-    td_isActif: true,
-    td_password: "$2b$10$NUOQNvbDfEO8EnvvRmI8oOhBjNPyARSE3H2Bya73s7U7wd7vkZGYm",
-    LocalisationId: 4
   }
 ];

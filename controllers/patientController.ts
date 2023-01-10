@@ -1,5 +1,5 @@
 import { Router } from "express";
-import handlerPatient from "~~/handler/patient.handler";
+import { patientHandler } from "~~/injection";
 export const patientController = Router();
 /**
  * @swagger
@@ -18,7 +18,7 @@ export const patientController = Router();
  *        200:
  *          description: Get the list of all users.
  */
-patientController.get('/',handlerPatient.getPatients)
+patientController.get('/',patientHandler.getPatients)
 /**
  * @openapi
  * /api/patients/{id}:
@@ -34,7 +34,7 @@ patientController.get('/',handlerPatient.getPatients)
  *        200:
  *          description: Get one specifique user.
  */
-patientController.get('/:id',handlerPatient.getPatientById)
+patientController.get('/:id',patientHandler.getPatientById)
 /**
  * @openapi
  * /api/patients:
@@ -53,7 +53,7 @@ patientController.get('/:id',handlerPatient.getPatientById)
   *        200:
   *          description: Create a new patient.
  */
-patientController.post('/',handlerPatient.createPatient)
+patientController.post('/',patientHandler.createPatient)
 /**
  * @openapi
  * /api/patients/{id}:
@@ -68,7 +68,7 @@ patientController.post('/',handlerPatient.createPatient)
  *        200:
  *          description: delete one specifique user.
  */
-patientController.delete('/:id',handlerPatient.deletePatient)
+patientController.delete('/:id',patientHandler.deletePatient)
 /**
  * @openapi
  * /api/patients/{id}:
@@ -92,4 +92,4 @@ patientController.delete('/:id',handlerPatient.deletePatient)
   *        200:
   *          description: Update the user of given id.
   */
-patientController.put('/:UserId', handlerPatient.updatePatient)
+patientController.put('/:UserId', patientHandler.updatePatient)

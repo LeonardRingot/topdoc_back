@@ -1,12 +1,14 @@
 export interface IServiceToken<T, D>{
-    findmyToken(t: string): Promise<T | null>;
-    findUser(td_email:string):Promise<D | null>;
-    create(t: T,): Promise<T>;
-    update(t:T, id:number): Promise<boolean | number>;
-    delete (id:number):Promise<boolean | number>;
+    findToken(t: string): Promise<T | null>;
+    create(t: Omit<T, 'id'>): Promise<T | null>;
+    update(t: Partial<T>, id: number): Promise<number |boolean>;
+    findUser(td_email: string): Promise<D | null>;
     findID(id: number): Promise<D | null>; 
 }
-export interface IAuthService <A, T>{
-    login (a: A):Promise<A>;
-    refreshtoken(t:T):Promise<Partial<T>>
+export interface IService<T> {
+    findById(id: number): Promise<T | null>;
+    findAll(): Promise<T[] | null>;
+    create(t: T): Promise<T | null>;
+    delete(id: number): Promise<number |boolean>;
+    update(t: T, id: number): Promise<number |boolean>;
 }

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import handlerConge  from "~~/handler/conge.handler";
+import {congeHandler} from "../injection"
 export const congeController = Router();
 /**
  * @swagger
@@ -18,7 +18,7 @@ export const congeController = Router();
  *        200:
  *          description: Get the list of all praticiens.
  */
-congeController.get('/',handlerConge.getConges)
+congeController.get('/',congeHandler.getConges)
 /**
  * @openapi
  * /api/conge/{id}:
@@ -34,7 +34,7 @@ congeController.get('/',handlerConge.getConges)
  *        200:
  *          description: Get one specifique user.
  */
-congeController.get('/:id',handlerConge.getCongeById)
+congeController.get('/:id',congeHandler.getCongeById)
 /**
    * @openapi
   * /api/conge:
@@ -53,7 +53,7 @@ congeController.get('/:id',handlerConge.getCongeById)
   *        200:
   *          description: Create a new ban.
   */
-congeController.post('/',handlerConge.createConge)
+congeController.post('/',congeHandler.createConge)
 /**
  * @openapi
  * /api/conge/{id}:
@@ -69,7 +69,7 @@ congeController.post('/',handlerConge.createConge)
  *          description: delete one specifique user.
  */
 
-congeController.delete('/:id',handlerConge.deleteConge)
+congeController.delete('/:id',congeHandler.deleteConge)
 /**
  * @openapi
  * /api/conge/{id}:
@@ -93,4 +93,4 @@ congeController.delete('/:id',handlerConge.deleteConge)
   *        200:
   *          description: Update the user of given id.
   */
-congeController.put('/:id', handlerConge.updateConge)
+congeController.put('/:id', congeHandler.updateConge)

@@ -1,4 +1,4 @@
 export interface AuthDTO {
-  UserId:number,
+  userId:number,
   refreshToken:string
 }

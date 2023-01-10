@@ -1,9 +1,10 @@
 import { PatientDTO } from "../dto/patient.dto";
 import { IRepository } from "../core/repository.interface";
+import { IService } from "~~/core/service.interface";
 import { Patient } from "../models/patient.model";
 import { User } from "~~/models/users.model";
 const bcrypt = require("bcrypt");
-export class PatientService {
+export class PatientService implements IService<PatientDTO> {
 
     private patientRepository: IRepository<PatientDTO>;
 
@@ -19,7 +20,7 @@ export class PatientService {
             return PatientDTO;
         });
     }
-    async create(patient:PatientDTO & User):Promise<PatientDTO | undefined>{
+    async create(patient:PatientDTO & User):Promise<PatientDTO | null>{
         let hashedPassword = await bcrypt.hash(patient.td_password, 10);
         let patientInfo: PatientDTO = {
             td_numbervitalCode: patient.td_numbervitalCode,
@@ -36,7 +37,7 @@ export class PatientService {
     async delete(id:number):Promise<boolean | number> {
         return this.patientRepository.delete(id)
     }
-    async update(patient :PatientDTO & User, id:number ):  Promise<boolean | number | undefined>{
+    async update(patient :PatientDTO & User, id:number ):  Promise<boolean | number >{
         let hashedPassword
         if (patient.td_password) hashedPassword = await bcrypt.hash(patient.td_password, 10)
         let patientInfo: PatientDTO = {

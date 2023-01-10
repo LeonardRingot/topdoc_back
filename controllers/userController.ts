@@ -1,5 +1,5 @@
 import { Router } from "express";
-import handlerUser from "~~/handler/user.handler";
+import { userHandler } from "~~/injection";
 export const userController = Router();
 /**
  * @swagger
@@ -26,7 +26,7 @@ export const userController = Router();
   *        200:
   *          description: Create a new User.
  */
-userController.post('/',handlerUser.createUser)
+userController.post('/',userHandler.postUser)
 /**
  * @openapi
  * /api/users:
@@ -37,7 +37,7 @@ userController.post('/',handlerUser.createUser)
  *        200:
  *          description: Get the list of all users.
  */
-userController.get('/',handlerUser.getUsers)
+userController.get('/',userHandler.getUsers)
 /**
  * @openapi
  * /api/users/{id}:
@@ -53,7 +53,7 @@ userController.get('/',handlerUser.getUsers)
  *        200:
  *          description: Get one specifique user.
  */
-userController.get('/:id',handlerUser.getUserById)
+userController.get('/:id',userHandler.getUserId)
 /**
  * @openapi
  * /api/users/{id}:
@@ -68,7 +68,7 @@ userController.get('/:id',handlerUser.getUserById)
  *        200:
  *          description: delete one specifique user.
  */
-userController.delete('/:id',handlerUser.deleteUser)
+userController.delete('/:id',userHandler.deleteUser)
 /**
  * @openapi
  * /api/users/{id}:
@@ -92,4 +92,4 @@ userController.delete('/:id',handlerUser.deleteUser)
   *        200:
   *          description: Update the user of given id.
   */
- userController.put('/:id', handlerUser.updateUser)
+ userController.put('/:id', userHandler.updateUser)

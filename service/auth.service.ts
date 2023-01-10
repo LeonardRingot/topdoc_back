@@ -1,35 +1,42 @@
 import { AuthDTO } from "~~/dto/auth.dto";
-import { IRepositoryUser, IRepositoryToken } from "~~/core/repository.interface";
-import { IAuthService } from "~~/core/service.interface";
-import { Token } from "~~/models/token.model";
-import { User } from "~~/models/users.model";
-import { userDTOPassword } from "~~/dto/user.dto";
-import { Payload, TokenDTO } from "~~/dto/token.dto";
+import { IRepositoryAuth } from "~~/core/repository.interface";
+import { IServiceToken } from "~~/core/service.interface";
+import { userLoginDTO } from "~~/dto/user.dto";
+
 
  
-export class AuthService implements IAuthService<AuthDTO,TokenDTO>{
-    login(a: AuthDTO): Promise<AuthDTO> {
-        throw new Error("Method not implemented.");
-    }
-    refreshtoken(t: TokenDTO): Promise<Partial<TokenDTO>> {
-        throw new Error("Method not implemented.");
-    }
-    // private userRepository : IRepositoryUser;
-    // private tokenRepository: IRepositoryToken;
+export class AuthService implements IServiceToken<AuthDTO,userLoginDTO>{
 
-    // constructor (_tokenRepository: IRepositoryToken, _userRepository:IRepositoryUser){
-    //     this.tokenRepository = _tokenRepository;
-    //     this.userRepository=_userRepository;
-    // }
-    // refreshtoken(t: TokenDTO): Promise<Partial<TokenDTO>> {
-    //     throw new Error("Method not implemented.");
-    // }
-    // async login(a: AuthDTO): Promise<any> {
-    //     return this.userRepository.findByTD_email(a.td_email).then(authDTO =>{
-    //         if (authDTO === null) return null;
-    //         return authDTO
-    //     });
-    // }
+    private authRepo: IRepositoryAuth<AuthDTO, userLoginDTO>;
 
+    constructor(_authRepo: IRepositoryAuth<AuthDTO, userLoginDTO>) {
+        this.authRepo =_authRepo;
+    }
+    
+    findID(id: number): Promise<userLoginDTO | null> {
+        return this.authRepo.findTokenOfUser(id).then(user => {
+            return user
+        })
+    }
+    findUser(td_email: string): Promise<userLoginDTO | null> {
+        return this.authRepo.findUser(td_email).then(user => {
+            return user
+        })
+    }
+
+    findToken(t: string): Promise<AuthDTO | null> {
+        return this.authRepo.findToken(t).then(authdto => {
+            return authdto
+        })
+    }
+    create(t: AuthDTO): Promise<AuthDTO | null> {
+        return this.authRepo.create(t).then(authdto => {
+            if(authdto === null) return null;
+            return authdto
+        })
+    }
+    update(t: AuthDTO, id: number): Promise<number | boolean> {
+        return this.authRepo.update(t,id).then(good => good)
+    }
     
 }

@@ -1,56 +1,65 @@
 import { Request, Response } from "express";
-import { LocalisationRepository } from "../repository/localisation.repository";
-import { LocalisationService } from "../service/localisation.service";
+import { LocalisationDTO } from "../DTO/localisation.dto";
+import { IService } from "../core/service.interface"
 
-const localisationService = new LocalisationService(new LocalisationRepository);
+export class LocalisationHandler {
 
-async function getLocalisations(req: Request, res: Response) {
+    private localisationService: IService<LocalisationDTO>;
+
+    constructor(service: IService<LocalisationDTO>) {
+        this.localisationService = service;
+    }
+
+ getLocalisationId = async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+
     try {
-        const result = await localisationService.findAll();
-        if (result === null) return res.status(404).send()
-        res.status(200).json(result)
+        if(Number.isInteger(id)){
+            const result = await this.localisationService.findById(id);
+            if(result === null) return res.status(404).send()
+            res.status(200).json(result)
+        }
 
     } catch(err) {
         res.status(500).json(err)
     }
 }
-async function getLocalisationsById(req: Request, res: Response) {
+
+ getLocalisations = async (req: Request, res: Response) => {
     try {
-        const result = await localisationService.findById(parseInt(req.params.id));
-        if (result === null) return res.status(404).send()
+        const result = await this.localisationService.findAll();
         res.status(200).json(result)
-    } catch(err) {
+    } catch (err) {
         res.status(500).json(err)
     }
 }
-async function createLocalisation(req: Request, res: Response) {
+
+ postLocalisation = async(req: Request, res: Response) => {
     try {
-        const result = await localisationService.create(req.body);
-        if (result === null) return res.status(404).send()
+        const result = await this.localisationService.create(req.body);
         res.status(200).json(result)
-        console.log(result)
-    } catch(err) {
-        res.status(500).json(err)
-    }
-}
-async function deleteLocalisation(req:Request, res:Response) {
-    const id = req.params.id as unknown as number;
-    try{
-        await localisationService.delete(id);
-      res.status(200).send()
-    } catch(err) {
-        res.status(500).json(err)
-    }
-}
-async function updateLocalisation(req:Request, res:Response) {
-    const id = req.params.UserId as unknown as number;
-    try{
-        const result = await localisationService.update(req.body, id)
-    }catch(err) {
+    } catch (err) {
         res.status(500).json(err)
     }
 }
 
-const handlerLocalisation = {getLocalisations, createLocalisation, getLocalisationsById, deleteLocalisation, updateLocalisation}
+ deleteLocalisation = async(req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    try {
+        const result = await this.localisationService.delete(id);
+        res.status(200).json(result? "supprimé": "fail")
+    } catch (err) {
+        res.status(500).json(err)
+    }
+}
 
-export default handlerLocalisation;
+ updateLocalisation = async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    try {
+        const result = await this.localisationService.update(req.body, id);
+        res.status(200).json( result? "mis a jour": "fail");
+    } catch (err) {
+        res.status(500).json(err)
+    }
+}
+}

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import handlerPlanning  from "~~/handler/planning.handler";
+import {planningHandler} from "../injection"
 export const planningController = Router();
 /**
  * @swagger
@@ -18,7 +18,7 @@ export const planningController = Router();
  *        200:
  *          description: Get the list of all praticiens.
  */
-planningController.get('/',handlerPlanning.getPlannings)
+planningController.get('/',planningHandler.getPlannings)
 /**
  * @openapi
  * /api/planning/{id}:
@@ -34,7 +34,7 @@ planningController.get('/',handlerPlanning.getPlannings)
  *        200:
  *          description: Get one specifique user.
  */
-planningController.get('/:id',handlerPlanning.getPlanningById)
+planningController.get('/:id',planningHandler.getPlanningById)
 /**
    * @openapi
   * /api/planning:
@@ -53,7 +53,7 @@ planningController.get('/:id',handlerPlanning.getPlanningById)
   *        200:
   *          description: Create a new localisation.
   */
-planningController.post('/',handlerPlanning.createPlanning)
+planningController.post('/',planningHandler.createPlanning)
 /**
  * @openapi
  * /api/planning/{id}:
@@ -69,7 +69,7 @@ planningController.post('/',handlerPlanning.createPlanning)
  *          description: delete one specifique user.
  */
 
-planningController.delete('/:id',handlerPlanning.deletePlanning)
+planningController.delete('/:id',planningHandler.deletePlanning)
 /**
  * @openapi
  * /api/planning/{id}:
@@ -93,4 +93,4 @@ planningController.delete('/:id',handlerPlanning.deletePlanning)
   *        200:
   *          description: Update the user of given id.
   */
-planningController.put('/:id', handlerPlanning.updatePlanning)
+planningController.put('/:id', planningHandler.updatePlanning)

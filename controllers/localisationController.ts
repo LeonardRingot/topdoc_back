@@ -1,5 +1,5 @@
 import { Router } from "express";
-import handlerLocalisation  from "~~/handler/localisation.handler";
+import { localisationHandler } from "~~/injection";
 export const localisationController = Router();
 /**
  * @swagger
@@ -18,7 +18,7 @@ export const localisationController = Router();
  *        200:
  *          description: Get the list of all praticiens.
  */
-localisationController.get('/',handlerLocalisation.getLocalisations)
+localisationController.get('/',localisationHandler.getLocalisations)
 /**
  * @openapi
  * /api/localisations/{id}:
@@ -34,7 +34,7 @@ localisationController.get('/',handlerLocalisation.getLocalisations)
  *        200:
  *          description: Get one specifique user.
  */
-localisationController.get('/:id',handlerLocalisation.getLocalisationsById)
+localisationController.get('/:id',localisationHandler.getLocalisationId)
 /**
    * @openapi
   * /api/localisations:
@@ -53,7 +53,7 @@ localisationController.get('/:id',handlerLocalisation.getLocalisationsById)
   *        200:
   *          description: Create a new localisation.
   */
-localisationController.post('/',handlerLocalisation.createLocalisation)
+localisationController.post('/',localisationHandler.postLocalisation)
 /**
  * @openapi
  * /api/localisations/{id}:
@@ -69,7 +69,7 @@ localisationController.post('/',handlerLocalisation.createLocalisation)
  *          description: delete one specifique user.
  */
 
-localisationController.delete('/:id',handlerLocalisation.deleteLocalisation)
+localisationController.delete('/:id',localisationHandler.deleteLocalisation)
 /**
  * @openapi
  * /api/localisations/{id}:
@@ -93,4 +93,4 @@ localisationController.delete('/:id',handlerLocalisation.deleteLocalisation)
   *        200:
   *          description: Update the user of given id.
   */
-localisationController.put('/:id', handlerLocalisation.updateLocalisation)
+localisationController.put('/:id', localisationHandler.updateLocalisation)

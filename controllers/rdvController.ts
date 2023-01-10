@@ -1,5 +1,5 @@
 import { Router } from "express";
-import handlerRdv  from "~~/handler/rdv.handler";
+import {rdvHandler} from "../injection"
 export const rdvController = Router();
 /**
  * @swagger
@@ -18,7 +18,7 @@ export const rdvController = Router();
  *        200:
  *          description: Get the list of all praticiens.
  */
-rdvController.get('/',handlerRdv.getRdvs)
+rdvController.get('/',rdvHandler.getRdvs)
 /**
  * @openapi
  * /api/rdv/{id}:
@@ -34,7 +34,7 @@ rdvController.get('/',handlerRdv.getRdvs)
  *        200:
  *          description: Get one specifique user.
  */
-rdvController.get('/:id',handlerRdv.getRdvById)
+rdvController.get('/:id',rdvHandler.getRdvById)
 /**
    * @openapi
   * /api/rdv:
@@ -53,7 +53,7 @@ rdvController.get('/:id',handlerRdv.getRdvById)
   *        200:
   *          description: Create a new localisation.
   */
-rdvController.post('/',handlerRdv.createRdv)
+rdvController.post('/',rdvHandler.createRdv)
 /**
  * @openapi
  * /api/rdv/{id}:
@@ -69,7 +69,7 @@ rdvController.post('/',handlerRdv.createRdv)
  *          description: delete one specifique user.
  */
 
-rdvController.delete('/:id',handlerRdv.deleteRdv)
+rdvController.delete('/:id',rdvHandler.deleteRdv)
 /**
  * @openapi
  * /api/rdv/{id}:
@@ -93,4 +93,4 @@ rdvController.delete('/:id',handlerRdv.deleteRdv)
   *        200:
   *          description: Update the user of given id.
   */
-rdvController.put('/:id', handlerRdv.updateRdv)
+rdvController.put('/:id', rdvHandler.updateRdv)

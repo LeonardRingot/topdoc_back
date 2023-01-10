@@ -1,5 +1,5 @@
 import { Router } from "express";
-import handlerPlageHoraire  from "~~/handler/plage_horaire.handler";
+import {plagehoraireHandler} from "../injection"
 export const plagehoraireController = Router();
 /**
  * @swagger
@@ -18,7 +18,7 @@ export const plagehoraireController = Router();
  *        200:
  *          description: Get the list of all praticiens.
  */
-plagehoraireController.get('/',handlerPlageHoraire.getPlageHoraires)
+plagehoraireController.get('/',plagehoraireHandler.getPlageHoraires)
 /**
  * @openapi
  * /api/plagehoraires/{id}:
@@ -34,7 +34,7 @@ plagehoraireController.get('/',handlerPlageHoraire.getPlageHoraires)
  *        200:
  *          description: Get one specifique user.
  */
-plagehoraireController.get('/:PlanningId',handlerPlageHoraire.getPlageHoraireById)
+plagehoraireController.get('/:PlanningId',plagehoraireHandler.getPlageHoraireById)
 /**
    * @openapi
   * /api/plagehoraires:
@@ -53,7 +53,7 @@ plagehoraireController.get('/:PlanningId',handlerPlageHoraire.getPlageHoraireByI
   *        200:
   *          description: Create a new localisation.
   */
-plagehoraireController.post('/',handlerPlageHoraire.createPlageHoraire)
+plagehoraireController.post('/',plagehoraireHandler.createPlageHoraire)
 /**
  * @openapi
  * /api/plagehoraires/{id}:
@@ -69,7 +69,7 @@ plagehoraireController.post('/',handlerPlageHoraire.createPlageHoraire)
  *          description: delete one specifique user.
  */
 
-plagehoraireController.delete('/:PlanningId',handlerPlageHoraire.deletePlageHoraire)
+plagehoraireController.delete('/:PlanningId',plagehoraireHandler.deletePlageHoraire)
 /**
  * @openapi
  * /api/plagehoraires/{id}:
@@ -93,4 +93,4 @@ plagehoraireController.delete('/:PlanningId',handlerPlageHoraire.deletePlageHora
   *        200:
   *          description: Update the user of given id.
   */
-plagehoraireController.put('/:PlanningId', handlerPlageHoraire.updatePlageHoraire)
+plagehoraireController.put('/:PlanningId', plagehoraireHandler.updatePlageHoraire)

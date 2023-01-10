@@ -26,7 +26,7 @@ export class RdvService {
     async delete(id:number):Promise<boolean | number> {
         return this.rdvRepository.delete(id)
     }
-    async update(rdv :Rdv, id:number ):  Promise<boolean | number | undefined>{
+    async update(rdv :Rdv, id:number ):  Promise<boolean | number >{
         return this.rdvRepository.update(rdv, id)
     }
 }

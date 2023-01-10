@@ -10,13 +10,9 @@ export const localisations = [
         td_city: "Boulogne  sur mer"
     }, 
     {   
-        td_address: "test",
-        td_zipCode: 62200,
-        td_city: "Boulo"
-    },
-    {   
         td_address: "docteur",
         td_zipCode: 62200,
-        td_city: "Doc"
-    }
+        td_city: "docteur"
+    },
+    
 ];

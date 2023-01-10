@@ -4,6 +4,7 @@ import { sequelize } from "../database/sequelize";
 export class Token extends Model{
     id!:number
     refreshToken!:string
+    UserId!:number
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
@@ -20,6 +21,15 @@ const concatRequiredMessage = (data: string) => {
         validate: {
             notNull: { msg: concatRequiredMessage('Token') },
             notEmpty: { msg: concatRequiredMessage('Token') }
+        }
+    }, 
+    UserId:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+            notNull: { msg: concatRequiredMessage('UserID') },
+            notEmpty: { msg: concatRequiredMessage('UserID') }
+            
         }
     }
     

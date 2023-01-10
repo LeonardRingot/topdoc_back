@@ -1,27 +1,27 @@
 import { AuthDTO } from "~~/dto/auth.dto";
 import { tokenId } from "~~/types/token";
-import { userDTO, userLoginDTO} from "~~/dto/user.dto";
+import { userLoginDTO} from "~~/dto/user.dto";
 import { userId } from "~~/types/utilisateur";
 
 export class AuthMapper {
    static maptoDTO(auth:tokenId):AuthDTO |null{
     if (auth === null) {
-        return null as any
+        return null 
     }
     const dto:AuthDTO ={
-        UserId:auth.UserId,
+        userId:auth.UserId,
         refreshToken:auth.refreshToken
     }
     return dto;
    }
     static mapToCoDto(user: userId | null): userLoginDTO {
         if (user === null) {
-            return null as any
+            return null as any;
         }
         const dto :userLoginDTO =  {
            id:user.id,
            td_email:user.td_email,
-           td_password:user.td_password,
+           td_password:user.td_password
         }
         return dto;
     }

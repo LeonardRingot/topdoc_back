@@ -1,5 +1,5 @@
 import { Router } from "express";
-import handlerRole  from "~~/handler/role.handler";
+import {roleHandler} from "../injection"
 export const roleController = Router();
 /**
  * @swagger
@@ -18,7 +18,7 @@ export const roleController = Router();
  *        200:
  *          description: Get the list of all praticiens.
  */
-roleController.get('/',handlerRole.getRoles)
+roleController.get('/',roleHandler.getRoles)
 /**
  * @openapi
  * /api/role/{id}:
@@ -34,7 +34,7 @@ roleController.get('/',handlerRole.getRoles)
  *        200:
  *          description: Get one specifique user.
  */
-roleController.get('/:id',handlerRole.getRoleById)
+roleController.get('/:id',roleHandler.getRoleById)
 /**
    * @openapi
   * /api/role:
@@ -53,7 +53,7 @@ roleController.get('/:id',handlerRole.getRoleById)
   *        200:
   *          description: Create a new ban.
   */
-roleController.post('/',handlerRole.createRole)
+roleController.post('/',roleHandler.createRole)
 /**
  * @openapi
  * /api/role/{id}:
@@ -69,7 +69,7 @@ roleController.post('/',handlerRole.createRole)
  *          description: delete one specifique user.
  */
 
-roleController.delete('/:id',handlerRole.deleteRole)
+roleController.delete('/:id',roleHandler.deleteRole)
 /**
  * @openapi
  * /api/role/{id}:
@@ -93,4 +93,4 @@ roleController.delete('/:id',handlerRole.deleteRole)
   *        200:
   *          description: Update the user of given id.
   */
-roleController.put('/:id', handlerRole.updateRole)
+roleController.put('/:id', roleHandler.updateRole)

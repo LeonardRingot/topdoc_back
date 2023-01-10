@@ -9,7 +9,6 @@ import { rdvController } from "./rdvController";
 import { banController } from "./banController";
 import { congeController } from "./congeController";
 import { roleController } from "./roleController";
-import {tokenController} from "./tokenController"
 import {authController} from "./auth.controller"
 
 const swaggerJsDoc = require('swagger-jsdoc')
@@ -46,6 +45,5 @@ apiController.use('/rdv', rdvController)
 apiController.use('/ban', banController)
 apiController.use('/conge', congeController)
 apiController.use('/role', roleController)
-apiController.use('/token', tokenController)
 apiController.use('/auth', authController)
 export { apiController }

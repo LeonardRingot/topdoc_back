@@ -3,13 +3,13 @@ import { sequelize } from "../database/sequelize";
 
 export class User extends Model{
     id!:number
-    td_lastname:string
-    td_firstname:string
-    td_birthday: Date
-    td_email:string
-    td_password:string
-    td_phone:number
-    td_isActif:boolean
+    td_lastname!:string
+    td_firstname!:string
+    td_birthday!: Date
+    td_email!:string
+    td_password!:string
+    td_phone!:number
+    td_isActif!:boolean
     //UserId: any;
 }
 const concatRequiredMessage = (data: string) => {

@@ -1,57 +1,73 @@
 import { Request, Response } from "express";
-import { PatientRepository } from "../repository/patient.repository";
-import { PatientService } from "../service/patient.service";
+import { IService } from "../core/service.interface";
+import { PatientDTO } from "../dto/patient.dto";
 
-const patientService = new PatientService(new PatientRepository);
 
-async function getPatients(req: Request, res: Response) {
-    try {
-        const result = await patientService.findAll();
-       if (result === null) return res.status(404).send()
-        res.status(200).json(result)
-        console.log(result)
-    } catch(err) {
-        res.status(500).json(err)
-    }
-}
-async function getPatientById(req: Request, res: Response) {
-    try {
-        const result = await patientService.findById(parseInt(req.params.id));
-        if (result === null) return res.status(404).send()
-        res.status(200).json(result)
+export class PatientHandler {
 
-    } catch(err) {
-        res.status(500).json(err)
-    }
-}
-async function createPatient(req: Request, res: Response) {
-    try {
-        const result = await patientService.create(req.body);
-        if (result === null) return res.status(404).send()
-        res.status(200).json(result)
-        console.log(result)
-    } catch(err) {
-        res.status(500).json(err)
-    }
-}
-async function deletePatient(req:Request, res:Response) {
-    const UserId = req.params.id as unknown as number;
-    try{
-        await patientService.delete(UserId);
-      res.status(200).send()
+    private patientService: IService<PatientDTO>
 
-    } catch(err) {
-        res.status(500).json(err)
+    constructor(service: IService<PatientDTO>) {
+        this.patientService = service
     }
-}
-async function updatePatient(req:Request, res:Response) {
-    const UserId = req.params.UserId as unknown as number;
-    try{
-        const result = await patientService.update(req.body, UserId)
-    }catch(err) {
-        res.status(500).json(err)
-    }
-}
-const handler = {getPatients, getPatientById, createPatient, updatePatient, deletePatient}
 
-export default handler;
+    getPatients = async (req: Request, res: Response) => {
+        try {
+            const result = await this.patientService.findAll();
+            res.status(200).json(result)
+
+        } catch (err) {
+            res.status(500).json(err)
+        }
+
+    }
+
+    getPatientById = async (req: Request, res: Response) => {
+        let requestedId: number = parseInt(req.params.id)
+        try {
+            const result = await this.patientService.findById(requestedId);
+            if (result === null) return res.status(404).json({ message: "Requested patient_id does not exist." })
+            res.status(200).json(result)
+        } catch (err) {
+            console.log(err)
+            res.status(500).json({ message: 'ERROR 500', err });
+        }
+    };
+
+    createPatient = async (req: Request, res: Response) => {
+        try {
+            if (!req.body.td_password) return res.status(400).json({
+                message: "Password required.",
+            });
+            const result = await this.patientService.create(req.body)
+            return res.status(200).json(result)
+        } catch (err) {
+            return res.status(500).json({ message: 'Error in handler', err })
+        }
+    }
+
+    updatePatient = async (req: Request, res: Response) => {
+        const id = parseInt(req.params.id)
+
+        try {
+            const result = await this.patientService.update(req.body, id)
+            if (result) return res.status(200).json({message: 'Patient successfully updated.'})
+            return res.status(404).send()
+        } catch (err) {
+            return res.status(500).json({ message: 'Error in handler', err })
+        }
+    }
+
+    deletePatient = async (req: Request, res: Response) => {
+        const id = parseInt(req.params.id)
+
+        try {
+            const result = await this.patientService.delete(id)
+            if (result) return res.status(200).json({message: 'Patient successfully deleted.'})
+            return res.status(404).send()
+        } catch (err) {
+            return res.status(500).json({ message: 'Error in handler', err })
+        }
+    }
+
+}

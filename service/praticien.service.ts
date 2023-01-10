@@ -19,7 +19,7 @@ export class PraticienService {
             return praticienDTO;
         });
     }
-    async create(praticien:praticienDTO & User):Promise<praticienDTO | undefined>{
+    async create(praticien:praticienDTO & User):Promise<praticienDTO | null>{
         let hashedPassword = await bcrypt.hash(praticien.td_password, 10);
         let praticientInfo: praticienDTO = {
           td_activite:praticien.td_activite,
@@ -36,7 +36,7 @@ export class PraticienService {
     async delete(id:number):Promise<boolean | number> {
         return this.praticienRepository.delete(id)
     }
-    async update(praticien :praticienDTO & User, id:number ):  Promise<boolean | number | undefined>{
+    async update(praticien :praticienDTO & User, id:number ):  Promise<boolean | number >{
         let hashedPassword
         if (praticien.td_password) hashedPassword = await bcrypt.hash(praticien.td_password, 10)
         let praticienInfo: praticienDTO = {

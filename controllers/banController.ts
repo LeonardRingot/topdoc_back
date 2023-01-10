@@ -1,5 +1,5 @@
 import { Router } from "express";
-import handlerBan  from "~~/handler/ban.handler";
+import {banHandler} from "../injection"
 export const banController = Router();
 /**
  * @swagger
@@ -18,7 +18,7 @@ export const banController = Router();
  *        200:
  *          description: Get the list of all praticiens.
  */
-banController.get('/',handlerBan.getBans)
+banController.get('/',banHandler.getBans)
 /**
  * @openapi
  * /api/ban/{id}:
@@ -34,7 +34,7 @@ banController.get('/',handlerBan.getBans)
  *        200:
  *          description: Get one specifique user.
  */
-banController.get('/:id',handlerBan.getBanById)
+banController.get('/:id',banHandler.getBanById)
 /**
    * @openapi
   * /api/ban:
@@ -53,7 +53,7 @@ banController.get('/:id',handlerBan.getBanById)
   *        200:
   *          description: Create a new ban.
   */
-banController.post('/',handlerBan.createBan)
+banController.post('/',banHandler.createBan)
 /**
  * @openapi
  * /api/ban/{id}:
@@ -69,7 +69,7 @@ banController.post('/',handlerBan.createBan)
  *          description: delete one specifique user.
  */
 
-banController.delete('/:id',handlerBan.deleteBan)
+banController.delete('/:id',banHandler.deleteBan)
 /**
  * @openapi
  * /api/ban/{id}:
@@ -93,4 +93,4 @@ banController.delete('/:id',handlerBan.deleteBan)
   *        200:
   *          description: Update the user of given id.
   */
-banController.put('/:id', handlerBan.updateBan)
+banController.put('/:id', banHandler.updateBan)

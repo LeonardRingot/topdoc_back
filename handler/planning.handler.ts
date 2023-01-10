@@ -1,57 +1,62 @@
 import { Request, Response } from "express";
-import { PlanningRepository } from "../repository/planning.repository";
-import { PlanningService } from "../service/planning.service";
+import { planningDTO } from "../DTO/planning.dto";
+import { IService } from "../core/service.interface"
 
-const planningService = new PlanningService(new PlanningRepository);
+export class PlanningHandler{
+    private planningService: IService<planningDTO>;
 
-async function getPlannings(req: Request, res: Response) {
-    try {
-        const result = await planningService.findAll();
-        if (result === null) return res.status(404).send()
-        res.status(200).json(result)
-
-    } catch(err) {
-        res.status(500).json(err)
+    constructor(service: IService<planningDTO>) {
+        this.planningService = service;
+    }
+     getPlannings=async(req: Request, res: Response)=> {
+        try {
+            const result = await this.planningService.findAll();
+            if (result === null) return res.status(404).send()
+            res.status(200).json(result)
+    
+        } catch(err) {
+            res.status(500).json(err)
+        }
+    }
+     getPlanningById=async(req: Request, res: Response) =>{
+        try {
+            const result = await this.planningService.findById(parseInt(req.params.id));
+            if (result === null) return res.status(404).send()
+            res.status(200).json(result)
+    
+        } catch(err) {
+            res.status(500).json(err)
+        }
+    }
+     createPlanning=async(req: Request, res: Response)=> {
+        try {
+            const result = await this.planningService.create(req.body);
+            if (result === null) return res.status(404).send()
+            res.status(200).json(result)
+            console.log(result)
+        } catch(err) {
+            res.status(500).json(err)
+        }
+    }
+     deletePlanning=async(req:Request, res:Response)=> {
+        const id = req.params.id as unknown as number;
+        try{
+            await this.planningService.delete(id);
+          res.status(200).send()
+    
+        } catch(err) {
+            res.status(500).json(err)
+        }
+    }
+     updatePlanning=async(req:Request, res:Response)=>{
+        const id = req.params.id as unknown as number;
+        try{
+            const result = await this.planningService.update(req.body, id)
+        }catch(err) {
+            res.status(500).json(err)
+        }
     }
 }
-async function getPlanningById(req: Request, res: Response) {
-    try {
-        const result = await planningService.findById(parseInt(req.params.id));
-        if (result === null) return res.status(404).send()
-        res.status(200).json(result)
 
-    } catch(err) {
-        res.status(500).json(err)
-    }
-}
-async function createPlanning(req: Request, res: Response) {
-    try {
-        const result = await planningService.create(req.body);
-        if (result === null) return res.status(404).send()
-        res.status(200).json(result)
-        console.log(result)
-    } catch(err) {
-        res.status(500).json(err)
-    }
-}
-async function deletePlanning(req:Request, res:Response) {
-    const id = req.params.id as unknown as number;
-    try{
-        await planningService.delete(id);
-      res.status(200).send()
 
-    } catch(err) {
-        res.status(500).json(err)
-    }
-}
-async function updatePlanning(req:Request, res:Response) {
-    const id = req.params.id as unknown as number;
-    try{
-        const result = await planningService.update(req.body, id)
-    }catch(err) {
-        res.status(500).json(err)
-    }
-}
-const handlerPlanning = {getPlannings, getPlanningById, createPlanning, deletePlanning, updatePlanning}
 
-export default handlerPlanning;

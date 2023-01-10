@@ -18,7 +18,7 @@ export class handlerLogin{
             if (token == null)return res.status(403) // acces refuse
             jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET!, (err:any)=>{
                 if(err) return res.status(403)
-                const accessToken = jwt.sign({id:token.userId}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' })
+                const accessToken = jwt.sign({id:token.UserId}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' })
                 res.json({accessToken:accessToken})
             })
         }catch(err) {
@@ -36,20 +36,20 @@ export class handlerLogin{
             
             if (await bcrypt.compare(req.body.password, user.td_password)) {
                 console.log('JE SUIS PASSS OUUUUUUUU')
-                const accessToken = jwt.sign({ name: user.id }, process.env.ACCESS_TOKEN_SECRET!, { expiresIn: '15s' })
-                const refreshToken = jwt.sign({ name: user.id }, process.env.REFRESH_TOKEN_SECRET!, { expiresIn: '1Y' })
+                const accessToken = jwt.sign({ name: user.UserId }, process.env.ACCESS_TOKEN_SECRET!, { expiresIn: '15s' })
+                const refreshToken = jwt.sign({ name: user.UserId }, process.env.REFRESH_TOKEN_SECRET!, { expiresIn: '1Y' })
                 console.log('et la ????')
 
-                const token = await this.authservice.findID(user.id);
+                const token = await this.authservice.findID(user.UserId);
                 console.log('et ici ?')
                 if (token == null) {
                     console.log('TA RACE ?')
-                    console.log(user.id)
-                    await this.authservice.create({ refreshToken: refreshToken, userId: user.id })
+                    console.log(user.UserId)
+                    await this.authservice.create({ refreshToken: refreshToken, UserId: user.UserId })
                     
                 } else {
                     console.log('TA AAAAAAAAAA ?')
-                    await  this.authservice.update({ refreshToken: refreshToken},user.id )
+                    await  this.authservice.update({ refreshToken: refreshToken},user.UserId )
                     
                 }
                 console.log('VA TE FAIRE FOUTRE')

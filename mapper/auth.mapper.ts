@@ -9,7 +9,7 @@ export class AuthMapper {
         return null 
     }
     const dto:AuthDTO ={
-        userId:auth.UserId,
+        UserId:auth.UserId,
         refreshToken:auth.refreshToken
     }
     return dto;
@@ -19,7 +19,7 @@ export class AuthMapper {
             return null as any;
         }
         const dto :userLoginDTO =  {
-            id:user.id,
+            UserId:user.id,
            td_email:user.td_email,
            td_password:user.td_password
         }

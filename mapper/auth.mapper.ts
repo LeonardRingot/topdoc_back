@@ -19,7 +19,7 @@ export class AuthMapper {
             return null as any;
         }
         const dto :userLoginDTO =  {
-           id:user.id,
+            id:user.id,
            td_email:user.td_email,
            td_password:user.td_password
         }

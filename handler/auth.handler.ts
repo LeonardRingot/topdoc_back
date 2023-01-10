@@ -38,17 +38,22 @@ export class handlerLogin{
                 console.log('JE SUIS PASSS OUUUUUUUU')
                 const accessToken = jwt.sign({ name: user.id }, process.env.ACCESS_TOKEN_SECRET!, { expiresIn: '15s' })
                 const refreshToken = jwt.sign({ name: user.id }, process.env.REFRESH_TOKEN_SECRET!, { expiresIn: '1Y' })
-
+                console.log('et la ????')
 
                 const token = await this.authservice.findID(user.id);
-
+                console.log('et ici ?')
                 if (token == null) {
+                    console.log('TA RACE ?')
+                    console.log(user.id)
                     await this.authservice.create({ refreshToken: refreshToken, userId: user.id })
+                    
                 } else {
+                    console.log('TA AAAAAAAAAA ?')
                     await  this.authservice.update({ refreshToken: refreshToken},user.id )
+                    
                 }
-                const data = {accessToken: accessToken, refreshToken: refreshToken}
-                return res.status(200).json({ successfullLogin: ' connecte', data: user.id, })
+                console.log('VA TE FAIRE FOUTRE')
+                return res.status(200).json({ successfullLogin: ' connecte', accessToken: accessToken, refreshToken: refreshToken})
             } else {
                 return res.status(401).json({ successfullLogin: false, message: 'non connecter' })
             }

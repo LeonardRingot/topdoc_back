@@ -1,5 +1,4 @@
 import { TokenDTO } from "~~/dto/token.dto";
-import { userDTOPassword } from "~~/dto/user.dto";
 export interface IRepository<T> {
     findById(id: number): Promise<T | null>;
     findAll(): Promise<T[]>;

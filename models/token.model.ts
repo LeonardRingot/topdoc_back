@@ -22,15 +22,6 @@ const concatRequiredMessage = (data: string) => {
             notNull: { msg: concatRequiredMessage('Token') },
             notEmpty: { msg: concatRequiredMessage('Token') }
         }
-    }, 
-    UserId:{
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-            notNull: { msg: concatRequiredMessage('UserID') },
-            notEmpty: { msg: concatRequiredMessage('UserID') }
-            
-        }
     }
     
 },

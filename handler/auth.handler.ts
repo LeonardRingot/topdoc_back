@@ -33,26 +33,16 @@ export class handlerLogin{
             if (user == null) {
                 return res.status(401).json({ userFound: false, message: "utilisateur non trouvé" })
             }
-            
             if (await bcrypt.compare(req.body.password, user.td_password)) {
-                console.log('JE SUIS PASSS OUUUUUUUU')
                 const accessToken = jwt.sign({ name: user.UserId }, process.env.ACCESS_TOKEN_SECRET!, { expiresIn: '15s' })
                 const refreshToken = jwt.sign({ name: user.UserId }, process.env.REFRESH_TOKEN_SECRET!, { expiresIn: '1Y' })
-                console.log('et la ????')
 
                 const token = await this.authservice.findID(user.UserId);
-                console.log('et ici ?')
                 if (token == null) {
-                    console.log('TA RACE ?')
-                    console.log(user.UserId)
                     await this.authservice.create({ refreshToken: refreshToken, UserId: user.UserId })
-                    
                 } else {
-                    console.log('TA AAAAAAAAAA ?')
                     await  this.authservice.update({ refreshToken: refreshToken},user.UserId )
-                    
                 }
-                console.log('VA TE FAIRE FOUTRE')
                 return res.status(200).json({ successfullLogin: ' connecte', accessToken: accessToken, refreshToken: refreshToken})
             } else {
                 return res.status(401).json({ successfullLogin: false, message: 'non connecter' })
@@ -60,9 +50,7 @@ export class handlerLogin{
         } catch (error) {
             return res.status(500).json(error)
         }
-
     }
-
 }
 
 

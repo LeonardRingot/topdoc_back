@@ -27,7 +27,7 @@ export class AuthRepository implements IRepositoryAuth<AuthDTO,userLoginDTO > {
 async update(t: AuthDTO, id: number): Promise<boolean | number> {
         return Token.update(t, 
             { where:
-                 { userId: id } 
+                 { UserId: id } 
                
              }).then((data: Array<(boolean | number)>) => {
             return data[0]

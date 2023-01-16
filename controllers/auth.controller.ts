@@ -22,7 +22,7 @@ export const authController = Router();
   *         in: body
   *         required: true
   *         type: object
-  *         default: {"td_email": "a@a.com", "password": "a"}
+  *         default: {"td_email": "a@a.com", "td_password": "a"}
   *      responses:
   *        200:
   *          description: Login. Returns tokens if successful login.

@@ -29,11 +29,10 @@ export class handlerLogin{
 
         try {
             const user = await this.authservice.findUser(req.body.td_email);
-
             if (user == null) {
                 return res.status(401).json({ userFound: false, message: "utilisateur non trouvé" })
             }
-            if (await bcrypt.compare(req.body.password, user.td_password)) {
+            if (await bcrypt.compare(req.body.td_password, user.td_password)) {
                 const accessToken = jwt.sign({ name: user.UserId }, process.env.ACCESS_TOKEN_SECRET!, { expiresIn: '15s' })
                 const refreshToken = jwt.sign({ name: user.UserId }, process.env.REFRESH_TOKEN_SECRET!, { expiresIn: '1Y' })
 

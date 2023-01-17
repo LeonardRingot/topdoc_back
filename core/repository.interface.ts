@@ -1,4 +1,4 @@
-import { TokenDTO } from "~~/dto/token.dto";
+
 export interface IRepository<T> {
     findById(id: number): Promise<T | null>;
     findAll(): Promise<T[]>;
@@ -14,3 +14,9 @@ export interface IRepositoryAuth<T,D> {
     findTokenOfUser(id: number): Promise<D | null>; 
 }
 
+export interface IRepositoryPlanning<T> {
+    findById(id: number): Promise<T | null>;
+    create(t: Omit<T, 'id'>): Promise<T | null>;
+    update(t: Partial<T>, id: number): Promise<number |boolean>;
+    delete(id: number): Promise<number |boolean>;
+}

@@ -19,7 +19,7 @@ export class PlageHoraireHandler{
     }
     getPlageHoraireById=async(req: Request, res: Response)=> {
         try {
-            const result = await this.plagehoraireService.findById(parseInt(req.params.PlanningId));
+            const result = await this.plagehoraireService.findById(parseInt(req.params.id));
             if (result === null) return res.status(404).send()
             res.status(200).json(result)
     
@@ -38,9 +38,9 @@ export class PlageHoraireHandler{
         }
     }
      deletePlageHoraire=async(req:Request, res:Response) =>{
-        const PlanningId = req.params.PlanningId as unknown as number;
+        const id = req.params.id as unknown as number;
         try{
-            await this.plagehoraireService.delete(PlanningId);
+            await this.plagehoraireService.delete(id);
           res.status(200).send()
     
         } catch(err) {
@@ -48,9 +48,9 @@ export class PlageHoraireHandler{
         }
     }
      updatePlageHoraire=async(req:Request, res:Response)=> {
-        const PlanningId = req.params.PlanningId as unknown as number;
+        const id = req.params.id as unknown as number;
         try{
-            const result = await this.plagehoraireService.update(req.body, PlanningId)
+            const result = await this.plagehoraireService.update(req.body, id)
         }catch(err) {
             res.status(500).json(err)
         }

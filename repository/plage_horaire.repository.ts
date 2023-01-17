@@ -21,20 +21,20 @@ export class PlageHoraireRepository implements IRepository<plageHoraireDTO> {
              return PlageHoraireMapper.mapToDto(data)
         })
      }
-     async delete(PlanningId: number): Promise<boolean | number>
+     async delete(id: number): Promise<boolean | number>
      {
         return Plage_Horaire.destroy({
          where:{
-            PlanningId:PlanningId
+            id:id
          }
      }).then((data:boolean | number)=>{
          return data
      })
      }
-     async update(body: Plage_Horaire, PlanningId: number): Promise<boolean | number> {
+     async update(body: Plage_Horaire, id: number): Promise<boolean | number> {
       return Plage_Horaire.update(body, 
           { where:
-               { PlanningId: PlanningId } 
+               { id: id } 
              
            }).then((data: Array<(boolean | number)>) => {
           return data[0]

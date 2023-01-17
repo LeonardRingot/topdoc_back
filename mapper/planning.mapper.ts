@@ -9,21 +9,9 @@ export class PlanningMapper {
             td_planning_name: planning.td_planning_name,
             td_date_debut: planning.td_date_debut,
             td_date_fin: planning.td_date_fin,
-            PraticienUserId:planning.PraticienUserId,
-           
         }
     }
 
-    static mapAllToDto(Plannings: Planning[]): planningDTO[] {
-        return Plannings.map(planning => {
-            return  {
-                td_planning_name: planning.td_planning_name,
-            td_date_debut: planning.td_date_debut,
-            td_date_fin: planning.td_date_fin,
-            PraticienUserId:planning.PraticienUserId,
-            
-            }
-        })
-    }
+    
 
 }

@@ -2,8 +2,8 @@ import { DataTypes, Model } from "sequelize"
 import { sequelize } from "../database/sequelize";
 
 export class Plage_Horaire extends Model{
-   PlanningId?:number
-    td_jour!:string
+
+    td_day!:string
     td_debut_jour!:Date
     td_fin_jour!:Date
     td_duree_horaire!:number
@@ -12,17 +12,17 @@ const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
 }
     Plage_Horaire.init({
-        PlanningId:{
+        id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        td_jour: {
+        td_day: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                notNull: { msg: concatRequiredMessage('jour') },
-                notEmpty: { msg: concatRequiredMessage('jour') }
+                notNull: { msg: concatRequiredMessage('le jour') },
+                notEmpty: { msg: concatRequiredMessage('le jour') }
             }
         },
         td_debut_jour: {

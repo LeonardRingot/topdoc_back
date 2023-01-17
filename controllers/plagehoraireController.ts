@@ -34,7 +34,7 @@ plagehoraireController.get('/',plagehoraireHandler.getPlageHoraires)
  *        200:
  *          description: Get one specifique user.
  */
-plagehoraireController.get('/:PlanningId',plagehoraireHandler.getPlageHoraireById)
+plagehoraireController.get('/:id',plagehoraireHandler.getPlageHoraireById)
 /**
    * @openapi
   * /api/plagehoraires:
@@ -69,7 +69,7 @@ plagehoraireController.post('/',plagehoraireHandler.createPlageHoraire)
  *          description: delete one specifique user.
  */
 
-plagehoraireController.delete('/:PlanningId',plagehoraireHandler.deletePlageHoraire)
+plagehoraireController.delete('/:id',plagehoraireHandler.deletePlageHoraire)
 /**
  * @openapi
  * /api/plagehoraires/{id}:
@@ -93,4 +93,4 @@ plagehoraireController.delete('/:PlanningId',plagehoraireHandler.deletePlageHora
   *        200:
   *          description: Update the user of given id.
   */
-plagehoraireController.put('/:PlanningId', plagehoraireHandler.updatePlageHoraire)
+plagehoraireController.put('/:id', plagehoraireHandler.updatePlageHoraire)

@@ -35,20 +35,18 @@ Token.belongsTo(User, { onDelete: 'cascade', hooks: true })
 Localisation.hasOne(User, {  onDelete: 'cascade', hooks: true })
 User.belongsTo(Localisation, { onDelete: 'cascade', hooks: true})
 
-User.hasOne(Patient, {  onDelete: 'cascade', hooks: true, foreignKey:"UserId" })
-Patient.belongsTo(User, { onDelete: 'cascade', hooks: true, foreignKey:"UserId"})
+User.hasOne(Patient, {  onDelete: 'cascade', hooks: true })
+Patient.belongsTo(User, { onDelete: 'cascade', hooks: true})
 
-Praticien.hasOne(Planning, {  onDelete: 'cascade', hooks: true ,  foreignKey:"PraticienUserId"})
-Praticien.belongsTo(Planning, {  onDelete: 'cascade', hooks: true ,  foreignKey:"PraticienUserId"})
-
-User.hasOne(Patient, {  onDelete: 'cascade', hooks: true})
-Patient.belongsTo(User, {onDelete: 'cascade', hooks: true})
-
-User.hasOne(Praticien, {  onDelete: 'cascade', hooks: true })
+User.hasOne(Praticien, {  onDelete: 'cascade', hooks: true  })
 Praticien.belongsTo(User, {  onDelete: 'cascade', hooks: true })
 
-Praticien.hasOne(Conge, {  onDelete: 'cascade', hooks: true ,  foreignKey:"PraticienUserId"})
+Plage_Horaire.belongsTo(Planning, {  onDelete: 'cascade', hooks: true , foreignKey: 'planningId'})
+Planning.hasMany(Plage_Horaire, {  onDelete: 'cascade', hooks: true, foreignKey: 'planningId' })
+
+
 Conge.belongsTo(Praticien, {  onDelete: 'cascade', hooks: true ,  foreignKey:"PraticienUserId"})
+Praticien.hasMany(Conge, {  onDelete: 'cascade', hooks: true ,  foreignKey:"PraticienUserId"})
 
 Patient.hasOne(Rdv, {  onDelete: 'cascade', hooks: true, foreignKey:"PatientUserId"})
 Rdv.belongsTo(Patient, {  onDelete: 'cascade', hooks: true , foreignKey:"PatientUserId"})
@@ -56,8 +54,8 @@ Rdv.belongsTo(Patient, {  onDelete: 'cascade', hooks: true , foreignKey:"Patient
 Praticien.hasOne(Rdv, { onDelete: 'cascade', hooks: true,  foreignKey:"PraticienUserId" })
 Rdv.belongsTo(Praticien, {  onDelete: 'cascade', hooks: true, foreignKey:"PraticienUserId"})
 
-Planning.hasOne(Plage_Horaire, {  onDelete: 'cascade', hooks: true })
-Plage_Horaire.belongsTo(Planning, {  onDelete: 'cascade', hooks: true })
+Planning.hasOne(Plage_Horaire, {  onDelete: 'cascade', hooks: true , foreignKey: 'planningId'})
+Plage_Horaire.belongsTo(Planning, {  onDelete: 'cascade', hooks: true, foreignKey: 'planningId' })
 
 export const initDb = () => {
     return sequelize.sync({ force: true }).then(() =>
@@ -76,7 +74,6 @@ export const initDb = () => {
         })
         users.map(user => {
             User.create({
-              //  UserId:user.UserId,
                 td_lastname:user.td_lastname,
                 td_firstname:user.td_firstname,
                 td_birthday:user.td_birthday,
@@ -103,6 +100,7 @@ export const initDb = () => {
             Praticien.create({
                 UserId:praticien.UserId,
                 td_activite: praticien.td_activite,
+                planningId:praticien.planningId
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         rdvs.map(rdv=> {
@@ -128,7 +126,7 @@ export const initDb = () => {
         })
         planning.map(planning => {
             Planning.create({
-                PraticienUserId:planning.PraticienUserId,
+                //PraticienUserId:planning.PraticienUserId,
                 td_planning_name:planning.td_planning_name,
                 td_date_debut:planning.td_date_debut,
                 td_date_fin:planning.td_date_fin,
@@ -136,11 +134,12 @@ export const initDb = () => {
         })
         plage_horaire.map(plage_horaire => {
             Plage_Horaire.create({
-                td_jour: plage_horaire.td_jour,
+               planningId:plage_horaire.planningId,
+                td_day:plage_horaire.td_day,
                 td_debut_jour:plage_horaire.td_debut_jour,
                 td_fin_jour:plage_horaire.td_fin_jour,
                 td_duree_horaire:plage_horaire.td_duree_horaire,
-                PlanningId:plage_horaire.PlanningId
+               
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         console.log('Database created')

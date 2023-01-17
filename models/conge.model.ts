@@ -2,7 +2,6 @@ import { DataTypes, Model } from "sequelize"
 import { sequelize } from "../database/sequelize";
 
 export class Conge extends Model {
-    // UserId!: number
     td_debut_conge!: Date
     td_fin_conge!: Date
 }
@@ -10,11 +9,11 @@ const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
 }
 Conge.init( {
-    // UserId: {
-    //         type: DataTypes.INTEGER,
-    //         autoIncrement: true,
-    //         primaryKey: true,
-    //     },
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
         td_debut_conge: {
             type: DataTypes.DATE,
             allowNull: false,

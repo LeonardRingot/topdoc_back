@@ -12,3 +12,9 @@ export interface IService<T> {
     delete(id: number): Promise<number |boolean>;
     update(t: T, id: number): Promise<number |boolean>;
 }
+export interface IServicePlanning<T> {
+    findById(id: number): Promise<T | null>;
+    create(t: Omit<T, 'id'>): Promise<T | null>;
+    update(t: Partial<T>, id: number): Promise<number |boolean>;
+    delete(id: number): Promise<number |boolean>;
+}

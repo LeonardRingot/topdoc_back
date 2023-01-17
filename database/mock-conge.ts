@@ -1,7 +1,7 @@
 export const conge= [
   {
-    td_debut_conge: new Date("2026-12-01"),
-    td_fin_conge: new Date("2026-12-25"),
+    td_debut_conge: new Date(),
+    td_fin_conge: new Date(),
     PraticienUserId: 3
   }
 ];

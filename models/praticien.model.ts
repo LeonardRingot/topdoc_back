@@ -1,11 +1,8 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/sequelize";
-import { User } from "./users.model";
+
 
 export class Praticien extends Model {
-    static mapToDtoCreate(praticien: Praticien, newUser: User): any {
-        throw new Error("Method not implemented.");
-    }
     UserId!: number
     td_activite!: string
 }

@@ -38,6 +38,8 @@ User.belongsTo(Localisation, { onDelete: 'cascade', hooks: true})
 User.hasOne(Patient, {  onDelete: 'cascade', hooks: true, foreignKey:"UserId" })
 Patient.belongsTo(User, { onDelete: 'cascade', hooks: true, foreignKey:"UserId"})
 
+Praticien.hasOne(Planning, {  onDelete: 'cascade', hooks: true ,  foreignKey:"PraticienUserId"})
+Praticien.belongsTo(Planning, {  onDelete: 'cascade', hooks: true ,  foreignKey:"PraticienUserId"})
 
 User.hasOne(Patient, {  onDelete: 'cascade', hooks: true})
 Patient.belongsTo(User, {onDelete: 'cascade', hooks: true})
@@ -126,7 +128,8 @@ export const initDb = () => {
         })
         planning.map(planning => {
             Planning.create({
-                td_dure_validite:planning.td_dure_validite,
+                PraticienUserId:planning.PraticienUserId,
+                td_planning_name:planning.td_planning_name,
                 td_date_debut:planning.td_date_debut,
                 td_date_fin:planning.td_date_fin,
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))

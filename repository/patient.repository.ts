@@ -11,28 +11,16 @@ import { RoleUser } from "~~/database/connect";
 
 export class PatientRepository implements IRepository<PatientDTO> {
     async findAll(): Promise<PatientDTO[]> {
-        const patients = await Patient.findAll({
-			
-			include: [
-                {
-                model: User,
-                required:true 
-                },{
-                    model:Localisation
-                }
-                
-                
+        try{
+            console.log("ENTRY")
+            return Patient.findAll({ include: [User] }).then((patients: Patient[]) => patients.map((patient: Patient) => PatientMapper.mapToDto(patient)))
 
-            ]
-		});
-        console.log("LES PATIENTS",patients)
-        try {
-			return patients.map((patient) => {
-				return PatientMapper.mapToDto(patient);
-			});
-		} catch (error) {
-			throw new Error();
-		}
+        }catch (err){
+            console.log(err);
+            throw err;
+        }
+        
+       
     }
     async delete(id: number): Promise<number | boolean> {
         return Patient.destroy({ where: { UserId: id } }).then(good => good)

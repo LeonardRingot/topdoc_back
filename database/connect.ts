@@ -1,5 +1,5 @@
-import { sequelize } from './sequelize'
-
+import { sequelize   } from './sequelize'
+import { DataTypes, Sequelize } from "sequelize"
 import { users } from './mock-user'
 import { localisations } from './mock-localisation'
 import { praticien } from './mock-praticien'
@@ -12,7 +12,13 @@ import { conge } from './mock-conge'
 import { plage_horaire } from './mock-plage_horaire'
 import { planning } from './mock-planning'
 
+
+
+import { roleTypes } from "../types/role"
 import { Patient } from "~~/models/patient.model"
+
+import { Role } from '~~/models/role.model'
+
 import { Praticien } from "~~/models/praticien.model"
 import { User } from "~~/models/users.model"
 import { Localisation } from "~~/models/localisation.model"
@@ -21,14 +27,18 @@ import { Conge } from "~~/models/conge.model"
 import { Plage_Horaire } from "~~/models/plage_horaire.model"
 import { Planning } from "~~/models/planning.model"
 import { Rdv } from "~~/models/rdv.model"
-import { Role } from "~~/models/role.model"
+
 import { Token } from "~~/models/token.model"
+import { userTypes } from '~~/types/utilisateur'
+const RoleUserModel = require('../models/roleUsers')
+
 
 sequelize.authenticate()
     .then(() => console.log('Link established'))
     .catch((error: Error) => console.error(`Error: ${error}`)
     )
-
+    export const RoleUser = RoleUserModel(sequelize, DataTypes)
+    
 User.hasOne(Token, { onDelete: 'cascade', hooks: true })
 Token.belongsTo(User, { onDelete: 'cascade', hooks: true })
 
@@ -57,6 +67,9 @@ Rdv.belongsTo(Praticien, {  onDelete: 'cascade', hooks: true, foreignKey:"Pratic
 Planning.hasOne(Plage_Horaire, {  onDelete: 'cascade', hooks: true , foreignKey: 'planningId'})
 Plage_Horaire.belongsTo(Planning, {  onDelete: 'cascade', hooks: true, foreignKey: 'planningId' })
 
+Role.belongsToMany(User, { through: RoleUser })
+User.belongsToMany(Role, { through: RoleUser })
+
 export const initDb = () => {
     return sequelize.sync({ force: true }).then(() =>
      {
@@ -67,12 +80,12 @@ export const initDb = () => {
                 td_city: localisation.td_city
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
-        roles.map(role => {
+        roles.map((role: roleTypes) => {
             Role.create({
                 td_role_nom: role.td_role_nom
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
-        users.map(user => {
+        users.map((user: userTypes, index: number) => {
             User.create({
                 td_lastname:user.td_lastname,
                 td_firstname:user.td_firstname,
@@ -82,7 +95,10 @@ export const initDb = () => {
                 td_isActif: user.td_isActif,
                 td_password: user.td_password,
                 LocalisationId: user.LocalisationId
-            }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
+            }).then(async (req: any) => {
+                        const praticienRole = await Role.findByPk(index + 1);
+                       await req.addRole(praticienRole, { through: RoleUser  })
+            })
         })
         tokens.map(token => {
             Token.create({

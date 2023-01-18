@@ -14,7 +14,7 @@ export class PlanningService implements IService<planningDTO> {
         return this.planningRepository.findAll()
     }
     async findById(id: number): Promise<planningDTO | null> {
-        const data : any = await this.planningRepository.findById(id)
+        /*const data : any = await this.planningRepository.findById(id)
         console.log('nouvelles', data)
         // Congés 
         
@@ -46,7 +46,7 @@ export class PlanningService implements IService<planningDTO> {
 
             const selectedDate = {jour: data.Plage_Horaire[0].td_day, creneaux: CreneauxList}
         }
-
+*/
         return this.planningRepository.findById(id)
     }
 

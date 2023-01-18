@@ -1,5 +1,5 @@
 export interface PatientDTO {
-   
+  UserId:number;
     td_numbervitalCode: string;
     td_lastname:string;
     td_firstname:string;
@@ -8,4 +8,8 @@ export interface PatientDTO {
     td_phone: number;
     td_isActif: boolean;
     td_password: string;   
+    td_address: string,
+    td_zipCode: number,
+    td_city: string; 
+    td_role_nom:string | null;
   }

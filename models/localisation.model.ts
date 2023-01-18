@@ -3,9 +3,9 @@ import { sequelize } from "../database/sequelize";
 
 export class Localisation extends Model {
     id?: number
-    td_address: string
-    td_zipCode: number
-    td_city: string
+    td_address!: string
+    td_zipCode!: number
+    td_city!: string
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`

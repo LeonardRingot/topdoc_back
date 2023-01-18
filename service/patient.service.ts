@@ -1,5 +1,5 @@
 import { PatientDTO } from "../dto/patient.dto";
-import { IRepository } from "../core/repository.interface";
+import { IFullRepository } from "../core/repository.interface";
 import { IService } from "~~/core/service.interface";
 import { Patient } from "../models/patient.model";
 import { User } from "~~/models/users.model";
@@ -8,9 +8,9 @@ import { Localisation } from "~~/models/localisation.model";
 const bcrypt = require("bcrypt");
 export class PatientService implements IService<PatientDTO> {
 
-    private patientRepository: IRepository<PatientDTO>;
+    private patientRepository: IFullRepository<PatientDTO>;
 
-    constructor(_patientRepository : IRepository<PatientDTO>) {
+    constructor(_patientRepository : IFullRepository<PatientDTO>) {
         this.patientRepository = _patientRepository;
     }
     async findAll(): Promise<PatientDTO[]> {

@@ -20,3 +20,10 @@ export interface IRepositoryPlanning<T> {
     update(t: Partial<T>, id: number): Promise<number |boolean>;
     delete(id: number): Promise<number |boolean>;
 }
+export interface IFullRepository<T> {
+	findById(id: number): Promise<T | null>;
+	findAll(options?: any): Promise<T[]>;
+	create(t: T): Promise<T>;
+	update(t: T, id: number): Promise<boolean | number>;
+	delete(id: number): Promise<boolean | number>;
+}

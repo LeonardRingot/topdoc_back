@@ -14,6 +14,7 @@ export class PlanningService implements IService<planningDTO> {
         return this.planningRepository.findAll()
     }
     async findById(id: number): Promise<planningDTO | null> {
+        
         /*const data : any = await this.planningRepository.findById(id)
         console.log('nouvelles', data)
         // Congés 

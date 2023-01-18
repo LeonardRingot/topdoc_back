@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { AuthDTO } from "~~/dto/auth.dto";
 import { userLoginDTO } from "~~/dto/user.dto";
 import {IServiceToken }  from "~~/core/service.interface";
+import { User } from "~~/models/users.model";
+import { Role } from "~~/models/role.model";
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
@@ -29,10 +31,22 @@ export class handlerLogin{
 
         try {
             const user = await this.authservice.findUser(req.body.td_email);
+            // const RoleCheck = User.findAll({ include: [
+            //     {
+            //         model : Role,
+            //         required : false
+            //     }
+            // ]})
             if (user == null) {
                 return res.status(401).json({ userFound: false, message: "utilisateur non trouvé" })
             }
+            
             if (await bcrypt.compare(req.body.td_password, user.td_password)) {
+                // if (user.td_role_nom === 'PATIENT') {
+                //     return res.status(200).json({ successfullLogin: ' connecte en tant que patient'})
+                // } else if (user.td_role_nom === 'PRATICIEN') {
+                //     return res.status(200).json({ successfullLogin: ' connecte en tant que doc'})
+                // }
                 const accessToken = jwt.sign({ name: user.UserId }, process.env.ACCESS_TOKEN_SECRET!, { expiresIn: '15s' })
                 const refreshToken = jwt.sign({ name: user.UserId }, process.env.REFRESH_TOKEN_SECRET!, { expiresIn: '1Y' })
 

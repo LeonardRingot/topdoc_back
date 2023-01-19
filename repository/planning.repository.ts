@@ -10,23 +10,20 @@ export class PlanningRepository implements IRepository<planningDTO> {
         const PlanningFound : any = await Planning.findByPk(id).then((data: Planning | null) => {
             return data
         })
-        console.log('PLANNING TROUVE', PlanningFound)
         
-        const HoursFound = await Plage_Horaire.findAll({
+        const Plage_HoraireFound = await Plage_Horaire.findAll({
             where: {
                 planningId: id
             }
         })
-        console.log('HEURE TROUVE', HoursFound)
-        const HolidaysFound = await Conge.findAll({
+        
+        const CongeFound = await Conge.findAll({
             where: {
                 id: PlanningFound.id
             }
         })
-        console.log('CONGE TROUVE', HolidaysFound)
-        const PlanningBrut = {Planning: PlanningFound, Hours: HoursFound, Holidays: HolidaysFound}
-        console.log('Planning BRUUUUUTT', PlanningBrut)
-        return PlanningBrut as any
+        const MyPlanning = {Planning: PlanningFound, Plage_Horaire: Plage_HoraireFound, Conges: CongeFound}
+        return MyPlanning as any
         
     }
     async findAll(): Promise<Array<planningDTO>> {

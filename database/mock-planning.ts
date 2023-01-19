@@ -1,10 +1,10 @@
 export const planning= [
   {
-    
+    planningId:1,
     td_planning_name: "First Planning",
-    td_date_debut: new Date("2000-06-01"),
-    td_date_fin: new Date("2000-06-30"),
-   // PraticienUserId:3
+    td_startDate: new Date("2023-01-01"),
+    td_endDate: new Date("2023-01-31"),
+   
     
   }
 ];

@@ -43,10 +43,10 @@ User.hasOne(Token, { onDelete: 'cascade', hooks: true })
 Token.belongsTo(User, { onDelete: 'cascade', hooks: true })
 
 Localisation.hasOne(User, {  onDelete: 'cascade', hooks: true })
-User.belongsTo(Localisation, { onDelete: 'cascade', hooks: true})
+User.belongsTo(Localisation, { onDelete: 'cascade', hooks: true, foreignKey:'LocalisationId'})
 
 User.hasOne(Patient, {  onDelete: 'cascade', hooks: true })
-Patient.belongsTo(User, { onDelete: 'cascade', hooks: true})
+Patient.belongsTo(User, { onDelete: 'cascade', hooks: true, foreignKey:'UserId'})
 
 User.hasOne(Praticien, {  onDelete: 'cascade', hooks: true  })
 Praticien.belongsTo(User, {  onDelete: 'cascade', hooks: true })
@@ -54,6 +54,8 @@ Praticien.belongsTo(User, {  onDelete: 'cascade', hooks: true })
 Plage_Horaire.belongsTo(Planning, {  onDelete: 'cascade', hooks: true , foreignKey: 'planningId'})
 Planning.hasMany(Plage_Horaire, {  onDelete: 'cascade', hooks: true, foreignKey: 'planningId' })
 
+// Planning.belongsTo(Praticien, {  onDelete: 'cascade', hooks: true, foreignKey: 'planningId' })
+// Praticien.hasMany(Planning, {  onDelete: 'cascade', hooks: true , foreignKey: 'planningId'})
 
 Conge.belongsTo(Praticien, {  onDelete: 'cascade', hooks: true ,  foreignKey:"PraticienUserId"})
 Praticien.hasMany(Conge, {  onDelete: 'cascade', hooks: true ,  foreignKey:"PraticienUserId"})
@@ -115,8 +117,9 @@ export const initDb = () => {
         praticien.map(praticien=> {
             Praticien.create({
                 UserId:praticien.UserId,
+                planningId:praticien.planningId,
                 td_activite: praticien.td_activite,
-                planningId:praticien.planningId
+                
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         rdvs.map(rdv=> {
@@ -136,24 +139,24 @@ export const initDb = () => {
         conge.map((conge, index:number) => {
             Conge.create({
                 PraticienUserId:conge.PraticienUserId,
-                td_debut_conge: conge.td_debut_conge,
-                td_fin_conge: conge.td_fin_conge,
+                td_startDate: conge.td_startDate,
+                td_endDate: conge.td_endDate,
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         planning.map(planning => {
             Planning.create({
-                //PraticienUserId:planning.PraticienUserId,
+                planningId:planning.planningId,
                 td_planning_name:planning.td_planning_name,
-                td_date_debut:planning.td_date_debut,
-                td_date_fin:planning.td_date_fin,
+                td_startDate:planning.td_startDate,
+                td_endDate:planning.td_endDate,
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         plage_horaire.map(plage_horaire => {
             Plage_Horaire.create({
-               planningId:plage_horaire.planningId,
+                planningId:plage_horaire.planningId,
                 td_day:plage_horaire.td_day,
-                td_debut_jour:plage_horaire.td_debut_jour,
-                td_fin_jour:plage_horaire.td_fin_jour,
+                td_StartHour:plage_horaire.td_StartHour,
+                td_EndHour:plage_horaire.td_EndHour,
                 td_duree_horaire:plage_horaire.td_duree_horaire,
                
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))

@@ -15,10 +15,44 @@ export class PraticienRepository implements IRepository<praticienDTO> {
         return Praticien.destroy({ where: { UserId: id } }).then(good => good)
     }
     async findById(id: number): Promise<praticienDTO | null> {
-        return Praticien.findByPk(id, { include: [User] }).then(praticien => PraticienMapper.mapToDto(praticien))
+        return Praticien.findByPk(id, { include: [
+            {
+                model: User,
+                required: false,
+                attributes: {exclude: ['td_password']},
+                include: [
+                    {
+                        model: Localisation,
+                        
+                    },
+                    {
+                        model: Role,
+                        
+                    }
+                ]
+            }
+        ] }).then(praticien => PraticienMapper.mapToDto(praticien))
     }
     async findAll(): Promise<praticienDTO[]> {
-        return Praticien.findAll({ include: [User] }).then((praticien: Praticien[]) => praticien.map((praticien: Praticien) => PraticienMapper.mapToDto(praticien)))
+        return Praticien.findAll({
+            include: [
+                {
+                    model: User,
+                    required: false,
+                    attributes: {exclude: ['td_password']},
+                    include: [
+                        {
+                            model: Localisation,
+                            
+                        },
+                        {
+                            model: Role,
+                            //through:RoleUser
+                        }
+                    ]
+                }
+            ]
+          }).then((praticien: Praticien[]) => praticien.map((praticien: Praticien) => PraticienMapper.mapToDto(praticien)))
     }
     async update(data: praticienDTO & User, id: number): Promise<number | boolean> {
         const userInfo = {

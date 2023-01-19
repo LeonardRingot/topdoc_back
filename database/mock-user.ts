@@ -25,8 +25,8 @@ export const users: userTypes[] = [
   },
   {
     //UserId:3,
-    td_lastname:'DOC&',
-    td_firstname:'JESUISDOC1',
+    td_lastname:'Dupres',
+    td_firstname:'LeDocteur',
     td_birthday: new Date("2000-06-23"),
     td_email: "docteur@gmail.com",
     td_phone: 782361185,

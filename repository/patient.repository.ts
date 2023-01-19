@@ -13,7 +13,25 @@ export class PatientRepository implements IRepository<PatientDTO> {
     async findAll(): Promise<PatientDTO[]> {
         try{
             console.log("ENTRY")
-            return Patient.findAll({ include: [User] }).then((patients: Patient[]) => patients.map((patient: Patient) => PatientMapper.mapToDto(patient)))
+            return Patient.findAll({
+                include: [
+                    {
+                        model: User,
+                        required: false,
+                        attributes: {exclude: ['td_password']},
+                        include: [
+                            {
+                                model: Localisation,
+                                
+                            },
+                            {
+                                model: Role,
+                                through:RoleUser
+                            }
+                        ]
+                    }
+                ]
+              }).then((patients: Patient[]) => patients.map((patient: Patient) => PatientMapper.mapToDto(patient)))
 
         }catch (err){
             console.log(err);
@@ -26,7 +44,23 @@ export class PatientRepository implements IRepository<PatientDTO> {
         return Patient.destroy({ where: { UserId: id } }).then(good => good)
     }
     async findById(id: number): Promise<PatientDTO | null> {
-        return Patient.findByPk(id, { include: [User] }).then(patient => PatientMapper.mapToDto(patient))
+        return Patient.findByPk(id, { include: [
+            {
+                model: User,
+                required: false,
+                attributes: {exclude: ['td_password']},
+                include: [
+                    {
+                        model: Localisation,
+                        
+                    },
+                    {
+                        model: Role,
+                        
+                    }
+                ]
+            }
+        ] }).then(patient => PatientMapper.mapToDto(patient))
     }
     async update(data: PatientDTO & User, id: number): Promise<number | boolean> {
         const userInfo = {
@@ -102,7 +136,7 @@ export class PatientRepository implements IRepository<PatientDTO> {
                 {
                 UserId: newUser.id,
                 RoleRoleId: patientRole ? patientRole.RoleId:null,
-                
+                //td_role_nom:patientRole ?patientRole.td_role_nom:null
                 },
                 {
                 transaction: t,
@@ -130,7 +164,7 @@ export class PatientRepository implements IRepository<PatientDTO> {
 					td_zipCode: newLocation.td_zipCode,
 					td_city: newLocation.td_city,
 					td_numbervitalCode: newPatient.td_numbervitalCode,
-                    td_role_nom:patientRole ?patientRole.td_role_nom:null
+                    td_role_nom:newRole.td_role_nom
 				};
                 await t.commit();
                 console.log("NEW ROLE",patientRole)

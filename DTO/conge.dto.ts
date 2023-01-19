@@ -1,4 +1,4 @@
 export interface congeDTO {
-    td_debut_conge: Date;
-    td_fin_conge: Date;
+    td_startDate: Date;
+    td_endDate: Date;
   }

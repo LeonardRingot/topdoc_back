@@ -5,8 +5,8 @@ export class CongeMapper {
     static mapToDto(conge: Conge | null): congeDTO  {
         if (conge === null) return null as any;
         return {
-            td_debut_conge: conge.td_debut_conge,
-            td_fin_conge: conge.td_fin_conge,
+            td_startDate: conge.td_startDate,
+            td_endDate: conge.td_endDate,
         }
     }
 }

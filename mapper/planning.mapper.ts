@@ -7,8 +7,8 @@ export class PlanningMapper {
         if (planning === null) return null as any;
         return {
             td_planning_name: planning.td_planning_name,
-            td_date_debut: planning.td_date_debut,
-            td_date_fin: planning.td_date_fin,
+            td_startDate: planning.td_startDate,
+            td_endDate: planning.td_endDate,
         }
     }
 

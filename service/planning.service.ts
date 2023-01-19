@@ -14,40 +14,40 @@ export class PlanningService implements IService<planningDTO> {
         return this.planningRepository.findAll()
     }
     async findById(id: number): Promise<planningDTO | null> {
-        
-        /*const data : any = await this.planningRepository.findById(id)
-        console.log('nouvelles', data)
-        // Congés 
-        
+        const data:any = await this.planningRepository.findById(id)
 
+        // Gesttion des congés
         const td_day = new Date()
-
-        if (td_day >= new Date(data.Conge[0].td_debut_conge) && td_day <= new Date(data.Conge[0].td_fin_conge)) {
-            console.log('IL EST EN CONGE')
-            const holiday = {date: td_day, holiday: true}
-        }
-        else {
-
-            // Créneaux
-            
-            const minutesTotales = (data.Plage_Horaire[0].td_fin_jour.getTime() - data.Plage_Horaire[0].td_debut_jour.getTime()) / (1000 * 60)
-            const nbCreneaux = Math.floor(minutesTotales / data.Plage_Horaire[0].td_duree_horaire)
-    
-            const CreneauxList = []
-            
-            for (let i = 0; i < nbCreneaux; i++) {
-                const td_debut_jour = new Date(data.Plage_Horaire[0].td_debut_jour.getTime() + ((data.Plage_Horaire[0].td_duree_horaire * (1000 * 60)) * i)).toLocaleTimeString()
-                const td_fin_jour = new Date(data.Plage_Horaire[0].td_debut_jour.getTime() + ((data.Plage_Horaire[0].td_duree_horaire * (1000 * 60)) * (i + 1))).toLocaleTimeString()
-                
-                const newCreneau = {td_debut_jour: td_debut_jour, td_fin_jour: td_fin_jour}
-    
-                CreneauxList.push(newCreneau)
-               
+        console.log('c passé ')
+        if(
+            td_day >= new Date(data.Conges[0].td_startDate) && td_day <= new Date(data.Conges[0].td_endDate))
+            {
+               const conge = {date:td_day, conge:true}
+               console.log('praticien en congé')
             }
+           
+        else{
+            //gestion des creneaux
+            const minutesTotales = (data.Plage_Horaire[0].td_EndHour.getTime() - data.Plage_Horaire[0].td_StartHour.getTime())/(1000 * 60)
+            const nbCreneaux = Math.floor(minutesTotales/data.Plage_Horaire[0].td_duree_horaire)
+            console.log(minutesTotales)
+            console.log("nbre de creneaux",nbCreneaux)
+            const ListCreneux =[]
+            for (let i =0; i < nbCreneaux;i++)
+            {
+                const StartHour = new Date(data.Plage_Horaire[0].td_StartHour.getTime()+ ((data.Plage_Horaire[0].td_duree_horaire * (1000  * 60))*i)).toLocaleTimeString()
+                const EndHour = new Date(data.Plage_Horaire[0].td_StartHour.getTime()+ ((data.Plage_Horaire[0].td_duree_horaire * (1000  * 60))*(i+1))).toLocaleTimeString()
 
-            const selectedDate = {jour: data.Plage_Horaire[0].td_day, creneaux: CreneauxList}
+                const newCreneaux = {td_StartHour: StartHour, td_endHour:EndHour}
+                ListCreneux.push(newCreneaux)
+                console.log(ListCreneux)
+            }
+           
         }
-*/
+                
+
+            
+        
         return this.planningRepository.findById(id)
     }
 

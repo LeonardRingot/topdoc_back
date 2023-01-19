@@ -3,7 +3,7 @@ import { Praticien } from "../models/praticien.model";
 import { User } from "~~/models/users.model";
 import { Localisation } from "~~/models/localisation.model";
 import { Role } from "~~/models/role.model";
-import { roleController } from "~~/controllers/roleController";
+
 
 export class PraticienMapper {
     static mapToDto(praticien: Praticien | null): praticienDTO {
@@ -18,10 +18,10 @@ export class PraticienMapper {
             td_phone: praticien.get({ plain: true }).User.td_phone,
             td_isActif:praticien.get({ plain: true }).User.td_isActif,
             td_password:praticien.get({ plain: true }).User.td_password,
-            td_address: praticien.get({ plain: true }).User.localisation.td_address,
-			td_city: praticien.get({ plain: true }).User.localisation.td_city,
-            td_zipCode: praticien.get({ plain: true }).User.localisation.td_zipCode,
-            td_role_nom:praticien.get({ plain: true }).User.role.td_role_nom,
+            td_address: praticien.get({ plain: true }).User.Localisation.td_address,
+			td_city: praticien.get({ plain: true }).User.Localisation.td_city,
+            td_zipCode: praticien.get({ plain: true }).User.Localisation.td_zipCode,
+            td_role_nom:praticien.get({ plain: true }).User.Roles.td_role_nom,
         }
     }
 

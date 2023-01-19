@@ -1,7 +1,14 @@
+import { congeDTO } from "./conge.dto";
 export interface planningDTO {
   td_planning_name:string;
-    td_date_debut: Date;
-    td_date_fin: Date; 
+  td_startDate: Date;
+  td_endDate: Date; 
+    Conges ? :congeDTO[];
     //PraticienUserId:number;
   }
-  
+  export interface planningDTOCongeLink{
+    td_planning_name:string;
+    td_startDate: Date;
+    td_endDate: Date; 
+    
+  }

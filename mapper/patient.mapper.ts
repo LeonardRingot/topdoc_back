@@ -19,11 +19,13 @@ export class PatientMapper {
             td_phone:patient.get({ plain: true }).User.td_phone,
             td_isActif:patient.get({ plain: true }).User.td_isActif,
             td_password: patient.get({ plain: true }).User.td_password,
-            td_address: 'patient.get({ plain: true }).User.localisation.td_address',
-			td_city: 'patient.get({ plain: true }).User.localisation.td_city',
-            td_zipCode: 1, //'patient.get({ plain: true }).User.localisation.td_zipCode',
-            td_role_nom:'patient.get({ plain: true }).User.role.td_role_nom',
+            td_address: patient.get({ plain: true }).User.Localisation.td_address,
+			td_city: patient.get({ plain: true }).User.Localisation.td_city,
+            td_zipCode: patient.get({ plain: true }).User.Localisation.td_zipCode,
+            td_role_nom:patient.get({ plain: true }).User.Roles.td_role_nom,
+            
         }
+        
     }
 
     static mapToDtoCreate(patient: Patient, user:User, localisation:Localisation, role:Role): PatientDTO {

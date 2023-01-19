@@ -2,8 +2,8 @@ import { DataTypes, Model } from "sequelize"
 import { sequelize } from "../database/sequelize";
 
 export class Conge extends Model {
-    td_debut_conge!: Date
-    td_fin_conge!: Date
+    td_startDate!: Date
+    td_endDate!: Date
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
@@ -14,7 +14,7 @@ Conge.init( {
         autoIncrement: true,
         primaryKey: true
     },
-        td_debut_conge: {
+    td_startDate: {
             type: DataTypes.DATE,
             allowNull: false,
             validate: {
@@ -23,7 +23,7 @@ Conge.init( {
             }
             
         },
-        td_fin_conge: {
+        td_endDate: {
             type: DataTypes.DATE,
             allowNull: false,
             validate: {

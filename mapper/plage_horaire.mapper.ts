@@ -6,8 +6,8 @@ export class PlageHoraireMapper {
         if (plage_horaire === null) return null as any;
         return {
             td_day:plage_horaire.td_day,
-            td_debut_jour:plage_horaire.td_debut_jour,
-            td_fin_jour:plage_horaire.td_fin_jour,
+            td_StartHour:plage_horaire.td_StartHour,
+            td_EndHour:plage_horaire.td_EndHour,
             td_duree_horaire:plage_horaire.td_duree_horaire,
         }
     }

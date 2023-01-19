@@ -2,10 +2,9 @@ import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/sequelize";
 
 export class Planning extends Model {
-   
     td_planning_name!: string
-    td_date_debut!: Date
-    td_date_fin!: Date
+    td_startDate!: Date
+    td_endDate!: Date
     
 }
 const concatRequiredMessage = (data: string) => {
@@ -14,11 +13,7 @@ const concatRequiredMessage = (data: string) => {
  Planning.init(
     
 {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-    },
+    
     td_planning_name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -27,7 +22,7 @@ const concatRequiredMessage = (data: string) => {
             notEmpty: { msg: concatRequiredMessage('Planning name') }
         }
     },
-    td_date_debut: {
+    td_startDate: {
             type: DataTypes.DATE,
             allowNull: false,
             validate: {
@@ -36,7 +31,7 @@ const concatRequiredMessage = (data: string) => {
             }
             
         },
-        td_date_fin: {
+        td_endDate: {
             type: DataTypes.DATE,
             allowNull: false,
             validate: {

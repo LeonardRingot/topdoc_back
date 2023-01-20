@@ -118,7 +118,8 @@ export class PraticienRepository implements IRepository<praticienDTO> {
                               password:data.password,
                               phone: data.phone,
                               isActif:data.isActif,
-                              role_nom:praticienRole ? praticienRole.role_nom : null,     
+                              role_nom:praticienRole ? praticienRole.role_nom : null, 
+                              LocalisationId:newLocation.id    
 				},
 				{
 					transaction: t,
@@ -157,6 +158,7 @@ export class PraticienRepository implements IRepository<praticienDTO> {
 					city: newLocation.city,
 					activite: newPraticien.activite,
                     role_nom:praticienRole ? praticienRole.role_nom : null
+                    
                     
 				};
                 console.log("le role",praticienRole)

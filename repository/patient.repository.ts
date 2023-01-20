@@ -41,7 +41,8 @@ export class PatientRepository implements IRepository<PatientDTO> {
        
     }
     async delete(id: number): Promise<number | boolean> {
-        return Patient.destroy({ where: { UserId: id } }).then(good => good)
+        return  Patient.destroy({ where: { UserId: id } }).then(good => good)
+        
     }
     async findById(id: number): Promise<PatientDTO | null> {
         return Patient.findByPk(id, { include: [
@@ -126,6 +127,7 @@ export class PatientRepository implements IRepository<PatientDTO> {
                               phone: data.phone,
                               isActif:data.isActif,
                               role_nom:patientRole ? patientRole.role_nom : null,
+                              LocalisationId:newLocation.id
 				},
 				{
 					transaction: t,

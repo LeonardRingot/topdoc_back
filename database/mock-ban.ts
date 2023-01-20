@@ -1,11 +1,11 @@
 export const bans= [
     {
-        td_ban_raison: "INSULTES",
+        ban_raison: "INSULTES",
     },
     {
-        td_ban_raison: "VIOLENCE",
+        ban_raison: "VIOLENCE",
     },
     {
-        td_ban_raison: "NON PAYEE",
+        ban_raison: "NON PAYEE",
     },
 ];

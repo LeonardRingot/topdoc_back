@@ -1,7 +1,7 @@
 export interface planningTypes {
-    td_planning_name:string;
-    td_startDate: Date;
-    td_endDate: Date; 
+    planning_name:string;
+    startDate: Date;
+    endDate: Date; 
     planningId:number;
 }
 export interface planningId extends planningTypes {

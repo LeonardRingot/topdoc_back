@@ -28,7 +28,7 @@ const concatRequiredMessage = (data: string) => {
 {
     sequelize,
     freezeTableName: true,
-    tableName: "Token",
+    tableName: "td_Token",
 }
 );
 

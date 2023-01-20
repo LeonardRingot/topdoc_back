@@ -48,7 +48,7 @@ congeController.get('/:id',congeHandler.getCongeById)
   *         in: body
   *         required: true
   *         type: object
-  *         default: { "td_debut_conge": "2026-12-01", "td_fin_conge": "2026-12-25", "PraticienUserId":"2" }
+  *         default: { "startDate": "2026-12-01", "endDate": "2026-12-25", "PraticienUserId":"2" }
   *      responses:
   *        200:
   *          description: Create a new ban.

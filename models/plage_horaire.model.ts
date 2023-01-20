@@ -3,10 +3,10 @@ import { sequelize } from "../database/sequelize";
 
 export class Plage_Horaire extends Model{
 
-    td_day!:string
-    td_StartHour!:Date
-    td_EndHour!:Date
-    td_duree_horaire!:number
+    jour!:string
+    StartHour!:Date
+    EndHour!:Date
+    duree_horaire!:number
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
@@ -17,7 +17,7 @@ const concatRequiredMessage = (data: string) => {
             autoIncrement: true,
             primaryKey: true,
         },
-        td_day: {
+        jour: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -25,7 +25,7 @@ const concatRequiredMessage = (data: string) => {
                 notEmpty: { msg: concatRequiredMessage('le jour') }
             }
         },
-        td_StartHour: {
+        StartHour: {
             type: DataTypes.DATE,
             allowNull: false,
             validate: {
@@ -33,7 +33,7 @@ const concatRequiredMessage = (data: string) => {
                 notEmpty: { msg: concatRequiredMessage('td_StartHour date') }
             }
         },
-        td_EndHour: {
+        EndHour: {
             type: DataTypes.DATE,
             allowNull: false,
             validate: {
@@ -41,7 +41,7 @@ const concatRequiredMessage = (data: string) => {
                 notEmpty: { msg: concatRequiredMessage('td_EndHour date') }
             }
         },
-        td_duree_horaire: {
+        duree_horaire: {
             type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
@@ -54,7 +54,7 @@ const concatRequiredMessage = (data: string) => {
     {
         sequelize,
         freezeTableName: true,
-        tableName: "Plage_Horaire",
+        tableName: "td_Plage_Horaire",
     }
 );
 

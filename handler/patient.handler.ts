@@ -36,7 +36,7 @@ export class PatientHandler {
 
     createPatient = async (req: Request, res: Response) => {
         try {
-            if (!req.body.td_password) return res.status(400).json({
+            if (!req.body.password) return res.status(400).json({
                 message: "Password required.",
             });
             const result = await this.patientService.create(req.body)

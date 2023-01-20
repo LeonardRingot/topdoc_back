@@ -5,10 +5,10 @@ export class PlageHoraireMapper {
     static mapToDto(plage_horaire: Plage_Horaire | null): plageHoraireDTO  {
         if (plage_horaire === null) return null as any;
         return {
-            td_day:plage_horaire.td_day,
-            td_StartHour:plage_horaire.td_StartHour,
-            td_EndHour:plage_horaire.td_EndHour,
-            td_duree_horaire:plage_horaire.td_duree_horaire,
+            jour:plage_horaire.jour,
+            StartHour:plage_horaire.StartHour,
+            EndHour:plage_horaire.EndHour,
+            duree_horaire:plage_horaire.duree_horaire,
         }
     }
 

@@ -48,7 +48,7 @@ planningController.get('/:id',planningHandler.getPlanningById)
   *         in: body
   *         required: true
   *         type: object
-  *         default: { "td_planning_name": "2nd Planning", "td_date_debut": "2023-07-01T00:00:00.000Z", "td_date_fin": "2023-07-30T00:00:00.000Z" }
+  *         default: { "planning_name": "2nd Planning", "startDate": "2023-07-01T00:00:00.000Z", "endDate": "2023-07-30T00:00:00.000Z" }
   *      responses:
   *        200:
   *          description: Create a new localisation.

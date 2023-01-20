@@ -2,7 +2,7 @@ export interface IServiceToken<T, D>{
     findToken(t: string): Promise<T | null>;
     create(t: Omit<T, 'id'>): Promise<T | null>;
     update(t: Partial<T>, id: number): Promise<number |boolean>;
-    findUser(td_email: string): Promise<D | null>;
+    findUser(email: string): Promise<D | null>;
     findID(id: number): Promise<D | null>; 
 }
 export interface IService<T> {

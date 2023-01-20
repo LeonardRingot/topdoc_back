@@ -18,7 +18,7 @@ export class PatientRepository implements IRepository<PatientDTO> {
                     {
                         model: User,
                         required: false,
-                        attributes: {exclude: ['td_password']},
+                        attributes: {exclude: ['password']},
                         include: [
                             {
                                 model: Localisation,
@@ -48,7 +48,7 @@ export class PatientRepository implements IRepository<PatientDTO> {
             {
                 model: User,
                 required: false,
-                attributes: {exclude: ['td_password']},
+                attributes: {exclude: ['password']},
                 include: [
                     {
                         model: Localisation,
@@ -64,17 +64,17 @@ export class PatientRepository implements IRepository<PatientDTO> {
     }
     async update(data: PatientDTO & User, id: number): Promise<number | boolean> {
         const userInfo = {
-            td_numbervitalCode:data.td_numbervitalCode,
-             td_lastname:data.td_lastname,
-             td_firstname:data.td_firstname,
-             td_birthday:data.td_birthday,
-             td_email:data.td_email,
-             td_password:data.td_password,
-             td_phone: data.td_phone,
-             td_isActif:data.td_isActif
+            numbervitalCode:data.numbervitalCode,
+             lastname:data.lastname,
+             firstname:data.firstname,
+             birthday:data.birthday,
+             email:data.email,
+             password:data.password,
+             phone: data.phone,
+             isActif:data.isActif
          }
          const patientUser = {
-             td_numbervitalCode:data.td_numbervitalCode
+             numbervitalCode:data.numbervitalCode
          }
          try {
             return await sequelize.transaction(async (t) => {
@@ -104,9 +104,9 @@ export class PatientRepository implements IRepository<PatientDTO> {
         try {
 			const newLocation = await Localisation.create(
 				{
-					td_address: data.td_address,
-					td_zipCode: data.td_zipCode,
-					td_city: data.td_city,
+					address: data.address,
+					zipCode: data.zipCode,
+					city: data.city,
 				},
 				{
 					transaction: t,
@@ -118,14 +118,14 @@ export class PatientRepository implements IRepository<PatientDTO> {
 				const newUser = await User.create(
 					{
                        
-                              td_lastname:data.td_lastname,
-                               td_firstname:data.td_firstname,
-                              td_birthday:data.td_birthday,
-                               td_email:data.td_email,
-                              td_password:data.td_password,
-                              td_phone: data.td_phone,
-                              td_isActif:data.td_isActif,
-                              td_role_nom:patientRole ? patientRole.td_role_nom : null,
+                             lastname:data.lastname,
+                               firstname:data.firstname,
+                              birthday:data.birthday,
+                               email:data.email,
+                              password:data.password,
+                              phone: data.phone,
+                              isActif:data.isActif,
+                              role_nom:patientRole ? patientRole.role_nom : null,
 				},
 				{
 					transaction: t,
@@ -136,7 +136,6 @@ export class PatientRepository implements IRepository<PatientDTO> {
                 {
                 UserId: newUser.id,
                 RoleRoleId: patientRole ? patientRole.RoleId:null,
-                //td_role_nom:patientRole ?patientRole.td_role_nom:null
                 },
                 {
                 transaction: t,
@@ -145,7 +144,7 @@ export class PatientRepository implements IRepository<PatientDTO> {
             const newPatient = await Patient.create(
 				{
 					UserId: newUser.id,
-                    td_numbervitalCode:data.td_numbervitalCode,
+                    numbervitalCode:data.numbervitalCode,
 				},
 				{
 					transaction: t,
@@ -153,18 +152,18 @@ export class PatientRepository implements IRepository<PatientDTO> {
 				);
                 const result: PatientDTO = {
 					UserId: newUser.id,
-					td_firstname: newUser.td_firstname,
-					td_lastname: newUser.td_lastname,
-					td_birthday: newUser.td_birthday,
-					td_email: newUser.td_email,
-					td_password: newUser.td_password,
-					td_phone: newUser.td_phone,
-                    td_isActif:newUser.td_isActif,
-                    td_address: newLocation.td_address,
-					td_zipCode: newLocation.td_zipCode,
-					td_city: newLocation.td_city,
-					td_numbervitalCode: newPatient.td_numbervitalCode,
-                    td_role_nom:newRole.td_role_nom
+					firstname: newUser.firstname,
+					lastname: newUser.lastname,
+					birthday: newUser.birthday,
+					email: newUser.email,
+					password: newUser.password,
+					phone: newUser.phone,
+                   isActif:newUser.isActif,
+                  address: newLocation.address,
+					zipCode: newLocation.zipCode,
+					city: newLocation.city,
+					numbervitalCode: newPatient.numbervitalCode,
+                    role_nom:newRole.role_nom
 				};
                 await t.commit();
                 console.log("NEW ROLE",patientRole)
@@ -174,34 +173,4 @@ export class PatientRepository implements IRepository<PatientDTO> {
 				throw err;
 			}
         }
-    //    const userInfo = {
-    //      td_numbervitalCode:data.td_numbervitalCode,
-    //      td_lastname:data.td_lastname,
-    //      td_firstname:data.td_firstname,
-    //      td_birthday:data.td_birthday,
-    //      td_email:data.td_email,
-    //      td_password:data.td_password,
-    //      td_phone: data.td_phone,
-    //      td_isActif:data.td_isActif
-    //  }
-    //  const patientUser = {
-    //      td_numbervitalCode:data.td_numbervitalCode
-    //  }
-    //     try {
-    //         return  await sequelize.transaction(async (t) =>
-    //         {
-    //             const newUser = await User.create(userInfo,  { transaction: t }
-    //         )
-    //         return Patient.create
-    //         (
-    //             { ...patientUser, UserId: newUser.id },
-    //             { transaction: t }
-    //         )
-    //             .then((patient: Patient) => PatientMapper.mapToDtoCreate(patient, newUser))
-    //         })
-    //     }catch (error: any) {
-    //         console.log(error)
-    //         return null as any
-    //     }
-    // }
 }

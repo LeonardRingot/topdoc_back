@@ -3,7 +3,7 @@ export interface TokenDTO {
    UserId:number
 }
 export interface Payload {
-    td_lastname: string,
-    td_firstname: string,
+    lastname: string,
+    firstname: string,
     UserId:string
 }

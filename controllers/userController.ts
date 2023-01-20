@@ -21,7 +21,7 @@ export const userController = Router();
   *         in: body
   *         required: true
   *         type: object
-  *         default: {"users":{"td_email":"test@mail.com", "td_password":"string","td_phone":90, "td_isActif": true }}
+  *         default: {"users":{"email":"test@mail.com", "password":"string","phone":90, "isActif": true }}
   *      responses:
   *        200:
   *          description: Create a new User.
@@ -87,7 +87,7 @@ userController.delete('/:id',userHandler.deleteUser)
   *         in: body
   *         required: true
   *         type: object
-  *         default: {    "td_firstname": "a", "td_lastname": "a", "td_birthday": "1999-01-25", "td_email":"pitie@gmail.com", "td_password":"oui", "td_phone":"65", "td_isActif":true}
+  *         default: {    "firstname": "a", "lastname": "a", "birthday": "1999-01-25", "email":"pitie@gmail.com", "password":"oui", "phone":"65", "isActif":true}
   *      responses:
   *        200:
   *          description: Update the user of given id.

@@ -3,9 +3,9 @@ import { sequelize } from "../database/sequelize";
 
 export class Localisation extends Model {
     id?: number
-    td_address!: string
-    td_zipCode!: number
-    td_city!: string
+    address!: string
+    zipCode!: number
+    city!: string
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
@@ -16,7 +16,7 @@ const concatRequiredMessage = (data: string) => {
             autoIncrement: true,
             primaryKey: true
         },
-        td_address: {
+        address: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -24,18 +24,18 @@ const concatRequiredMessage = (data: string) => {
                 notEmpty: { msg: concatRequiredMessage('address') }
             }
         },
-        td_zipCode: {
+        zipCode: {
             type: DataTypes.INTEGER,
              allowNull: false
         },
-        td_city: {
+        city: {
             type: DataTypes.STRING,
             allowNull: false
         }
         },{
         sequelize,
-        modelName:'Localisation',
-        tableName:'Localisation',
-        timestamps:false,
-         freezeTableName: true
+        //modelName:'td_Localisation',
+        tableName:'td_Localisation',
+        // timestamps:false,
+        //  freezeTableName: true
 });

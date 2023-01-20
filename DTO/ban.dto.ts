@@ -1,4 +1,4 @@
 export interface bansDTO {
-    td_ban_raison: string
+    ban_raison: string
     }
     

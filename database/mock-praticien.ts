@@ -1,7 +1,7 @@
 export const praticien = [
   {
     UserId: 3,
-    td_activite: "Dentiste",
+    activite: "Dentiste",
     planningId:1
   }
 ];

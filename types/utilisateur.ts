@@ -1,12 +1,11 @@
 export interface userTypes {
-  //UserId: number;
-  td_lastname:string;
-  td_firstname:string;
-  td_birthday: Date;
-  td_email: string;
-  td_phone: number;
-  td_isActif: boolean;
-  td_password: string;
+  lastname:string;
+  firstname:string;
+  birthday: Date;
+  email: string;
+  phone: number;
+  isActif: boolean;
+  password: string;
   LocalisationId: number;
 }
 export interface userId extends userTypes {

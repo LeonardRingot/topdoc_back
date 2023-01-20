@@ -11,18 +11,18 @@ export class PatientMapper {
         console.log(patient)
         return {
            UserId:patient.UserId,
-           td_numbervitalCode:patient.td_numbervitalCode,
-           td_lastname:patient.get({ plain: true }).User.td_lastname,
-           td_firstname:patient.get({ plain: true }).User.td_firstname,
-           td_birthday:patient.get({ plain: true }).User.td_birthday,
-            td_email:patient.get({ plain: true }).User.td_email,
-            td_phone:patient.get({ plain: true }).User.td_phone,
-            td_isActif:patient.get({ plain: true }).User.td_isActif,
-            td_password: patient.get({ plain: true }).User.td_password,
-            td_address: patient.get({ plain: true }).User.Localisation.td_address,
-			td_city: patient.get({ plain: true }).User.Localisation.td_city,
-            td_zipCode: patient.get({ plain: true }).User.Localisation.td_zipCode,
-            td_role_nom:patient.get({ plain: true }).User.Roles.td_role_nom,
+           numbervitalCode:patient.numbervitalCode,
+           lastname:patient.get({ plain: true }).User.lastname,
+           firstname:patient.get({ plain: true }).User.firstname,
+           birthday:patient.get({ plain: true }).User.birthday,
+            email:patient.get({ plain: true }).User.email,
+            phone:patient.get({ plain: true }).User.phone,
+            isActif:patient.get({ plain: true }).User.isActif,
+            password: patient.get({ plain: true }).User.password,
+            address: patient.get({ plain: true }).User.Localisation.address,
+			city: patient.get({ plain: true }).User.Localisation.city,
+            zipCode: patient.get({ plain: true }).User.Localisation.zipCode,
+            role_nom:patient.get({ plain: true }).User.Roles.role_nom,
             
         }
         
@@ -32,18 +32,18 @@ export class PatientMapper {
         
             return  {
               UserId:patient.UserId,
-               td_numbervitalCode:patient.td_numbervitalCode,
-                td_lastname:user.td_lastname,
-                td_firstname:user.td_firstname,
-                td_birthday:user.td_birthday,
-                 td_email:user.td_email ,
-                 td_phone: user.td_phone,
-                 td_isActif:user.td_isActif ,
-                 td_password: user.td_password,
-                 td_address: localisation.td_address,
-                 td_city: localisation.td_city,
-                 td_zipCode: localisation.td_zipCode,
-                 td_role_nom:role.td_role_nom
+               numbervitalCode:patient.numbervitalCode,
+                lastname:user.lastname,
+                firstname:user.firstname,
+                birthday:user.birthday,
+                 email:user.email ,
+                 phone: user.phone,
+                 isActif:user.isActif ,
+                 password: user.password,
+                 address: localisation.address,
+                 city: localisation.city,
+                 zipCode: localisation.zipCode,
+                 role_nom:role.role_nom
             }
         
     }

@@ -77,25 +77,25 @@ export const initDb = () => {
      {
         localisations.map(localisation => {
             Localisation.create({
-                td_address: localisation.td_address,
-                td_zipCode: localisation.td_zipCode,
-                td_city: localisation.td_city
+                address: localisation.address,
+                zipCode: localisation.zipCode,
+                city: localisation.city
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         roles.map((role: roleTypes) => {
             Role.create({
-                td_role_nom: role.td_role_nom
+                role_nom: role.role_nom
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         users.map((user: userTypes, index: number) => {
             User.create({
-                td_lastname:user.td_lastname,
-                td_firstname:user.td_firstname,
-                td_birthday:user.td_birthday,
-                td_email: user.td_email,
-                td_phone: user.td_phone,
-                td_isActif: user.td_isActif,
-                td_password: user.td_password,
+                lastname:user.lastname,
+                firstname:user.firstname,
+                birthday:user.birthday,
+                email: user.email,
+                phone: user.phone,
+                isActif: user.isActif,
+                password: user.password,
                 LocalisationId: user.LocalisationId
             }).then(async (req: any) => {
                         const praticienRole = await Role.findByPk(index + 1);
@@ -110,7 +110,7 @@ export const initDb = () => {
         })
         patients.map((patient,index: number) =>{
             Patient.create({
-                td_numbervitalCode: patient.td_numbervitalCode,
+                numbervitalCode: patient.numbervitalCode,
                 UserId:index+1
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
@@ -118,7 +118,7 @@ export const initDb = () => {
             Praticien.create({
                 UserId:praticien.UserId,
                 planningId:praticien.planningId,
-                td_activite: praticien.td_activite,
+                activite: praticien.activite,
                 
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
@@ -126,38 +126,38 @@ export const initDb = () => {
             Rdv.create({
                 PraticienUserId:rdv.PraticienUserId,
                 PatientUserId:rdv.PatientUserId,
-                td_date_rendez_vous: rdv.td_date_rendez_vous,
-                td_motif:rdv.td_motif,
-                td_duree_rdv:rdv.td_duree_rdv
+                date_rendez_vous: rdv.date_rendez_vous,
+                motif:rdv.motif,
+                duree_rdv:rdv.duree_rdv
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         bans.map(bans=> {
             Ban.create({
-                td_ban_raison: bans.td_ban_raison,
+                ban_raison: bans.ban_raison,
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         conge.map((conge, index:number) => {
             Conge.create({
                 PraticienUserId:conge.PraticienUserId,
-                td_startDate: conge.td_startDate,
-                td_endDate: conge.td_endDate,
+                startDate: conge.startDate,
+                endDate: conge.endDate,
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         planning.map(planning => {
             Planning.create({
                 planningId:planning.planningId,
-                td_planning_name:planning.td_planning_name,
-                td_startDate:planning.td_startDate,
-                td_endDate:planning.td_endDate,
+                planning_name:planning.planning_name,
+                startDate:planning.startDate,
+                endDate:planning.endDate,
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         plage_horaire.map(plage_horaire => {
             Plage_Horaire.create({
                 planningId:plage_horaire.planningId,
-                td_day:plage_horaire.td_day,
-                td_StartHour:plage_horaire.td_StartHour,
-                td_EndHour:plage_horaire.td_EndHour,
-                td_duree_horaire:plage_horaire.td_duree_horaire,
+                jour:plage_horaire.jour,
+                StartHour:plage_horaire.StartHour,
+                EndHour:plage_horaire.EndHour,
+                duree_horaire:plage_horaire.duree_horaire,
                
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })

@@ -10,7 +10,7 @@ export interface IRepositoryAuth<T,D> {
     create(t: T): Promise<T | null>;
     update(t: T, id: number): Promise<number |boolean>;
     findToken(refreshToken:string): Promise<T | null>;
-    findUser(td_email: string): Promise<D | null>;
+    findUser(email: string): Promise<D | null>;
     findTokenOfUser(id: number): Promise<D | null>; 
 }
 

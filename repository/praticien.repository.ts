@@ -19,7 +19,7 @@ export class PraticienRepository implements IRepository<praticienDTO> {
             {
                 model: User,
                 required: false,
-                attributes: {exclude: ['td_password']},
+                attributes: {exclude: ['password']},
                 include: [
                     {
                         model: Localisation,
@@ -39,7 +39,7 @@ export class PraticienRepository implements IRepository<praticienDTO> {
                 {
                     model: User,
                     required: false,
-                    attributes: {exclude: ['td_password']},
+                    attributes: {exclude: ['password']},
                     include: [
                         {
                             model: Localisation,
@@ -47,7 +47,7 @@ export class PraticienRepository implements IRepository<praticienDTO> {
                         },
                         {
                             model: Role,
-                            //through:RoleUser
+                            through:RoleUser
                         }
                     ]
                 }
@@ -56,17 +56,17 @@ export class PraticienRepository implements IRepository<praticienDTO> {
     }
     async update(data: praticienDTO & User, id: number): Promise<number | boolean> {
         const userInfo = {
-            td_activite:data.td_activite,
-             td_lastname:data.td_lastname,
-             td_firstname:data.td_firstname,
-             td_birthday:data.td_birthday,
-             td_email:data.td_email,
-             td_password:data.td_password,
-             td_phone: data.td_phone,
-             td_isActif:data.td_isActif
+            activite:data.activite,
+             lastname:data.lastname,
+             firstname:data.firstname,
+             birthday:data.birthday,
+             email:data.email,
+             password:data.password,
+             phone: data.phone,
+             isActif:data.isActif
          }
          const praticienUser = {
-             td_activite:data.td_activite
+             activite:data.activite
          }
          try {
             return await sequelize.transaction(async (t) => {
@@ -97,9 +97,9 @@ export class PraticienRepository implements IRepository<praticienDTO> {
         try {
 			const newLocation = await Localisation.create(
 				{
-					td_address: data.td_address,
-					td_city: data.td_city,
-					td_zipCode: data.td_zipCode,
+					address: data.address,
+					city: data.city,
+					zipCode: data.zipCode,
 				},
 				{
 					transaction: t,
@@ -111,14 +111,14 @@ export class PraticienRepository implements IRepository<praticienDTO> {
                     {transaction: t});
 				const newUser = await User.create(
 					{
-                              td_lastname:data.td_lastname,
-                               td_firstname:data.td_firstname,
-                              td_birthday:data.td_birthday,
-                               td_email:data.td_email,
-                              td_password:data.td_password,
-                              td_phone: data.td_phone,
-                              td_isActif:data.td_isActif,
-                              td_role_nom:praticienRole ? praticienRole.td_role_nom : null,     
+                              lastname:data.lastname,
+                               firstname:data.firstname,
+                              birthday:data.birthday,
+                               email:data.email,
+                              password:data.password,
+                              phone: data.phone,
+                              isActif:data.isActif,
+                              role_nom:praticienRole ? praticienRole.role_nom : null,     
 				},
 				{
 					transaction: t,
@@ -137,7 +137,7 @@ export class PraticienRepository implements IRepository<praticienDTO> {
             const newPraticien = await Praticien.create(
 				{
 					UserId: newUser.id,
-                    td_activite:data.td_activite,
+                    activite:data.activite,
 				},
 				{
 					transaction: t,
@@ -145,18 +145,18 @@ export class PraticienRepository implements IRepository<praticienDTO> {
 				);
                 const result: praticienDTO = {
 					UserId: newUser.id,
-					td_firstname: newUser.td_firstname,
-					td_lastname: newUser.td_lastname,
-					td_birthday: newUser.td_birthday,
-					td_email: newUser.td_email,
-					td_password: newUser.td_password,
-					td_phone: newUser.td_phone,
-                    td_isActif:newUser.td_isActif,
-                    td_address: newLocation.td_address,
-					td_zipCode: newLocation.td_zipCode,
-					td_city: newLocation.td_city,
-					td_activite: newPraticien.td_activite,
-                    td_role_nom:praticienRole ? praticienRole.td_role_nom : null
+					firstname: newUser.firstname,
+					lastname: newUser.lastname,
+					birthday: newUser.birthday,
+					email: newUser.email,
+					password: newUser.password,
+					phone: newUser.phone,
+                    isActif:newUser.isActif,
+                    address: newLocation.address,
+					zipCode: newLocation.zipCode,
+					city: newLocation.city,
+					activite: newPraticien.activite,
+                    role_nom:praticienRole ? praticienRole.role_nom : null
                     
 				};
                 console.log("le role",praticienRole)

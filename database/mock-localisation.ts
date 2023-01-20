@@ -1,18 +1,18 @@
 export const localisations = [
     {
-        td_address: "cse",
-        td_zipCode: 62200,
-        td_city: "Boulogne"
+        address: "cse",
+        zipCode: 62200,
+        city: "Boulogne"
     },
     {  
-        td_address: "test",
-        td_zipCode: 62200,
-        td_city: "Boulogne  sur mer"
+        address: "test",
+        zipCode: 62200,
+        city: "Boulogne  sur mer"
     }, 
     {   
-        td_address: "docteur",
-        td_zipCode: 62200,
-        td_city: "docteur"
+        address: "docteur",
+        zipCode: 62200,
+        city: "docteur"
     },
     
 ];

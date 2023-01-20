@@ -6,13 +6,13 @@ export class User extends Model{
    
    
     id!:number
-    td_lastname!:string
-    td_firstname!:string
-    td_birthday!: Date
-    td_email!:string
-    td_password!:string
-    td_phone!:number
-    td_isActif!:boolean
+    lastname!:string
+    firstname!:string
+    birthday!: Date
+    email!:string
+    password!:string
+    phone!:number
+    isActif!:boolean
     
 }
 const concatRequiredMessage = (data: string) => {
@@ -24,7 +24,7 @@ const concatRequiredMessage = (data: string) => {
             autoIncrement: true,
             primaryKey: true,
         },
-        td_lastname: {
+        lastname: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -32,7 +32,7 @@ const concatRequiredMessage = (data: string) => {
                 notEmpty: { msg: concatRequiredMessage('Lastname') }
             }
         },
-        td_firstname: {
+        firstname: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -40,7 +40,7 @@ const concatRequiredMessage = (data: string) => {
                 notEmpty: { msg: concatRequiredMessage('Firstname') }
             }
         },
-        td_birthday: {
+        birthday: {
             type: DataTypes.DATE,
             allowNull: false,
             validate: {
@@ -48,7 +48,7 @@ const concatRequiredMessage = (data: string) => {
                 notEmpty: { msg: concatRequiredMessage('birthday date') }
             }
         },
-        td_email: {
+        email: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
@@ -58,7 +58,7 @@ const concatRequiredMessage = (data: string) => {
                 notEmpty: { msg: concatRequiredMessage('Email') }
             }
         },
-        td_password: {
+        password: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -66,7 +66,7 @@ const concatRequiredMessage = (data: string) => {
                 notEmpty: { msg: concatRequiredMessage('Password') }
             }
         },
-        td_phone: {
+        phone: {
             type: DataTypes.INTEGER,
             allowNull: false,
             unique: true,
@@ -74,14 +74,14 @@ const concatRequiredMessage = (data: string) => {
                 isAlphanumeric: true
             }
         },
-        td_isActif: {
+        isActif: {
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
     },
 {
     sequelize,
-    tableName: 'User',
+    tableName: 'td_User',
     freezeTableName: true
    
     

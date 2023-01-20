@@ -2,9 +2,9 @@ import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/sequelize";
 
 export class Planning extends Model {
-    td_planning_name!: string
-    td_startDate!: Date
-    td_endDate!: Date
+    planning_name!: string
+    startDate!: Date
+    endDate!: Date
     
 }
 const concatRequiredMessage = (data: string) => {
@@ -14,7 +14,7 @@ const concatRequiredMessage = (data: string) => {
     
 {
     
-    td_planning_name: {
+    planning_name: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -22,7 +22,7 @@ const concatRequiredMessage = (data: string) => {
             notEmpty: { msg: concatRequiredMessage('Planning name') }
         }
     },
-    td_startDate: {
+    startDate: {
             type: DataTypes.DATE,
             allowNull: false,
             validate: {
@@ -31,7 +31,7 @@ const concatRequiredMessage = (data: string) => {
             }
             
         },
-        td_endDate: {
+        endDate: {
             type: DataTypes.DATE,
             allowNull: false,
             validate: {
@@ -43,6 +43,6 @@ const concatRequiredMessage = (data: string) => {
         {
             sequelize,
             freezeTableName: true,
-            tableName: "Plannings",
+            tableName: "td_Plannings",
         }
 );

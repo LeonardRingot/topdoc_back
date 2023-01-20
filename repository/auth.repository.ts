@@ -7,8 +7,8 @@ import { AuthMapper } from "~~/mapper/auth.mapper";
 import { tokenId, tokenTypes } from "~~/types/token";
 import { userId } from "~~/types/utilisateur";
 export class AuthRepository implements IRepositoryAuth<AuthDTO,userLoginDTO > {
-    async findUser(td_email: string): Promise<userLoginDTO | null> {
-        return User.findOne({where:{td_email:td_email}}).then((user:any)=>AuthMapper.mapToCoDto(user))
+    async findUser(email: string): Promise<userLoginDTO | null> {
+        return User.findOne({where:{email:email}}).then((user:any)=>AuthMapper.mapToCoDto(user))
     }
 
    async  findTokenOfUser(id: number): Promise<userLoginDTO | null> {

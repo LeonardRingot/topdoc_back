@@ -48,7 +48,7 @@ plagehoraireController.get('/:id',plagehoraireHandler.getPlageHoraireById)
   *         in: body
   *         required: true
   *         type: object
-  *         default: { "td_address": "address", "td_zipCode": "zipcode", "td_city": "city" }
+  *         default: { "jour": "MonJour", "StartHour": "zipcode", "EndHour": "city" , "duree_horaire":20}
   *      responses:
   *        200:
   *          description: Create a new localisation.

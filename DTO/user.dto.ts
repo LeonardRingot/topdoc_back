@@ -1,14 +1,14 @@
 
 export interface userDTO {
-   td_lastname:string;
-   td_firstname:string;
-   td_birthday:Date;
-   td_email: string;
-   td_phone: number;
-   td_isActif: boolean;
+   lastname:string;
+   firstname:string;
+   birthday:Date;
+   email: string;
+   phone: number;
+   isActif: boolean;
    }
    export interface userLoginDTO{
       UserId:number,
-      td_email:string,
-      td_password:string
+      email:string,
+      password:string
    }

@@ -6,13 +6,13 @@ export class BanMapper {
         if (ban === null) return null as any;
         return {
             
-            td_ban_raison: ban.td_ban_raison,
+            ban_raison: ban.ban_raison,
         }
     }
     static mapAllToDto(bans: Ban[]): bansDTO[] {
         return bans.map(ban => {
             return  {
-                td_ban_raison: ban.td_ban_raison,
+                ban_raison: ban.ban_raison,
             }
         })
     }

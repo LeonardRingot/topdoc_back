@@ -17,14 +17,14 @@ export class PlanningService implements IService<planningDTO> {
         const data:any = await this.planningRepository.findById(id)
 
         // Gesttion des congés
-        const td_day = new Date()
+        const jour = new Date()
         console.log('c passé ')
         if(
             //Verifie si la date actuelle se situe dans une plage d'une date de debut et date de fin stocké dans un tableau 
             //data.conges[0],si c'est le cas il crée un objet congé avec la date actuelle 
-            td_day >= new Date(data.Conges[0].td_startDate) && td_day <= new Date(data.Conges[0].td_endDate))
+            jour >= new Date(data.Conges[0].startDate) && jour <= new Date(data.Conges[0].endDate))
             {
-               const conge = {date:td_day, conge:true}
+               const conge = {date:jour, conge:true}
                console.log('praticien en congé')
             }
            
@@ -37,17 +37,17 @@ export class PlanningService implements IService<planningDTO> {
             Création d'une boucle pour parcourir le nmbre de creneaux, pour chaque iteration il crée un objet avec l'heure de debut 
             et l'heure de fin de ce creneau et le stock un tableau listCreneaux
             */
-            const minutesTotales = (data.Plage_Horaire[0].td_EndHour.getTime() - data.Plage_Horaire[0].td_StartHour.getTime())/(1000 * 60)
-            const nbCreneaux = Math.floor(minutesTotales/data.Plage_Horaire[0].td_duree_horaire)
+            const minutesTotales = (data.Plage_Horaire[0].EndHour.getTime() - data.Plage_Horaire[0].StartHour.getTime())/(1000 * 60)
+            const nbCreneaux = Math.floor(minutesTotales/data.Plage_Horaire[0].duree_horaire)
             console.log(minutesTotales)
             console.log("nbre de creneaux",nbCreneaux)
             const ListCreneux =[]
             for (let i =0; i < nbCreneaux;i++)
             {
-                const StartHour = new Date(data.Plage_Horaire[0].td_StartHour.getTime()+ ((data.Plage_Horaire[0].td_duree_horaire * (1000  * 60))*i)).toLocaleTimeString()
-                const EndHour = new Date(data.Plage_Horaire[0].td_StartHour.getTime()+ ((data.Plage_Horaire[0].td_duree_horaire * (1000  * 60))*(i+1))).toLocaleTimeString()
+                const StartHour = new Date(data.Plage_Horaire[0].StartHour.getTime()+ ((data.Plage_Horaire[0].duree_horaire * (1000  * 60))*i)).toLocaleTimeString()
+                const EndHour = new Date(data.Plage_Horaire[0].StartHour.getTime()+ ((data.Plage_Horaire[0].duree_horaire * (1000  * 60))*(i+1))).toLocaleTimeString()
 
-                const newCreneaux = {td_StartHour: StartHour, td_endHour:EndHour}
+                const newCreneaux = {StartHour: StartHour, endHour:EndHour}
                 ListCreneux.push(newCreneaux)
                 console.log(ListCreneux)
             }

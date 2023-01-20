@@ -4,7 +4,7 @@ import { sequelize } from "../database/sequelize";
 
 export class Praticien extends Model {
     UserId!: number
-    td_activite!: string
+    activite!: string
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
@@ -15,7 +15,7 @@ const concatRequiredMessage = (data: string) => {
             autoIncrement: true,
             primaryKey: true,
         },
-        td_activite: {
+        activite: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -27,6 +27,6 @@ const concatRequiredMessage = (data: string) => {
         {
             sequelize,
             freezeTableName: true,
-            tableName: "Praticiens",
+            tableName: "td_Praticiens",
         }
 );

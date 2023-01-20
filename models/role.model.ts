@@ -5,7 +5,7 @@ import { sequelize } from "../database/sequelize";
 export class Role extends Model{
     
     RoleId!:number;
-    td_role_nom!:string;
+    role_nom!:string;
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
@@ -16,7 +16,7 @@ const concatRequiredMessage = (data: string) => {
         autoIncrement: true,
         primaryKey: true,
     },
-        td_role_nom: {
+        role_nom: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -28,7 +28,7 @@ const concatRequiredMessage = (data: string) => {
    {
     sequelize,
     freezeTableName: true,
-    tableName: "Role",
+    tableName: "td_Role",
 }
 );
         

@@ -22,21 +22,21 @@ export class PraticienService {
         });
     }
     async create(praticien:praticienDTO & User & Localisation & Role):Promise<praticienDTO | null>{
-        let hashedPassword = await bcrypt.hash(praticien.td_password, 10);
+        let hashedPassword = await bcrypt.hash(praticien.password, 10);
         let praticientInfo: praticienDTO = {
             UserId:praticien.UserId,
-          td_activite:praticien.td_activite,
-            td_lastname: praticien.td_lastname,
-            td_firstname: praticien.td_firstname,
-            td_email: praticien.td_email,
-            td_password: hashedPassword,
-            td_birthday: praticien.td_birthday,
-            td_phone: praticien.td_phone,
-            td_isActif:praticien.td_isActif,
-            td_address:praticien.td_address,
-            td_city:praticien.td_city,
-            td_zipCode:praticien.td_zipCode,
-            td_role_nom:praticien.td_role_nom,
+          activite:praticien.activite,
+            lastname: praticien.lastname,
+            firstname: praticien.firstname,
+            email: praticien.email,
+            password: hashedPassword,
+            birthday: praticien.birthday,
+            phone: praticien.phone,
+            isActif:praticien.isActif,
+            address:praticien.address,
+            city:praticien.city,
+            zipCode:praticien.zipCode,
+            role_nom:praticien.role_nom,
         }
         return this.praticienRepository.create(praticientInfo)
     }
@@ -45,21 +45,21 @@ export class PraticienService {
     }
     async update(praticien :praticienDTO & User  & Localisation & Role, id:number ):  Promise<boolean | number >{
         let hashedPassword
-        if (praticien.td_password) hashedPassword = await bcrypt.hash(praticien.td_password, 10)
+        if (praticien.password) hashedPassword = await bcrypt.hash(praticien.password, 10)
         let praticienInfo: praticienDTO = {
             UserId:praticien.UserId,
-            td_activite: praticien.td_activite,
-            td_lastname: praticien.td_lastname,
-            td_firstname: praticien.td_firstname,
-            td_email: praticien.td_email,
-            td_password: hashedPassword,
-            td_birthday: praticien.td_birthday,
-            td_phone: praticien.td_phone,
-            td_isActif:praticien.td_isActif,
-            td_address:praticien.td_address,
-            td_city:praticien.td_city,
-            td_zipCode:praticien.td_zipCode,
-            td_role_nom:praticien.td_role_nom,
+            activite: praticien.activite,
+            lastname: praticien.lastname,
+            firstname: praticien.firstname,
+            email: praticien.email,
+            password: hashedPassword,
+            birthday: praticien.birthday,
+            phone: praticien.phone,
+            isActif:praticien.isActif,
+            address:praticien.address,
+            city:praticien.city,
+            zipCode:praticien.zipCode,
+            role_nom:praticien.role_nom,
         }
         const updatedPraticien = await this.praticienRepository.update(praticienInfo, id)
         return updatedPraticien

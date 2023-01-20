@@ -48,7 +48,7 @@ localisationController.get('/:id',localisationHandler.getLocalisationId)
   *         in: body
   *         required: true
   *         type: object
-  *         default: { "td_address": "address", "td_zipCode": "zipcode", "td_city": "city" }
+  *         default: { "address": "address", "zipCode": "zipcode", "city": "city" }
   *      responses:
   *        200:
   *          description: Create a new localisation.
@@ -88,7 +88,7 @@ localisationController.delete('/:id',localisationHandler.deleteLocalisation)
   *         in: body
   *         required: true
   *         type: object
-  *         default:  {"praticiens": {"td_activite": "OUIIIIIIIIIIIIIII"}, "users":{"td_lastname": "a", "td_firstname": "a","td_birthday": "2000-06-31","td_email":"a@a.com", "td_password":"a","td_phone": 11, "td_isActif": true }} 
+  *         default:  {"praticiens": {"ctivite": "OUIIIIIIIIIIIIIII"}, "users":{"td_lastname": "a", "td_firstname": "a","td_birthday": "2000-06-31","td_email":"a@a.com", "td_password":"a","td_phone": 11, "td_isActif": true }} 
   *      responses:
   *        200:
   *          description: Update the user of given id.

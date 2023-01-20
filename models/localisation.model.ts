@@ -34,8 +34,7 @@ const concatRequiredMessage = (data: string) => {
         }
         },{
         sequelize,
-        //modelName:'td_Localisation',
         tableName:'td_Localisation',
-        // timestamps:false,
-        //  freezeTableName: true
+         timestamps:false,
+         freezeTableName: true
 });

@@ -2,8 +2,8 @@ import { userTypes } from "~~/types/utilisateur";
 
 export const users: userTypes[] = [
   {
-    lastname:'ringot',
-    firstname:'leonard',
+    lastname:'MrClient',
+    firstname:'PatientMalade',
     birthday: new Date("2000-06-21"),
     email: "cunmock@gmail.com",
     phone: 782361188,
@@ -13,8 +13,8 @@ export const users: userTypes[] = [
   },
   {
     
-    lastname:'ringot',
-    firstname:'arthur',
+    lastname:'MrClient',
+    firstname:'MrPasBien',
     birthday: new Date("2000-06-22"),
     email: "hhii@gmail.com",
     phone: 782361186,

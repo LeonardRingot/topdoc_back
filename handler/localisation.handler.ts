@@ -57,7 +57,7 @@ export class LocalisationHandler {
     const id = parseInt(req.params.id);
     try {
         const result = await this.localisationService.update(req.body, id);
-        res.status(200).json( result? "mis a jour": "fail");
+        res.status(200).json( result? "mis a date": "fail");
     } catch (err) {
         res.status(500).json(err)
     }

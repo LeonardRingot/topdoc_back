@@ -1,9 +1,11 @@
 export interface rdvTypes {
-    date_rendez_vous: Date;
+    date: Date;
     motif:string;
     duree_rdv:number;
     PatientUserId: number;
     PraticienUserId: number;
+    startHour: string
+    endHour: string
 }
 export interface rdvId extends rdvTypes {
   id: number;

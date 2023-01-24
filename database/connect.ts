@@ -126,9 +126,10 @@ export const initDb = () => {
             Rdv.create({
                 PraticienUserId:rdv.PraticienUserId,
                 PatientUserId:rdv.PatientUserId,
-                date_rendez_vous: rdv.date_rendez_vous,
+                date: rdv.date,
                 motif:rdv.motif,
-                duree_rdv:rdv.duree_rdv
+                startHour: rdv.startHour,
+                endHour: rdv.endHour
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         bans.map(bans=> {
@@ -148,16 +149,18 @@ export const initDb = () => {
                 planningId:planning.planningId,
                 planning_name:planning.planning_name,
                 startDate:planning.startDate,
-                endDate:planning.endDate,
+                validDuration: planning.validDuration,
+                rdvDuration: planning.rdvDuration,
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })
         plage_horaire.map(plage_horaire => {
             Plage_Horaire.create({
                 planningId:plage_horaire.planningId,
-                jour:plage_horaire.jour,
-                StartHour:plage_horaire.StartHour,
-                EndHour:plage_horaire.EndHour,
-                duree_horaire:plage_horaire.duree_horaire,
+                date:plage_horaire.date,
+                startHour:plage_horaire.startHour,
+                endHour:plage_horaire.endHour,
+                pauseStartHour: plage_horaire.pauseStartHour,
+                pauseEndHour: plage_horaire.pauseEndHour,
                
             }).then((response: { toJSON: () => string }) => console.log(response.toJSON()))
         })

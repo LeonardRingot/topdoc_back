@@ -2,6 +2,7 @@ import { planningDTO } from "../dto/planning.dto";
 import { IRepository } from "../core/repository.interface";
 import { Planning } from "~~/models/planning.model";
 import {IService} from "../core/service.interface"
+import dayjs from "dayjs";
 
 export class PlanningService implements IService<planningDTO> {
 
@@ -14,52 +15,54 @@ export class PlanningService implements IService<planningDTO> {
         return this.planningRepository.findAll()
     }
     async findById(id: number): Promise<planningDTO | null> {
-        const data:any = await this.planningRepository.findById(id)
+        const data: any = await this.planningRepository.findById(id)
 
-        // Gesttion des congés
-        const jour = new Date()
-        console.log('c passé ')
-        if(
-            //Verifie si la date actuelle se situe dans une plage d'une date de debut et date de fin stocké dans un tableau 
-            //data.conges[0],si c'est le cas il crée un objet congé avec la date actuelle 
-            jour >= new Date(data.Conges[0].startDate) && jour <= new Date(data.Conges[0].endDate))
-            {
-               const conge = {date:jour, conge:true}
-               console.log('praticien en congé')
-            }
-           
-        else{
-            //gestion des creneaux
-            /*
-            Sinon calcule le nb minutes totales entre le debut et la fin d'une journée stocké dans un array data.PlageHoraire[0]
-            Ensuite il calcule le nombre de creneau qui peut etre réalisé dans la range divisé par les minutes totales par la durée de chaque 
-            duré 
-            Création d'une boucle pour parcourir le nmbre de creneaux, pour chaque iteration il crée un objet avec l'heure de debut 
-            et l'heure de fin de ce creneau et le stock un tableau listCreneaux
-            */
-            const minutesTotales = (data.Plage_Horaire[0].EndHour.getTime() - data.Plage_Horaire[0].StartHour.getTime())/(1000 * 60)
-            const nbCreneaux = Math.floor(minutesTotales/data.Plage_Horaire[0].duree_horaire)
-            console.log(minutesTotales)
-            console.log("nbre de creneaux",nbCreneaux)
-            const ListCreneux =[]
-            for (let i =0; i < nbCreneaux;i++)
-            {
-                const StartHour = new Date(data.Plage_Horaire[0].StartHour.getTime()+ ((data.Plage_Horaire[0].duree_horaire * (1000  * 60))*i)).toLocaleTimeString()
-                const EndHour = new Date(data.Plage_Horaire[0].StartHour.getTime()+ ((data.Plage_Horaire[0].duree_horaire * (1000  * 60))*(i+1))).toLocaleTimeString()
+        for (let i = 0; i < data.Plage_Horaire.length; i++) {
+            const startUnformattedData = data.Plage_Horaire[i].startHour.split(':')
+            const startHours = parseInt(startUnformattedData[0])
+            const startMinutes = parseInt(startUnformattedData[1])
 
-                const newCreneaux = {StartHour: StartHour, endHour:EndHour}
-                ListCreneux.push(newCreneaux)
-                console.log(ListCreneux)
+            const endUnformattedData = data.Plage_Horaire[i].endHour.split(':')
+            const endHours = parseInt(endUnformattedData[0])
+            const endMinutes = parseInt(endUnformattedData[1])
+
+            const start = dayjs().hour(startHours).minute(startMinutes)
+
+            const minutesTotales = (((endHours * 60) + endMinutes) - ((startHours * 60) + startMinutes))
+            const creneauxDuration = data.Planning.rdvDuration
+            const nbCreneaux = minutesTotales / creneauxDuration
+
+            const CreneauxList = []
+            const PausesList = []
+            const heureDebutPause = data.Plage_Horaire[i].pauseStartHour
+            const heureFinPause = data.Plage_Horaire[i].pauseEndHour
+            const date = data.Plage_Horaire[i].date
+
+            for (let i = 0; i < nbCreneaux; i++) {
+                const startHour = start.add(i * creneauxDuration, 'minute').format('HH:mm')
+                const endHour = start.add((i + 1) * creneauxDuration, 'minute').format('HH:mm')
+                const newCreneau = { date: date, startHour: startHour, endHour: endHour, taken: false }
+
+                if (heureDebutPause <= startHour && heureFinPause > startHour) {
+                    PausesList.push(newCreneau)
+                }
+                else {
+                    for (let i = 0; i < data.Rdv.length; i++) {
+                        if (data.Rdv[i].startHour <= newCreneau.startHour && 
+                            data.Rdv[i].endHour >= newCreneau.endHour &&
+                            data.Rdv[i].date.toDateString() == newCreneau.date.toDateString() ) {
+                            newCreneau.taken = true
+                            console.log('Rdv prévu:', newCreneau)
+                        }
+                    }
+                    CreneauxList.push(newCreneau)
+                }
             }
-           
+            const selectedDate = { jour: date, creneaux: CreneauxList, pauses: PausesList }
+            console.log(selectedDate)
         }
-                
-
-            
-        
         return this.planningRepository.findById(id)
     }
-
     async create(localisation:Planning):Promise<planningDTO | null>{
         return this.planningRepository.create(localisation).then((data) =>{
             return data

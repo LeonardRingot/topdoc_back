@@ -5,8 +5,9 @@ export class RdvMapper {
     static mapToDto(rdv: Rdv | null): rdvDTO  {
         if (rdv === null) return null as any;
         return {
-            date_rendez_vous:rdv.date_rendez_vous,
-            duree_rdv:rdv.duree_rdv,
+            date:rdv.date,
+            startHour:rdv.startHour,
+            endHour:rdv.endHour,
             motif:rdv.motif,
            
         }
@@ -15,8 +16,9 @@ export class RdvMapper {
     static mapAllToDto(Rdvs: Rdv[]): rdvDTO[] {
         return Rdvs.map(rdv => {
             return  {
-                date_rendez_vous: rdv.date_rendez_vous,
-                duree_rdv: rdv.duree_rdv,
+                date: rdv.date,
+                startHour:rdv.startHour,
+            endHour:rdv.endHour,
                 motif: rdv.motif,
             }
         })

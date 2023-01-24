@@ -8,7 +8,8 @@ export class PlanningMapper {
         return {
             planning_name: planning.planning_name,
             startDate: planning.startDate,
-            endDate: planning.endDate,
+            rdvDuration: planning.rdvDuration,
+            validDuration: planning.validDuration,
         }
     }
 

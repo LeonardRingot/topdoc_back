@@ -1,8 +1,9 @@
 export interface plageHoraireTypes {
-  jour: string;
-    StartHour: Date;
-    EndHour: Date;
-    duree_horaire:number,
+  date: string;
+    startHour: string;
+    endHour: string;
+    pauseStartHour: string;
+    pauseEndHour: string;
     planningId:number
   }
 export interface plageHoraire extends plageHoraireTypes {

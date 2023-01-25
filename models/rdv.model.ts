@@ -2,8 +2,10 @@ import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/sequelize";
 
 export class Rdv extends Model {
-    date_rendez_vous!: Date
-    duree_rdv:number
+    date!: Date
+    duree_rdv!:number
+    StartHour!:Date
+    EndHour!:Date
     motif!: string
 }
 const concatRequiredMessage = (data: string) => {
@@ -12,7 +14,7 @@ const concatRequiredMessage = (data: string) => {
 
 Rdv.init({
 
-        date_rendez_vous: {
+        date: {
             type: DataTypes.DATE,
             allowNull: false,
             validate: {
@@ -24,6 +26,22 @@ Rdv.init({
             type: DataTypes.INTEGER,
             allowNull: false,
         
+        },
+        StartHour: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            validate: {
+                notNull: { msg: concatRequiredMessage('td_StartHour date') },
+                notEmpty: { msg: concatRequiredMessage('td_StartHour date') }
+            }
+        },
+        EndHour: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            validate: {
+                notNull: { msg: concatRequiredMessage('td_EndHour date') },
+                notEmpty: { msg: concatRequiredMessage('td_EndHour date') }
+            }
         },
         motif: {
             type: DataTypes.STRING,

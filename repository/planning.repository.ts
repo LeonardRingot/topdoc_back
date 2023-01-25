@@ -4,6 +4,7 @@ import { Planning } from "../models/planning.model";
 import { Conge } from "~~/models/conge.model";
 import { PlanningMapper } from "../mapper/planning.mapper";
 import { Plage_Horaire } from "~~/models/plage_horaire.model";
+import { Rdv } from "~~/models/rdv.model";
 
 export class PlanningRepository implements IRepository<planningDTO> {
     async findById(id: number): Promise<planningDTO | null> {
@@ -22,7 +23,8 @@ export class PlanningRepository implements IRepository<planningDTO> {
                 id: PlanningFound.id
             }
         })
-        const MyPlanning = {Planning: PlanningFound, Plage_Horaire: Plage_HoraireFound, Conges: CongeFound}
+        const RdvFound = await Rdv.findAll()
+        const MyPlanning = {Planning: PlanningFound, Plage_Horaire: Plage_HoraireFound, Conges: CongeFound, RDVS:RdvFound}
         return MyPlanning as any
         
     }

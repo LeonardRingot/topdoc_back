@@ -1,5 +1,7 @@
 export interface rdvDTO {
-    date_rendez_vous: Date,
+    date: Date,
+    StartHour: Date;
+    EndHour: Date;
     duree_rdv:number,
     motif:string,
   }

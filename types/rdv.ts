@@ -1,6 +1,8 @@
 export interface rdvTypes {
-    date_rendez_vous: Date;
+    date: Date;
     motif:string;
+    StartHour: Date;
+    EndHour: Date;
     duree_rdv:number;
     PatientUserId: number;
     PraticienUserId: number;

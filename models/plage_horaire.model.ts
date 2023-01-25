@@ -3,9 +3,11 @@ import { sequelize } from "../database/sequelize";
 
 export class Plage_Horaire extends Model{
 
-    jour!:string
+    jour!:Date
     StartHour!:Date
     EndHour!:Date
+    pauseStart!:Date
+    pauseEnd!:Date
     duree_horaire!:number
 }
 const concatRequiredMessage = (data: string) => {
@@ -18,7 +20,7 @@ const concatRequiredMessage = (data: string) => {
             primaryKey: true,
         },
         jour: {
-            type: DataTypes.STRING,
+            type: DataTypes.DATE,
             allowNull: false,
             validate: {
                 notNull: { msg: concatRequiredMessage('le jour') },
@@ -39,6 +41,22 @@ const concatRequiredMessage = (data: string) => {
             validate: {
                 notNull: { msg: concatRequiredMessage('td_EndHour date') },
                 notEmpty: { msg: concatRequiredMessage('td_EndHour date') }
+            }
+        },
+        pauseStart: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            validate: {
+                notNull: { msg: concatRequiredMessage('pauseStart date') },
+                notEmpty: { msg: concatRequiredMessage('pauseStart date') }
+            }
+        },
+        pauseEnd: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            validate: {
+                notNull: { msg: concatRequiredMessage('pauseEnd date') },
+                notEmpty: { msg: concatRequiredMessage('pauseEnd date') }
             }
         },
         duree_horaire: {

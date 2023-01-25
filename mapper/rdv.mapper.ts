@@ -6,9 +6,14 @@ export class RdvMapper {
         if (rdv === null) return null as any;
         return {
             date:rdv.date,
+<<<<<<< HEAD
             StartHour:rdv.StartHour,
             EndHour:rdv.EndHour,
             duree_rdv:rdv.duree_rdv,
+=======
+            startHour:rdv.startHour,
+            endHour:rdv.endHour,
+>>>>>>> bb5ac0482451c8167aa80e629380b973acfd336e
             motif:rdv.motif,
            
         }
@@ -18,9 +23,14 @@ export class RdvMapper {
         return Rdvs.map(rdv => {
             return  {
                 date: rdv.date,
+<<<<<<< HEAD
                 StartHour:rdv.StartHour,
                 EndHour:rdv.EndHour,
                 duree_rdv: rdv.duree_rdv,
+=======
+                startHour:rdv.startHour,
+            endHour:rdv.endHour,
+>>>>>>> bb5ac0482451c8167aa80e629380b973acfd336e
                 motif: rdv.motif,
             }
         })

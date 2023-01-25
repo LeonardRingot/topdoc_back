@@ -4,7 +4,8 @@ import { sequelize } from "../database/sequelize";
 export class Planning extends Model {
     planning_name!: string
     startDate!: Date
-    endDate!: Date
+    rdvDuration!:number
+    validDuration!:number
     
 }
 const concatRequiredMessage = (data: string) => {
@@ -31,12 +32,20 @@ const concatRequiredMessage = (data: string) => {
             }
             
         },
-        endDate: {
-            type: DataTypes.DATE,
+        rdvDuration: {
+            type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
-                notNull: { msg: concatRequiredMessage('date fin') },
-                notEmpty: { msg: concatRequiredMessage('date fin') }
+                notNull: { msg: concatRequiredMessage('rdvDuration') },
+                notEmpty: { msg: concatRequiredMessage('rdvDuration') }
+            }
+        },
+        validDuration: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                notNull: { msg: concatRequiredMessage('validDuration') },
+                notEmpty: { msg: concatRequiredMessage('validDuration') }
             }
         }
     },

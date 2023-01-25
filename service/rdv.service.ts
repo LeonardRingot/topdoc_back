@@ -1,8 +1,9 @@
 import { rdvDTO } from "../dto/rdv.dto";
 import { IRepository } from "../core/repository.interface";
 import { Rdv } from "~~/models/rdv.model";
+import { IService } from "~~/core/service.interface";
 
-export class RdvService {
+export class RdvService implements IService<rdvDTO>{
 
     private rdvRepository: IRepository<rdvDTO>;
 

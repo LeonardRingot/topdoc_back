@@ -3,12 +3,20 @@ import { sequelize } from "../database/sequelize";
 
 export class Plage_Horaire extends Model{
 
+<<<<<<< HEAD
     jour!:Date
     StartHour!:Date
     EndHour!:Date
     pauseStart!:Date
     pauseEnd!:Date
     duree_horaire!:number
+=======
+    date!:Date
+    startHour!:string
+    endHour!:string
+    pauseStartHour!:string
+    pauseEndHour!:string
+>>>>>>> bb5ac0482451c8167aa80e629380b973acfd336e
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
@@ -19,30 +27,35 @@ const concatRequiredMessage = (data: string) => {
             autoIncrement: true,
             primaryKey: true,
         },
+<<<<<<< HEAD
         jour: {
+=======
+        date: {
+>>>>>>> bb5ac0482451c8167aa80e629380b973acfd336e
             type: DataTypes.DATE,
             allowNull: false,
             validate: {
-                notNull: { msg: concatRequiredMessage('le jour') },
-                notEmpty: { msg: concatRequiredMessage('le jour') }
+                notNull: { msg: concatRequiredMessage('le date') },
+                notEmpty: { msg: concatRequiredMessage('le date') }
             }
         },
-        StartHour: {
-            type: DataTypes.DATE,
+        startHour: {
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notNull: { msg: concatRequiredMessage('td_StartHour date') },
                 notEmpty: { msg: concatRequiredMessage('td_StartHour date') }
             }
         },
-        EndHour: {
-            type: DataTypes.DATE,
+        endHour: {
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notNull: { msg: concatRequiredMessage('td_EndHour date') },
                 notEmpty: { msg: concatRequiredMessage('td_EndHour date') }
             }
         },
+<<<<<<< HEAD
         pauseStart: {
             type: DataTypes.DATE,
             allowNull: false,
@@ -62,11 +75,22 @@ const concatRequiredMessage = (data: string) => {
         duree_horaire: {
             type: DataTypes.INTEGER,
             allowNull: false,
+=======
+        pauseStartHour: {
+            type: DataTypes.STRING,
+            allowNull: true,
+>>>>>>> bb5ac0482451c8167aa80e629380b973acfd336e
             validate: {
-                notNull: { msg: concatRequiredMessage('td_duree_horaire') },
-                notEmpty: { msg: concatRequiredMessage('td_duree_horaire') }
+                notEmpty: { msg: concatRequiredMessage('pauseStartHour') }
             }
         },
+        pauseEndHour: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            validate: {
+                notEmpty: { msg: concatRequiredMessage('pauseEndHour') }
+            }
+        }
     },
 
     {

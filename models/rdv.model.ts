@@ -3,10 +3,15 @@ import { sequelize } from "../database/sequelize";
 
 export class Rdv extends Model {
     date!: Date
+<<<<<<< HEAD
     duree_rdv!:number
     StartHour!:Date
     EndHour!:Date
+=======
+>>>>>>> bb5ac0482451c8167aa80e629380b973acfd336e
     motif!: string
+    startHour!: string
+    endHour!: string
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
@@ -14,7 +19,11 @@ const concatRequiredMessage = (data: string) => {
 
 Rdv.init({
 
+<<<<<<< HEAD
         date: {
+=======
+    date: {
+>>>>>>> bb5ac0482451c8167aa80e629380b973acfd336e
             type: DataTypes.DATE,
             allowNull: false,
             validate: {
@@ -22,10 +31,21 @@ Rdv.init({
                 notEmpty: { msg: concatRequiredMessage('rdv date') }
             }
         },
-        duree_rdv: {
-            type: DataTypes.INTEGER,
+        startHour: {
+            type: DataTypes.STRING,
             allowNull: false,
-        
+            validate: {
+                notNull: { msg: concatRequiredMessage('startHour') },
+                notEmpty: { msg: concatRequiredMessage('startHour') }
+            }
+        },
+        endHour: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notNull: { msg: concatRequiredMessage('endHour') },
+                notEmpty: { msg: concatRequiredMessage('endHour') }
+            }
         },
         StartHour: {
             type: DataTypes.DATE,

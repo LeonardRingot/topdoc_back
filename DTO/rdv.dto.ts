@@ -3,5 +3,8 @@ export interface rdvDTO {
     StartHour: Date;
     EndHour: Date;
     duree_rdv:number,
+
+
+
     motif:string,
   }

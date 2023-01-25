@@ -5,6 +5,10 @@ import { Conge } from "~~/models/conge.model";
 import { PlanningMapper } from "../mapper/planning.mapper";
 import { Plage_Horaire } from "~~/models/plage_horaire.model";
 import { Rdv } from "~~/models/rdv.model";
+<<<<<<< HEAD
+=======
+
+>>>>>>> bb5ac0482451c8167aa80e629380b973acfd336e
 
 export class PlanningRepository implements IRepository<planningDTO> {
     async findById(id: number): Promise<planningDTO | null> {
@@ -18,6 +22,7 @@ export class PlanningRepository implements IRepository<planningDTO> {
             }
         })
         
+<<<<<<< HEAD
         const CongeFound = await Conge.findAll({
             where: {
                 id: PlanningFound.id
@@ -25,6 +30,13 @@ export class PlanningRepository implements IRepository<planningDTO> {
         })
         const RdvFound = await Rdv.findAll()
         const MyPlanning = {Planning: PlanningFound, Plage_Horaire: Plage_HoraireFound, Conges: CongeFound, RDVS:RdvFound}
+=======
+        
+       
+        const RdvFound = await Rdv.findAll()
+        const MyPlanning = {Planning: PlanningFound, Plage_Horaire: Plage_HoraireFound, Rdv: RdvFound}
+        console.log("repo")
+>>>>>>> bb5ac0482451c8167aa80e629380b973acfd336e
         return MyPlanning as any
         
     }

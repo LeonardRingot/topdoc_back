@@ -3,15 +3,10 @@ import { sequelize } from "../database/sequelize";
 
 export class Rdv extends Model {
     date!: Date
-<<<<<<< HEAD
-    duree_rdv!:number
-    StartHour!:Date
-    EndHour!:Date
-=======
->>>>>>> bb5ac0482451c8167aa80e629380b973acfd336e
     motif!: string
-    startHour!: string
-    endHour!: string
+    StartHour!: Date
+    EndHour!: Date
+    duree_rdv!:number
 }
 const concatRequiredMessage = (data: string) => {
     return `Le champ ${data} est requis`
@@ -19,11 +14,8 @@ const concatRequiredMessage = (data: string) => {
 
 Rdv.init({
 
-<<<<<<< HEAD
-        date: {
-=======
+
     date: {
->>>>>>> bb5ac0482451c8167aa80e629380b973acfd336e
             type: DataTypes.DATE,
             allowNull: false,
             validate: {
@@ -31,36 +23,28 @@ Rdv.init({
                 notEmpty: { msg: concatRequiredMessage('rdv date') }
             }
         },
-        startHour: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notNull: { msg: concatRequiredMessage('startHour') },
-                notEmpty: { msg: concatRequiredMessage('startHour') }
-            }
-        },
-        endHour: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notNull: { msg: concatRequiredMessage('endHour') },
-                notEmpty: { msg: concatRequiredMessage('endHour') }
-            }
-        },
         StartHour: {
             type: DataTypes.DATE,
             allowNull: false,
             validate: {
-                notNull: { msg: concatRequiredMessage('td_StartHour date') },
-                notEmpty: { msg: concatRequiredMessage('td_StartHour date') }
+                notNull: { msg: concatRequiredMessage('StartHour') },
+                notEmpty: { msg: concatRequiredMessage('StartHour') }
             }
         },
         EndHour: {
             type: DataTypes.DATE,
             allowNull: false,
             validate: {
-                notNull: { msg: concatRequiredMessage('td_EndHour date') },
-                notEmpty: { msg: concatRequiredMessage('td_EndHour date') }
+                notNull: { msg: concatRequiredMessage('EndHour') },
+                notEmpty: { msg: concatRequiredMessage('EndHour') }
+            }
+        },
+        duree_rdv: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                notNull: { msg: concatRequiredMessage('duree_rdv') },
+                notEmpty: { msg: concatRequiredMessage('duree_rdv') }
             }
         },
         motif: {

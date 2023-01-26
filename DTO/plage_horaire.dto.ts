@@ -1,16 +1,8 @@
 export interface plageHoraireDTO{
-<<<<<<< HEAD
-  jour:Date;
+  date:Date;
     StartHour: Date;
     EndHour: Date;
-    pauseStart:Date;
-    pauseEnd:Date;
-    duree_horaire:number,
-=======
-  date:Date;
-    startHour: string;
-    endHour: string;
-    pauseStartHour: string
-    pauseEndHour: string
->>>>>>> bb5ac0482451c8167aa80e629380b973acfd336e
-  }
+    pauseStartHour: Date
+    pauseEndHour: Date
+    duree_horaire:number
+    }

@@ -6,11 +6,11 @@ export class PlageHoraireMapper {
         if (plage_horaire === null) return null as any;
         return {
 
-            jour:plage_horaire.jour,
+            date:plage_horaire.date,
             StartHour:plage_horaire.StartHour,
             EndHour:plage_horaire.EndHour,
-            pauseStart:plage_horaire.pauseStart,
-            pauseEnd:plage_horaire.pauseEnd,
+            pauseStartHour:plage_horaire.pauseStartHour,
+            pauseEndHour:plage_horaire.pauseEndHour,
             duree_horaire:plage_horaire.duree_horaire,
 
         

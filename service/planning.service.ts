@@ -15,37 +15,38 @@ export class PlanningService implements IService<planningDTO> {
     }
     async findById(id: number): Promise<any | null> {
         const data:any = await this.planningRepository.findById(id)
-
-        // Gesttion des congés
         const planning =[]; 
         for (let i =0; i < data.Plage_Horaire.length;i++)
         {
+            /*On parcoure les pages horaires et on calcule le nbre de creneaux pour chaque plage horaire
+            */
             const minutesTotales = (data.Plage_Horaire[0].EndHour.getTime() - data.Plage_Horaire[0].StartHour.getTime())/(1000 * 60)
-            console.log(minutesTotales)
             const nbCreneaux = Math.floor(minutesTotales/data.Plage_Horaire[0].duree_horaire)
             const HourStartPause = data.Plage_Horaire[i].pauseStartHour
             const HourEndPause = data.Plage_Horaire[i].pauseEndHour
             const date = data.Plage_Horaire[i].date
             const ListCreneux =[]
             const PauseList =[]
-            console.log(nbCreneaux)
-            for (let i =0; i < nbCreneaux;i++)
+            for (let a =0; a < nbCreneaux;a++)
             {
-                const StartHour = new Date(data.Plage_Horaire[0].StartHour.getTime()+ ((data.Plage_Horaire[0].duree_horaire * (1000  * 60))*i)).toLocaleTimeString()
-                const EndHour = new Date(data.Plage_Horaire[0].StartHour.getTime()+ ((data.Plage_Horaire[0].duree_horaire * (1000  * 60))*(i+1))).toLocaleTimeString()
-                const newCreneaux = {date:date, StartHour: StartHour, endHour:EndHour, Rdvpris:false}
-                console.log(newCreneaux)
-                console.log(HourEndPause)
-                console.log(HourStartPause)
-                if(HourStartPause < StartHour && HourEndPause >StartHour)
+                /* boucle pour pour créer des objets de créneau horaire pour chaque créneau disponible.
+                 Il vérifie ensuite si un rendez-vous existe déjà pour chaque créneau horaire*/
+                const StartHour = new Date(data.Plage_Horaire[0].StartHour.getTime()+ ((data.Plage_Horaire[0].duree_horaire * (1000  * 60))*a))
+                const EndHour = new Date(data.Plage_Horaire[0].StartHour.getTime()+ ((data.Plage_Horaire[0].duree_horaire * (1000  * 60))*(a+1)))
+                const newCreneaux = {date:date, StartHour: StartHour, EndHour:EndHour, Rdvpris:false}
+                console.log('debut pause',HourStartPause)
+                console.log('fin pause',HourEndPause)
+                console.log('start hour',StartHour )
+                if(HourStartPause <= StartHour && HourEndPause > StartHour)
                 {
                     PauseList.push(newCreneaux)
-                    console.log(PauseList)
+                    console.log('nouveaux crenaux', newCreneaux)
+                    console.log('liste des pause',PauseList)
                 }else
                 {
-                    for (let i =0 ; i<data.Rdv.length;i++){
-                        if(data.Rdv[i].StartHour <= newCreneaux.StartHour && data.Rdv[i].EndHour >= newCreneaux.endHour && 
-                        data.Rdv[i].date.toDateString()== newCreneaux.date.toDateString()){
+                    for (let k =0 ; k < data.Rdv.length ;k++){
+                        if(data.Rdv[0].StartHour <= newCreneaux.StartHour && data.Rdv[0].EndHour >= newCreneaux.EndHour && 
+                        data.Rdv[0].date == newCreneaux.date){
                             console.log('test3')
                             newCreneaux.Rdvpris = true
                             console.log('rdv de prevu', newCreneaux)

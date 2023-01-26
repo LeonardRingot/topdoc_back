@@ -1,20 +1,20 @@
 export const plage_horaire= [
   {
 
-    date:new Date(),
+    date:new Date('2023-01-22'),
     StartHour: new Date("2023-01-22 08:00:00"),
     EndHour: new Date("2023-01-22 17:00:00"),
-    pauseStartHour :new Date("2023-01-22 12:00:00"),
-    pauseEndHour : new Date("2023-01-22 14:00:00"),
+    pauseStartHour :new Date("2023-01-22 12:00:00+01"),
+    pauseEndHour : new Date("2023-01-22 14:00:00+01"),
         duree_horaire: 20,
     planningId:1
   },
   {
-    date:new Date('2023/01/23'),
+    date:new Date('2023-01-23'),
     StartHour: new Date("2023-01-23 08:00:00"),
     EndHour: new Date("2023-01-23 17:00:00"),
-    pauseStartHour :new Date("2023-01-23 12:00:00"),
-    pauseEndHour : new Date("2023-01-23 14:00:00"),
+    pauseStartHour :new Date("2023-01-23 12:00:00+01"),
+    pauseEndHour : new Date("2023-01-23 14:00:00+01"),
      duree_horaire: 20,
     planningId:1
   },

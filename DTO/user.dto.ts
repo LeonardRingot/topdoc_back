@@ -10,5 +10,6 @@ export interface userDTO {
    export interface userLoginDTO{
       UserId:number,
       email:string,
-      password:string
+      password:string,
+      role_nom:string
    }

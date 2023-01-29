@@ -48,7 +48,7 @@ patientController.get('/:id',patientHandler.getPatientById)
   *         in: body
   *         required: true
   *         type: object
-  *         default:  {"numbervitalCode": "18", "lastname": "a", "firstname": "a","birthday": "2000-06-31","email":"a@amdr.com", "password":"a","phone": 113, "address":"address","city":"vccity","zipCode":"62240" ,"isActif": true}
+  *         default:  {"numbervitalCode": "18", "lastname": "a", "firstname": "a","birthday": "2000-06-31","email":"a@amdr.com", "password":"patient","phone": 113, "address":"address","city":"vccity","zipCode":"62240" ,"isActif": true}
   *      responses:
   *        200:
   *          description: Create a new patient.

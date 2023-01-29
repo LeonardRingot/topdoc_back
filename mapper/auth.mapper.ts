@@ -1,6 +1,9 @@
 import { AuthDTO } from "~~/dto/auth.dto";
 import { tokenId } from "~~/types/token";
 import { userLoginDTO} from "~~/dto/user.dto";
+import { User } from "~~/models/users.model";
+import { roleId } from "~~/types/role";
+import { Role } from "~~/models/role.model";
 import { userId } from "~~/types/utilisateur";
 
 export class AuthMapper {
@@ -14,14 +17,17 @@ export class AuthMapper {
     }
     return dto;
    }
-    static mapToCoDto(user: userId | null): userLoginDTO {
+    static mapToCoDto(user: User): userLoginDTO {
         if (user === null) {
             return null as any;
         }
+        console.log('le role sera',user.get({ plain: true }).Roles[0].role_nom)
         const dto :userLoginDTO =  {
             UserId:user.id,
            email:user.email,
-           password:user.password
+           password:user.password,
+           
+           role_nom:user.get({ plain: true }).Roles[0].role_nom
         }
         return dto;
     }

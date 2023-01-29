@@ -6,13 +6,34 @@ import { userLoginDTO } from "~~/dto/user.dto";
 import { AuthMapper } from "~~/mapper/auth.mapper";
 import { tokenId, tokenTypes } from "~~/types/token";
 import { userId } from "~~/types/utilisateur";
+import { roleId } from "~~/types/role";
+import { Role } from "~~/models/role.model";
+import { RoleUser } from "~~/database/connect";
 export class AuthRepository implements IRepositoryAuth<AuthDTO,userLoginDTO > {
     async findUser(email: string): Promise<userLoginDTO | null> {
-        return User.findOne({where:{email:email}}).then((user:any)=>AuthMapper.mapToCoDto(user))
+        return User.findOne({
+            where:{email:email},
+            include: [{model: Role}]
+        }).then((user:any)=>AuthMapper.mapToCoDto(user))
+
+        /*return User.findOne({include: [
+            {
+                model: User,
+                required: false,
+                attributes: {exclude: ['password']},
+                include: [
+                   
+                    {
+                        model: Role
+                    }
+                ]
+            }
+        ]}).then((user:any)=>AuthMapper.mapToCoDto(user))*/
     }
 
    async  findTokenOfUser(id: number): Promise<userLoginDTO | null> {
         return Token.findOne({where: {UserId: id}}).then((token: any | null) => {
+            console.log('token from repo',token)
              return AuthMapper.mapToCoDto(token)
         })
        

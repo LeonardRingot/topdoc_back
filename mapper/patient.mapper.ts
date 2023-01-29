@@ -6,9 +6,7 @@ import { Role } from "~~/models/role.model";
 
 export class PatientMapper {
     static mapToDto(patient: Patient | null): PatientDTO {
-        console.log("DTOPASS")
         if (patient === null) return null as any;
-        console.log(patient)
         return {
            UserId:patient.UserId,
            numbervitalCode:patient.numbervitalCode,
@@ -23,13 +21,10 @@ export class PatientMapper {
 			city: patient.get({ plain: true }).User.Localisation.city,
             zipCode: patient.get({ plain: true }).User.Localisation.zipCode,
             role_nom:patient.get({ plain: true }).User.Roles.role_nom,
-            
         }
-        
     }
 
     static mapToDtoCreate(patient: Patient, user:User, localisation:Localisation, role:Role): PatientDTO {
-        
             return  {
               UserId:patient.UserId,
                numbervitalCode:patient.numbervitalCode,
@@ -45,7 +40,6 @@ export class PatientMapper {
                  zipCode: localisation.zipCode,
                  role_nom:role.role_nom
             }
-        
     }
 
 }

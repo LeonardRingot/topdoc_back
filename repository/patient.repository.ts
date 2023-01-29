@@ -12,7 +12,6 @@ import { RoleUser } from "~~/database/connect";
 export class PatientRepository implements IRepository<PatientDTO> {
     async findAll(): Promise<PatientDTO[]> {
         try{
-            console.log("ENTRY")
             return Patient.findAll({
                 include: [
                     {
@@ -168,7 +167,6 @@ export class PatientRepository implements IRepository<PatientDTO> {
                     role_nom:newRole.role_nom
 				};
                 await t.commit();
-                console.log("NEW ROLE",patientRole)
 				return result;
 			} catch (err) {
 				await t.rollback();

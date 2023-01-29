@@ -23,8 +23,6 @@ export class PlanningRepository implements IRepository<planningDTO> {
        
         const RdvFound = await Rdv.findAll()
         const MyPlanning = {Planning: PlanningFound, Plage_Horaire: Plage_HoraireFound, Rdv: RdvFound}
-        console.log("repo")
-       // console.log(MyPlanning)
         return MyPlanning as any
         
     }

@@ -9,5 +9,6 @@ export interface userTypes {
   LocalisationId: number;
 }
 export interface userId extends userTypes {
+    role_nom: string;
     id: number;
 }

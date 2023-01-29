@@ -161,7 +161,6 @@ export class PraticienRepository implements IRepository<praticienDTO> {
                     
                     
 				};
-                console.log("le role",praticienRole)
                 await t.commit();
 				return result;
 			} catch (err) {

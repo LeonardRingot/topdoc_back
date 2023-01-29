@@ -13,13 +13,15 @@ export class AuthService implements IServiceToken<AuthDTO,userLoginDTO>{
         this.authRepo =_authRepo;
     }
     
-    findID(id: number): Promise<userLoginDTO | null> {
-        return this.authRepo.findTokenOfUser(id).then(user => {
-            return user
-        })
+     findID(id: number): Promise<userLoginDTO | null> {
+        console.log('FindID from sevice', id);
+        return this.authRepo.findTokenOfUser(id)
+            
     }
     findUser(email: string): Promise<userLoginDTO | null> {
         return this.authRepo.findUser(email).then(user => {
+            console.log('findUser from sevice', user);
+            
             return user
         })
     }

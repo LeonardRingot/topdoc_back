@@ -10,7 +10,7 @@ const sequelize =require('./database/connect')
 
 const app = express()
 // decommenter la ligne ci-dessous pour reset la BDD à chaque demerrage
-sequelize.initDb()
+//sequelize.initDb()
 app.use(express.json())
 app.use(cors())
 

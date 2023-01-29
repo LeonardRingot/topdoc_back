@@ -48,7 +48,7 @@ rdvController.get('/:id',rdvHandler.getRdvById)
   *         in: body
   *         required: true
   *         type: object
-  *         default: { "date": "2022-12-09 16:00:00+01", "duree_rdv": 20, "motif": "aie", "PatientUserId":1, "PraticienUserId":"2" }
+  *         default: { "date": "2023-01-23", "duree_rdv": 20,"StartHour": '2023-01-23 10:00:00+01',"EndHour": '2023-01-23 10:20:00+01', "motif": "aie", "PatientUserId":1, "PraticienUserId":"3" }
   *      responses:
   *        200:
   *          description: Create a new localisation.

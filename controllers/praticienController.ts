@@ -48,7 +48,7 @@ praticienController.get('/:id',praticienHandler.getPraticiensById)
   *         in: body
   *         required: true
   *         type: object
-  *         default:  {"activite": "dentiste", "lastname": "a", "firstname": "a","birthday": "2000-06-31","email":"a@alol.com", "password":"a","phone": 112, "address":"address","city":"vccity","zipCode":"62240" ,"isActif": true  }
+  *         default:  {"activite": "dentiste", "lastname": "a", "firstname": "a","birthday": "2000-06-31","email":"a@alol.com", "password":"praticien","phone": 112, "address":"address","city":"vccity","zipCode":"62240" ,"isActif": true  }
   *      responses:
   *        200:
   *          description: Create a new patient.

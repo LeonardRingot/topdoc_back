@@ -33,7 +33,6 @@ export class PraticienHandler{
             const result = await this.praticienService.create(req.body);
             if (result === null) return res.status(404).send()
             res.status(200).json(result)
-            console.log(result)
         } catch(err) {
             res.status(500).json(err)
         }

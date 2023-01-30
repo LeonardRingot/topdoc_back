@@ -27,6 +27,7 @@ export class PlanningService implements IService<planningDTO> {
             const date = data.Plage_Horaire[i].date
             const ListCreneux =[]
             const PauseList =[]
+            console.log("nbre de creneaux",nbCreneaux)
             for (let a =0; a < nbCreneaux;a++)
             {
                 /* boucle pour pour créer des objets de créneau horaire pour chaque créneau disponible.
@@ -37,6 +38,7 @@ export class PlanningService implements IService<planningDTO> {
                 console.log('debut pause',HourStartPause)
                 console.log('fin pause',HourEndPause)
                 console.log('start hour',StartHour )
+                console.log("nouveaux creneaux,", newCreneaux)
                 if(HourStartPause <= StartHour && HourEndPause > StartHour)
                 {
                     PauseList.push(newCreneaux)
